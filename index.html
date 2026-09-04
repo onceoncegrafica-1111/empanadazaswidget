@@ -820,7 +820,7 @@
                 return;
             }
 
-            // Caso 4: Android normal en Chrome -> DISPARO INMEDIATO DE VENTANA NATIVA (1 TOQUE)
+           // Caso 4: Android normal en Chrome -> DISPARO INMEDIATO DE VENTANA NATIVA (1 TOQUE)
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
@@ -830,8 +830,6 @@
                 }
                 deferredPrompt = null;
             } else {
-                // Fallback inteligente para que no se quede trabado nunca
-                } else {
                 showCelebrationToast("🥟 Preparando el Imán... Tocá de nuevo");
             }
         }

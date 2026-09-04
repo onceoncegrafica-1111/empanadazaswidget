@@ -1,16 +1,22 @@
 {
   "name": "Empanadazas® Oficial",
   "short_name": "Empanadazas",
-  "description": "Pedí en 1 toque a cualquier sucursal con promos y beneficios VIP.",
+  "description": "Pedí en 1 toque a cualquier sucursal con beneficios VIP.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#131412",
   "theme_color": "#131412",
   "icons": [
     {
-      "src": "./icon.svg",
-      "sizes": "192x192 512x512",
-      "type": "image/svg+xml",
+      "src": "./empanadazas-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./empanadazas-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]

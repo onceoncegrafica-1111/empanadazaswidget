@@ -129,4 +129,753 @@
             100% { background-position: 1000px 1000px; }
         }
 
-        /* CONTENEDOR CENTRAL MA
+        /* CONTENEDOR CENTRAL MAESTRO */
+        .hub-inner-frame {
+            width: 100%;
+            max-width: 460px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* CABECERA CON ISOLOGOTIPO COMPLETO */
+        .hub-brand-header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .hub-logo-box {
+            width: 100%;
+            max-width: 310px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,0.75)) drop-shadow(0 0 14px rgba(247, 194, 104, 0.22));
+        }
+
+        .hub-logo-box svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .cls-1 { fill: #eca244; stroke-width: 0px; }
+        .cls-2 { fill: #fefae4; stroke-width: 0px; }
+
+        .badges-top-row {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .badge-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.66rem;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--neon-bronze-subtle);
+            color: var(--bronze-bright);
+            border: 1px solid rgba(229, 169, 82, 0.45);
+            text-transform: uppercase;
+        }
+
+        .badge-pill.gold {
+            background: rgba(247, 194, 104, 0.2);
+            color: var(--bronze-light);
+            border-color: var(--bronze-bright);
+        }
+
+        .brand-bio {
+            font-size: 0.84rem;
+            line-height: 1.45;
+            color: var(--text-muted);
+            font-weight: 500;
+            max-width: 95%;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            text-align: center;
+        }
+
+        .highlight-bio { color: var(--brand-cream); font-weight: 700; }
+        .quote-slogan { font-style: italic; color: var(--bronze-bright); font-weight: 600; font-size: 0.82rem; }
+
+        .social-bar { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 2px; }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(28, 29, 25, 0.9);
+            border: 1.5px solid var(--border-card);
+            color: var(--brand-cream);
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: all 0.25s ease;
+        }
+        .social-btn:hover {
+            border-color: var(--bronze-bright);
+            color: var(--bronze-bright);
+            background: rgba(40, 42, 36, 0.95);
+            box-shadow: 0 0 14px var(--neon-bronze-glow);
+            transform: translateY(-2px);
+        }
+        .social-btn svg { width: 17px; height: 17px; }
+
+        /* TARJETAS BOTONES */
+        .btn-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1.5px solid var(--border-card);
+            border-radius: 18px;
+            text-decoration: none;
+            color: var(--text-light);
+            box-shadow: var(--shadow-card);
+            transition: all 0.28s var(--spring-curve);
+            position: relative;
+        }
+
+        .btn-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-card-hover);
+            box-shadow: 0 10px 30px -2px rgba(0, 0, 0, 0.75), 0 0 18px var(--neon-bronze-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-card:active {
+            transform: scale(0.98);
+        }
+
+        .btn-hero {
+            background: linear-gradient(135deg, rgba(38, 40, 34, 0.96) 0%, rgba(25, 26, 22, 0.96) 100%);
+            border: 2px solid var(--bronze-bright);
+            box-shadow: var(--shadow-hero);
+            padding: 16px 20px;
+            overflow: hidden;
+        }
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -130%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(247, 194, 104, 0.28) 42%, rgba(255, 255, 255, 0.55) 50%, rgba(247, 194, 104, 0.28) 58%, transparent 100%);
+            transform: skewX(-25deg);
+            animation: jewelBeamSweep 5.6s infinite ease-in-out;
+        }
+        @keyframes jewelBeamSweep { 0%, 50% { left: -130%; } 85%, 100% { left: 190%; } }
+
+        .icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 13px;
+            background: rgba(20, 21, 18, 0.9);
+            border: 1.5px solid var(--border-card);
+            transition: all 0.28s ease;
+            overflow: hidden;
+        }
+        .icon-box svg { width: 100%; height: 100%; display: block; }
+        .icon-box.hero-gold {
+            background: linear-gradient(135deg, #F7C268 0%, #D78B28 100%) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            color: #1A1815;
+            padding: 8px;
+        }
+        .icon-box.hero-gold svg { width: 25px; height: 25px; }
+
+        .btn-info { display: flex; flex-direction: column; flex: 1; min-width: 0; gap: 2px; }
+        .btn-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+        .btn-title {
+            font-family: 'Mexcellent', 'Outfit', sans-serif;
+            font-size: clamp(1.15rem, 4vw, 1.35rem);
+            font-weight: normal;
+            letter-spacing: 0.14em; 
+            color: var(--bronze-light);
+            text-transform: uppercase;
+            line-height: 1.1;
+            transition: color 0.25s ease;
+        }
+
+        .btn-card:hover .btn-title { color: #FFFFFF; }
+        .btn-title.title-promo { font-size: clamp(1.02rem, 3.5vw, 1.18rem); letter-spacing: 0.12em; }
+
+        .btn-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .arrow-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            border-radius: 50%;
+            background: rgba(20, 21, 18, 0.85);
+            border: 1px solid var(--border-card);
+            color: var(--text-muted);
+            transition: all 0.28s ease;
+        }
+        .btn-card:hover .arrow-box {
+            background: linear-gradient(135deg, var(--bronze-bright) 0%, var(--bronze-mid) 100%);
+            color: #151412;
+            border-color: var(--bronze-bright);
+        }
+        .arrow-box svg { width: 13px; height: 13px; stroke-width: 2.6; }
+
+        /* SUCURSALES */
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--bronze-mid);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 8px;
+            margin-bottom: -2px;
+        }
+
+        .branches-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .branch-wsp-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 13px 16px;
+            background: rgba(20, 22, 18, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(229, 169, 82, 0.28);
+            border-radius: 17px;
+            text-decoration: none;
+            color: var(--text-light);
+            box-shadow: var(--shadow-card);
+            transition: all 0.25s var(--spring-curve);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .branch-wsp-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3.5px;
+            background: linear-gradient(180deg, var(--bronze-bright) 0%, var(--bronze-mid) 100%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .branch-wsp-card:hover {
+            border-color: #22C55E;
+            background: rgba(26, 31, 23, 0.97);
+            box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.7), 0 0 16px rgba(34, 197, 94, 0.28);
+            transform: translateY(-2px);
+        }
+
+        .branch-wsp-card:hover::before {
+            opacity: 1;
+            background: #22C55E;
+        }
+
+        .branch-wsp-card:active {
+            transform: scale(0.98);
+        }
+
+        .branch-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .branch-header-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .branch-name-text {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            color: var(--brand-cream);
+            line-height: 1.2;
+            transition: color 0.25s ease;
+        }
+
+        .branch-wsp-card:hover .branch-name-text {
+            color: #FFFFFF;
+        }
+
+        .badge-24h-live {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            background: rgba(34, 197, 94, 0.16);
+            color: #4ADE80;
+            border: 1px solid rgba(34, 197, 94, 0.42);
+            padding: 2px 7px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            line-height: 1;
+        }
+
+        .live-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #22C55E;
+            box-shadow: 0 0 6px #22C55E;
+            animation: livePulse 2s infinite ease-in-out;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.5; }
+        }
+
+        .branch-addr-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .branch-pin-icon {
+            width: 13px;
+            height: 13px;
+            color: var(--bronze-mid);
+            flex-shrink: 0;
+        }
+
+        .wsp-action-btn {
+            background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+            color: #032311;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            padding: 8px 13px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 3px 12px rgba(34, 197, 94, 0.32);
+            flex-shrink: 0;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+        }
+
+        .branch-wsp-card:hover .wsp-action-btn {
+            background: #22C55E;
+            color: #02170B;
+            box-shadow: 0 0 16px rgba(34, 197, 94, 0.6);
+            transform: scale(1.03);
+        }
+
+        .wsp-mini-icon {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* PWA CARD */
+        .pwa-install-card {
+            background: linear-gradient(135deg, rgba(247, 194, 104, 0.16) 0%, rgba(162, 92, 16, 0.22) 100%);
+            border: 1.5px dashed var(--bronze-bright);
+            border-radius: 18px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            margin-top: 6px;
+        }
+        .pwa-install-card:hover {
+            background: rgba(247, 194, 104, 0.25);
+            box-shadow: 0 0 16px var(--neon-bronze-glow);
+        }
+        .pwa-install-card:active { transform: scale(0.97); }
+
+        .pwa-text { display: flex; flex-direction: column; }
+        .pwa-title { font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 900; color: var(--bronze-bright); }
+        .pwa-sub { font-size: 0.72rem; color: var(--brand-cream-muted); font-weight: 600; }
+
+        .pwa-badge-btn {
+            background: linear-gradient(135deg, var(--bronze-bright) 0%, var(--bronze-mid) 100%);
+            color: #1A1815;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.74rem;
+            font-weight: 800;
+            padding: 7px 14px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .ios-guide {
+            display: none;
+            background: rgba(30, 31, 27, 0.95);
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            padding: 10px 14px;
+            font-size: 0.75rem;
+            color: var(--brand-cream);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .hub-footer { margin-top: 18px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .footer-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; color: var(--brand-cream); background: rgba(24, 25, 21, 0.9); padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border-card); }
+        .footer-legal { font-size: 0.72rem; color: var(--text-subtle); font-weight: 600; }
+
+        @media (max-width: 480px) {
+            .hub-logo-box { max-width: 280px; }
+            .branch-name-text { font-size: 1.08rem; }
+            .branch-addr-text { font-size: 0.76rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FONDO CANVAS ANIMADO -->
+    <div class="hub-bg-canvas">
+        <div class="hub-ambient-spotlight"></div>
+        <div class="hub-stencil-wrap"></div>
+    </div>
+
+    <!-- ESTRUCTURA PRINCIPAL DEL HUB -->
+    <main class="hub-inner-frame">
+        
+        <!-- CABECERA DEL HUB CON ISOLOGOTIPO COMPLETO -->
+        <header class="hub-brand-header">
+            <div class="hub-logo-box">
+                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 647.17 130.27">
+                    <path class="cls-1" d="M65.14,130.27c26.76,0,50.77-16.43,60.55-41.15.42-1.06-.37-2.21-1.51-2.21h-17.64c-.59,0-1.12.32-1.41.83-8.16,14.43-23.39,23.34-39.99,23.34s-31.83-8.92-39.99-23.34c-.29-.51-.82-.83-1.41-.83H6.09c-1.14,0-1.93,1.15-1.51,2.21,9.79,24.72,33.79,41.15,60.55,41.15"/>
+                    <path class="cls-2" d="M129.85,64.27s0-.01,0-.02l-.03-.09c-.03-.11-.06-.19-.09-.27-.35-.95-.85-1.82-1.48-2.58-.79-.95-1.46-2.01-2-3.14-.05-.12-.1-.23-.15-.34l-.08-.19c-.04-.09-.09-.21-.13-.32-.03-.08-.06-.17-.1-.26l-.07-.19c-.05-.12-.1-.26-.14-.4-.97-2.98-.99-6.13-.05-9.11,0,0,0,0,0-.01h0s0-.02,0-.04c.02-.08.04-.16.06-.24l.03-.12c.04-.14.08-.26.1-.37.02-.1.04-.2.05-.3l.09-.49c.02-.18.04-.39.05-.59v-.17c.02-.19.02-.42.01-.67,0-.03,0-.1,0-.15-.04-.93-.25-1.89-.61-2.82,0-.02-.02-.05-.02-.07l-.02-.05c-.19-.46-.41-.9-.67-1.3-.14-.22-.28-.43-.43-.62-.17-.22-.31-.39-.45-.55-.04-.04-.08-.08-.12-.13-.14-.15-.27-.3-.42-.43l-.33-.28c-.1-.09-.17-.15-.23-.2-.13-.11-.28-.2-.42-.3-.11-.07-.17-.12-.24-.17l-.04-.03c-.13-.08-.35-.21-.58-.33-2.99-1.57-5.36-4.17-6.67-7.34-.59-1.44-.95-2.96-1.07-4.52-.02-.25-.05-.49-.09-.75l-.05-.23c-.03-.17-.07-.34-.1-.49-.01-.05-.03-.1-.04-.16l-.03-.12c-.04-.13-.08-.28-.13-.41-.03-.09-.07-.19-.1-.29-.04-.12-.1-.25-.15-.38-.04-.1-.08-.19-.12-.28-.06-.12-.13-.25-.2-.38l-.04-.08c-.04-.07-.07-.12-.1-.17-.08-.13-.16-.26-.24-.39l-.15-.23c-.13-.19-.26-.37-.4-.54-.31-.38-.66-.74-1.04-1.07-.16-.13-.32-.27-.51-.4-.03-.02-.07-.04-.1-.07l-.09-.06c-.15-.1-.28-.19-.42-.27l-.22-.13c-.13-.07-.26-.14-.39-.21-.08-.04-.15-.07-.23-.11l-.68-.28c-.13-.05-.28-.09-.42-.13l-.27-.08c-.14-.04-.31-.07-.48-.11l-.26-.05c-.19-.03-.43-.06-.66-.08-4.33-.35-8.22-2.66-10.68-6.32l-.08-.13c-.1-.14-.26-.4-.41-.66-.1-.17-.19-.34-.28-.52-.03-.04-.06-.09-.08-.15-.19-.39-.39-.73-.59-1.04l-.17-.25c-.07-.1-.13-.19-.2-.28-.05-.06-.1-.12-.15-.18l-.23-.28h0s-.02-.03-.03-.04c-.14-.15-.28-.29-.43-.44-.04-.03-.09-.09-.15-.15-.1-.1-.27-.24-.44-.37l-.11-.1c-.12-.09-.3-.22-.5-.36,0,0,0,0,0,0,0,0-.1-.07-.13-.09-.09-.06-.28-.17-.49-.29l-.11-.07c-.13-.07-.32-.16-.52-.25l-.27-.11c-.08-.03-.17-.07-.26-.1-2.25-.8-4.34-.39-5.29-.11-.1.04-.2.06-.3.1-.14.05-.23.08-.23.08h0c-1.28.37-2.6.57-3.95.57-3.43,0-6.75-1.25-9.33-3.51-1.51-1.32-3.41-2.05-5.36-2.07-1.93.02-3.82.75-5.33,2.07-2.58,2.26-5.9,3.51-9.33,3.51-1.62,0-3.2-.28-4.72-.82-.32-.11-.69-.19-1.1-.23-.09,0-.16-.01-.24-.02-.21-.02-.38-.04-.55-.05h-.1s-.3,0-.3,0h-.32c-.17,0-.33.02-.5.04l-.31.03c-.12.02-.32.06-.52.1l-.18.03c-.14.03-.35.09-.55.15l-.14.04c-.14.05-.34.12-.54.2l-.27.11c-.16.07-.35.16-.53.25-.03.02-.05.03-.08.05-.2.11-.39.22-.55.33-.03.02-.06.04-.09.06-.18.12-.36.25-.52.38l-.02.02c-.21.17-.37.31-.55.48-.03.03-.06.06-.09.09-.14.14-.28.28-.42.43-.02.03-.04.06-.04.06l-.15.18s-.04.04-.04.05c-.1.11-.17.2-.24.29-.03.04-.05.08-.08.11l-.25.37c-.06.09-.09.12-.11.15-.11.18-.22.38-.34.62l-.09.16c-.09.18-.24.46-.4.74-.15.26-.31.52-.45.73l-.02.03c-2.47,3.7-6.37,6.01-10.7,6.36-.23.02-.46.05-.72.09l-.17.04c-.19.04-.36.07-.52.11l-.24.07c-.15.04-.3.09-.44.14-.07.03-.16.06-.25.09l-.46.2s-.11.05-.18.09c-.13.07-.26.14-.39.21l-.25.14c-.11.07-.24.16-.37.25l-.13.09h0s-.03.02-.05.03c-.2.15-.38.29-.55.43-.37.32-.72.68-1.04,1.07-.14.17-.28.35-.42.56l-.12.18c-.09.14-.18.28-.26.41l-.13.24c-.07.13-.14.26-.2.39-.04.08-.08.17-.12.26-.06.13-.11.27-.16.4-.03.09-.07.18-.1.28-.05.14-.09.28-.13.42l-.08.3c-.03.14-.06.3-.1.46l-.06.28c-.03.21-.06.46-.08.71-.12,1.56-.48,3.08-1.07,4.51-1.31,3.17-3.67,5.78-6.67,7.34-.21.11-.43.24-.63.36,0,0,0,0,0,0-.05.04-.12.09-.19.13-.18.12-.33.22-.46.33-.07.05-.13.1-.19.16l-.41.35c-.11.11-.25.25-.38.4-.04.04-.08.09-.16.16-.11.12-.24.29-.39.48-.01.02-.05.06-.07.09-.11.15-.24.35-.38.56-.26.42-.48.85-.67,1.31l-.04.11c-.37.94-.58,1.92-.62,2.9v.02c0,.31,0,.54,0,.79v.06c.02.26.04.46.06.67l.07.4s.01.06.01.07c.02.11.03.2.05.3.02.1.05.2.08.3l.06.2c.02.07.04.15.06.23l.02.08c.93,2.94.92,6.09-.05,9.07-.05.15-.1.28-.15.42l-.06.17c-.03.09-.06.18-.1.28-.04.11-.09.21-.14.32l-.08.2c-.04.09-.09.2-.14.31-.53,1.14-1.21,2.19-2,3.14-.64.76-1.14,1.63-1.48,2.58-.02.06-.04.13-.06.19l-.05.16c-.28.9-.43,1.8-.43,2.7,0,1.45.37,2.9,1.07,4.2.23.42.51.84.83,1.23l.1.12c1,1.14,2.92,2.68,6.3,3.46l.07.02c1.49.34,3.14.51,4.92.51h103.7c1.77,0,3.42-.17,4.89-.5l.1-.02c3.38-.78,5.29-2.32,6.3-3.46h0s0,0,0,0l.11-.13c.31-.37.59-.79.83-1.23.69-1.28,1.06-2.73,1.06-4.18,0-.89-.14-1.8-.42-2.68M109.75,56.47c-.43.55-1.07.87-1.77.87H22.29c-.7,0-1.34-.32-1.77-.87-.43-.55-.57-1.26-.39-1.93,5.44-20.81,23.95-35.37,45-35.42,21.06.04,39.57,14.61,45.01,35.42.18.67.03,1.37-.39,1.93"/>
+                    <path class="cls-2" d="M160.9,27.38c10.73-.01,21.46-.02,32.19-.04,0,4.68,0,7.01,0,11.69-7.91.08-11.87.13-19.78.22,0,7.98,0,15.96,0,23.94,6.8-.22,10.2-.32,17.01-.53,0,4.7,0,7.05,0,11.76-6.8.27-10.2.41-17.01.7,0,7.98,0,15.96,0,23.94,7.9-.5,11.86-.74,19.76-1.19,0,4.68,0,7.01,0,11.69-10.72.73-21.44,1.51-32.15,2.32V27.38"/>
+                    <path class="cls-2" d="M227.03,82.2c4.78-18.31,9.61-36.61,14.47-54.91,4.96,0,7.45,0,12.41,0-.02,26.25-.05,52.51-.07,78.76-4.75.23-7.13.35-11.88.59.01-14.84.02-29.68.04-44.52-3.57,15.02-7.12,30.05-10.65,45.09-3.37.19-5.05.28-8.42.47-3.65-14.93-7.28-29.87-10.88-44.81-.01,15.15-.02,30.3-.03,45.46-4.8.29-7.21.45-12.01.76.01-27.25.03-54.5.04-81.75,4.97,0,7.45,0,12.41-.01,4.82,18.3,9.67,36.6,14.56,54.88"/>
+                    <path class="cls-2" d="M261.27,27.28c7.23,0,10.84,0,18.07-.01,9.42,0,17.4,6.04,16.52,16.21,0,4.63,0,6.95-.01,11.59.22,7.58-4.69,13.64-11.9,15.64-1.9.59-4.67.93-8.29,1.02-.81.02-1.21.03-2.02.05,0,11.13-.02,22.26-.03,33.39-4.96.21-7.45.31-12.41.54.02-26.14.05-52.28.07-78.42M273.67,38.35c0,7.44-.01,14.88-.02,22.31,1.14-.02,1.71-.03,2.85-.05,1.73-.03,2.91-.16,3.55-.38,2.25-.86,3.38-2.52,3.38-4.99,0-4.66,0-6.99,0-11.65,0-3.53-1.79-5.28-5.39-5.26-1.76.01-2.63.02-4.39.03"/>
+                    <path class="cls-2" d="M332.83,76.3c1.34,8.96,2.68,17.92,4.02,26.88-5.02.11-7.53.16-12.55.29-.96-6.44-1.44-9.66-2.4-16.11-5.07.11-7.61.16-12.68.28-.99,6.52-1.48,9.79-2.47,16.32-5,.15-7.5.24-12.5.41,1.35-9.11,2.7-18.22,4.06-27.33,2.93-16.6,5.87-33.2,8.81-49.79,6.81,0,10.21,0,17.02,0,2.89,16.35,5.79,32.7,8.7,49.05M320.28,76.5c-1.57-10.57-3.15-21.14-4.71-31.71-1.59,10.63-3.18,21.26-4.76,31.89,3.79-.07,5.69-.11,9.48-.17"/>
+                    <path class="cls-2" d="M343.9,27.24c4.96,0,7.45,0,12.41,0,3.91,14.59,7.82,29.17,11.74,43.75,0-14.59.01-29.17.02-43.76,4.6,0,6.89,0,11.49,0,0,25.11-.01,50.22-.02,75.33-4.97.04-7.45.06-12.42.12-3.77-14.1-7.54-28.2-11.3-42.31,0,14.15-.01,28.31-.02,42.46-4.78.07-7.16.11-11.94.2.01-25.27.03-50.53.04-75.8"/>
+                    <path class="cls-2" d="M425.13,75.82c1.35,8.91,2.7,17.83,4.04,26.74-5.02-.04-7.53-.06-12.55-.08-.97-6.39-1.45-9.58-2.41-15.96-5.07-.01-7.61-.01-12.68-.01-.98,6.38-1.48,9.57-2.46,15.96-5,0-7.51.02-12.51.04,1.35-8.87,2.7-17.73,4.04-26.6,2.93-16.23,5.85-32.45,8.78-48.68,6.81,0,10.21,0,17.02,0,2.91,16.2,5.83,32.39,8.74,48.59M412.58,75.78c-1.58-10.43-3.16-20.86-4.74-31.3-1.58,10.43-3.16,20.86-4.74,31.29,3.79,0,5.69,0,9.48,0"/>
+                    <path class="cls-2" d="M436.16,27.23c7.65,0,11.47,0,19.12,0,9.94,0,16.68,5.86,16.54,15.99,0,14.67.02,29.34.03,44.01.15,10.48-7.33,15.82-17.32,15.62-7.34-.12-11.01-.17-18.34-.24,0-25.13-.02-50.26-.02-75.4M448.58,37.98c0,18.02.01,36.04.02,54.06,2.18.03,3.27.04,5.44.07,3.6.05,5.4-1.63,5.39-5.05,0-14.63-.01-29.25-.02-43.88,0-3.45-1.8-5.18-5.4-5.19-2.18,0-3.26,0-5.44-.01"/>
+                    <path class="cls-2" d="M515.73,77.07c1.36,9.18,2.71,18.35,4.06,27.53-5.02-.18-7.53-.27-12.55-.44-.97-6.55-1.46-9.83-2.43-16.37-5.07-.13-7.61-.19-12.68-.3-.98,6.46-1.47,9.69-2.44,16.14-5-.14-7.5-.2-12.51-.32,1.34-8.93,2.68-17.87,4.02-26.81,2.92-16.42,5.83-32.84,8.74-49.26,6.81,0,10.21,0,17.02,0,2.93,16.6,5.86,33.2,8.77,49.81M503.18,76.79c-1.59-10.65-3.17-21.31-4.76-31.96-1.57,10.59-3.14,21.19-4.71,31.78,3.79.07,5.69.11,9.48.18"/>
+                    <path class="cls-2" d="M557.17,34.13c-5.55,20.07-11.15,40.13-16.79,60.18,7.04.26,10.55.4,17.59.7,0,4.49,0,6.74.01,11.23-10.52-.5-21.05-.96-31.58-1.39,0-2.69,0-4.03,0-6.72,5.63-19.89,11.23-39.8,16.79-59.71-6.51-.05-9.76-.07-16.27-.11,0-4.41,0-6.62-.01-11.04,10.09,0,20.17.01,30.26.02,0,2.73,0,4.1,0,6.84"/>
+                    <path class="cls-2" d="M603.1,79.88c1.35,9.71,2.71,19.43,4.05,29.15-5.01-.32-7.52-.48-12.53-.79-.97-6.92-1.45-10.38-2.42-17.27-5.07-.24-7.6-.36-12.67-.58-.98,6.75-1.47,10.11-2.44,16.84-5-.28-7.5-.41-12.5-.66,1.34-9.29,2.68-18.57,4.01-27.86,2.92-17.13,5.83-34.26,8.73-51.4,6.81,0,10.21,0,17.02,0,2.94,17.52,5.86,35.04,8.76,52.56M590.56,79.38c-1.58-11.21-3.17-22.42-4.76-33.62-1.57,11.09-3.14,22.18-4.71,33.27,3.79.14,5.68.21,9.47.36"/>
+                    <path class="cls-2" d="M611.45,43.26c-.02-10.27,7.5-17.62,17.8-17.21,9.87.39,18.79,6.7,17.85,17.74v11.37c-4.96-.13-7.44-.19-12.41-.32,0-4.5,0-6.75,0-11.24,0-3.75-1.8-5.65-5.4-5.72-.03,0-.05,0-.09,0-3.57-.04-5.35,1.82-5.35,5.56,0,3,0,4.51,0,7.51,0,3.69,3.9,8.42,11.62,13.93,6.46,4.61,11.6,11.65,11.61,19.91v10.68c1.02,11.04-7.96,16.82-17.78,16.44-10.35-.41-17.82-8.12-17.84-18.5,0-4.41,0-6.62,0-11.03,4.96.22,7.44.33,12.4.57,0,4.46,0,6.68,0,11.14,0,3.74,1.81,5.72,5.43,5.95,3.59.23,5.39-1.54,5.39-5.32,0-3.82,0-5.73,0-9.54,0-4.03-3.9-9.12-11.62-14.58-6.4-4.53-11.61-11.44-11.63-19.64,0-3.07,0-4.61,0-7.69"/>
+                </svg>
+            </div>
+
+            <div class="badges-top-row">
+                <span class="badge-pill gold">Creadores de la Miti-Miti</span>
+                <span class="badge-pill">#EnBuscaDeLos100Locales</span>
+            </div>
+
+            <div class="brand-bio">
+                <span class="highlight-bio">La evolución de lo rico.</span>
+                <span class="quote-slogan">"Ya nada será igual, será más rico."</span>
+                <span>¡Los primeros en venderte empanadas por KILO!</span>
+            </div>
+
+            <div class="social-bar">
+                <a href="https://www.instagram.com/empanadazas" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5" ry="5.5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@empanadazas" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.77 1.81-.02 3.38-1.47 3.54-3.27.09-1.42.04-2.84.05-4.26V.02z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/channel/UChMr1rkVKusHStufaZamCQA" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+        </header>
+
+        <!-- BOTÓN HERO 1: DELIVERY OFICIAL -->
+        <a href="https://pedidos.masdelivery.com/empanadazas" target="_blank" rel="noopener noreferrer" class="btn-card btn-hero">
+            <div class="icon-box hero-gold">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="20" r="1.8" fill="#231F20"/><circle cx="19" cy="20" r="1.8" fill="#231F20"/><path d="M2 3h3.5l2.4 11.2a1.8 1.8 0 0 0 1.8 1.4h9.6a1.8 1.8 0 0 0 1.8-1.4l1.6-7.2H6.2" stroke="#231F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 7c0-2.2 1.8-4 4-4s4 1.8 4 4H11z" fill="#FEFAE4"/></svg>
+            </div>
+            <div class="btn-info">
+                <div class="btn-title-row">
+                    <span class="btn-title">¡Hacé tu Pedido!</span>
+                    <span class="badge-pill gold">Delivery Oficial</span>
+                </div>
+                <span class="btn-desc">Envío directo a tu domicilio</span>
+            </div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+        </a>
+
+        <!-- BOTÓN HERO 2: TUCÁN PROMO WEB -->
+        <a href="https://pedir.tucan.la/menu/Empanadazas?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer" class="btn-card">
+            <div class="icon-box" style="padding: 6px; background: rgba(237, 31, 44, 0.1);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.72 283.86">
+                    <path fill="#ed1f2c" d="M214.35,0c.81.45,1.74.28,2.6.5,4.32,1.1,7.75,3.46,10.25,7.12.54.8.86.79,1.62.28,7.81-5.21,17.61-3.52,22.97,3.99,3.05,4.27,3.25,9.01,2.03,13.94-.26,1.06-1.18,2.23-.69,3.14.47.88,1.72,1.35,2.65,1.96,4.64,3.04,7.49,7.19,7.9,12.81.28,3.89-.8,7.42-3.25,10.46-2.91,3.6-6.42,6.25-11.26,6.65-3.87.33-7.44-.53-10.69-2.64-.72-.46-1.08-.38-1.69.19-3.2,2.94-6.05,6.25-9.38,9.03-2.58,2.16-3.38,2.04-5.68-.43-6.82-7.3-14.7-13.28-23.23-18.42-1.26-.76-2.6-1.38-3.93-2-2.36-1.09-2.83-2.5-1.49-4.77,2.37-3.97,5.21-7.63,7.71-11.51,1.4-2.18,1.42-2.16-.06-4.21-3.94-5.45-4.68-11.28-1.63-17.32,2.63-5.21,7.17-7.82,12.87-8.54.25-.03.58.15.71-.24h1.68Z"/>
+                    <path fill="#030303" d="M143.78,40.9c4.06-.04,8.13-.04,12.16.43,6.26.74,12.38,2.18,18.35,4.23,13.18,4.53,25.05,11.31,35.46,20.6,9.55,8.52,17.18,18.51,22.87,29.97,4.74,9.54,7.85,19.6,9.31,30.17.69,4.97.97,9.96.96,14.98-.03,15.18.1,30.37-.04,45.55-.13,13.92-3.36,27.17-9.25,39.79-3.99,8.56-9.12,16.38-15.34,23.46-5.57,6.34-11.87,11.86-18.85,16.63-10.61,7.24-22.22,12.12-34.71,14.94-4.06.92-8.19,1.43-12.34,1.77-8.6.72-17.22.34-25.82.39-9.35.06-18.7.11-28.05-.01-9.84-.13-19.5-1.5-28.76-5-5.26-1.99-10.33-4.39-14.76-7.92-1.34-1.07-2.51-2.31-2.94-4.09-.48-1.98.37-3.51,2.35-3.94,2.16-.47,4.36-.24,6.54-.18.43.01.87.11,1.3.11,4.11,0,8.22.09,12.33-.01,8.95-.21,17.72-1.58,26.31-4.21,13.55-4.15,25.48-11.16,36.15-20.35,6.09-5.25,10.67-11.77,14.48-18.81,4.82-8.9,7.86-18.42,9.57-28.36.72-4.18,1.33-8.39,1.58-12.64.08-1.27.17-2.54.2-3.81.51-.15.94.13,1.38.27,5.73,1.89,11.4,3.97,17.28,5.35,6.92,1.62,13.9,2.34,20.91.57,10.7-2.7,18.4-8.72,21.82-19.64,3.49-11.14,3.99-22.41,2.02-33.83-1.69-9.79-5.03-19.02-9.66-27.79-1.39-2.63-2.79-5.27-4.83-7.48-.46-.64-.88-1.3-1.38-1.9-1.62-1.98-3.48-3.71-5.38-5.42-4.69-4.21-9.79-7.77-15.54-10.44-12.35-5.74-25.32-8.65-38.91-8.91-.22-.41-.14-.86-.14-1.29,0-2.83,0-5.66,0-8.49,0-2.93-.46-5.79-1.6-8.48-1.07-2.52-2.24-5.04-5.02-6.2Z"/>
+                    <path fill="#f68820" d="M143.78,40.9c2.79,1.16,3.95,3.68,5.02,6.2,1.15,2.69,1.6,5.55,1.6,8.48,0,2.83,0,5.66,0,8.49,0,.43-.08.88.14,1.29-.03.48-.07.95-.07,1.43,0,13.61-.01,27.23,0,40.84,0,3.63.11,7.25-.89,10.79-.06.05-.13.08-.21.1-.49-.16-1-.27-1.47-.48-8.71-3.83-17.9-5.52-27.32-6.01-3.29-.17-6.61-.08-9.92.13-5.33.32-10.59,1-15.82,1.98-7.64,1.43-15.09,3.59-22.36,6.32-8.19,3.08-16,6.96-23.59,11.32-6.09,3.5-12.03,7.22-17.8,11.23-1.29.9-2.47,2.01-4.01,2.52.64-1.28,1.23-2.59,1.92-3.84,3.82-6.93,6.88-14.17,9.08-21.77,2.79-9.62,2.8-19.17-.69-28.63-.9-2.46-2.19-4.73-4.1-6.51-3.76-3.52-8.05-3.67-12.63-1.76-1.58.66-2.86,1.8-4.35,2.59.6-1.46,1.7-2.57,2.64-3.79,3.29-4.26,6.74-8.37,10.57-12.17,8.17-8.1,17.47-14.58,27.87-19.46,9.8-4.6,20.11-7.46,30.87-8.65,3.17-.35,6.34-.56,9.53-.56,12.1.02,24.2.05,36.29-.02,3.23-.02,6.46-.12,9.68-.07Z"/>
+                    <path fill="#030303" d="M42.8,228.42c-4.46-1.62-8.48-3.57-12.29-5.94-3.48-2.16-6.93-4.38-9.92-7.19-2.35-2.2-4.21-4.76-4.83-8.04-.13-.71-.18-1.42-.11-2.14.25-2.4,1.88-3.59,4.23-3.03,2.89.68,5.71,1.69,8.67,2.08.94.12,1.88.29,2.83.35,4.21.27,8.43.39,12.64.01,7.21-.63,13.99-2.73,20.6-5.67,8.88-3.96,17.13-8.99,25.35-14.09,6.68-4.15,13.52-7.99,21.01-10.5,7.05-2.37,14.27-3.85,21.73-3.44,5.5.3,10.92,1.18,15.46,4.69,2.77,2.15,4.2,5.07,4.58,8.56.59,5.52-.56,10.79-2.13,16.02-1.55,5.16-3.35,10.22-5.78,15.04-4.4,8.73-10.57,15.87-18.52,21.61-9.95,7.18-20.78,12.35-32.78,14.93-5.28,1.14-10.64,1.64-16.06,1.81-9.89.3-19.49-1.2-28.84-4.34-7.16-2.41-13.88-5.7-19.78-10.5-1.58-1.29-3.04-2.69-4.33-4.26-.66-.8-1.17-1.71-1.18-2.8-.01-1.39.89-2.34,2.28-2.35,2.67-.02,5.32.38,8,.3,3.01-.08,5.99-.41,9.18-1.1Z"/>
+                    <path fill="#e5d3ae" d="M149.39,118.52c.08-.02.15-.05.21-.1.17.42.58.52.92.72,1.35.78,2.77,1.4,4.16,2.1,8.37,4.18,17.12,4.88,26.13,2.8,8.78-2.03,16.06-6.59,21.9-13.46,3.99-4.69,6.73-10.02,8.35-15.95.24-.86.19-1.81.71-2.59,2.04,2.22,3.44,4.86,4.83,7.48,4.63,8.77,7.97,18,9.66,27.79,1.97,11.43,1.47,22.69-2.02,33.83-3.42,10.92-11.12,16.93-21.82,19.64-7.01,1.77-13.98,1.05-20.91-.57-5.88-1.38-11.55-3.45-17.28-5.35-.44-.14-.87-.42-1.38-.27.14-7.41-1.05-14.67-2.73-21.82-2.27-9.69-7.57-17.46-15.9-23.02-1.48-.99-3.12-1.75-4.68-2.62,5.27-.03,8.81-3.95,9.85-8.59Z"/>
+                    <path fill="#030303" d="M16.33,85.61c1.49-.79,2.76-1.93,4.35-2.59,4.58-1.91,8.87-1.76,12.63,1.76,1.91,1.79,3.2,4.06,4.1,6.51,3.48,9.46,3.48,19.01.69,28.63-2.21,7.6-5.27,14.84-9.08,21.77-.69,1.25-1.28,2.56-1.92,3.84,0,0,.02-.01.02-.01-.17.03-.23.13-.23.3-.07.09-.16.18-.22.28-3.04,5.71-5.67,11.61-8.22,17.55-.35.82-.94,1.57-.91,2.53,0,0,0-.01,0-.01-.26,0-.26.19-.26.37-1.1,2.06-1.84,4.27-2.67,6.44-1.14,2.99-3.2,3.42-5.43,1.1-1.95-2.03-2.9-4.63-3.9-7.17-1.88-4.77-2.95-9.77-3.74-14.81-.9-5.77-1.65-11.55-1.53-17.42.14-6.73,1.13-13.33,2.68-19.86,1.61-6.78,3.72-13.38,6.89-19.61,1.59-3.13,3.51-6.05,5.91-8.63.29-.08.48-.26.57-.56,0,0-.04.03-.04.03.22-.07.42-.16.32-.46h-.01Z"/>
+                    <path fill="#ed1f2c" d="M17.54,166.18c-.03-.96.56-1.71.91-2.53,2.55-5.94,5.18-11.84,8.22-17.55.05-.1.15-.19.22-.28.08-.1.15-.2.23-.3,0,0-.02.01-.02.01,1.54-.51,2.72-1.63,4.01-2.52,5.77-4.01,11.71-7.74,17.8-11.23,7.58-4.35,15.4-8.24,23.59-11.32,7.27-2.73,14.72-4.89,22.36-6.32,5.23-.98,10.5-1.66,15.82-1.98,3.31-.2,6.63-.3,9.92-.13,9.43.49,18.62,2.18,27.32,6.01.47.21.98.32,1.47.48-1.04,4.64-4.57,8.56-9.85,8.59-4.16-1.64-8.45-2.77-12.91-3.28-6.86-.77-13.68-.28-20.44.91-14.09,2.5-27.32,7.58-40.28,13.52-10.97,5.02-21.15,11.38-31.38,17.7-5.32,3.28-10.65,6.54-15.98,9.8-.31.19-.55.6-1.02.42Z"/>
+                    <path fill="#fff" d="M211.77,92.03c-.52.78-.47,1.73-.71,2.59-1.62,5.93-4.36,11.26-8.35,15.95-5.84,6.87-13.13,11.42-21.9,13.46-9,2.08-17.76,1.38-26.13-2.8-1.39-.69-2.81-1.32-4.16-2.1-.34-.2-.75-.3-.92-.72,1-3.54.89-7.17.89-10.79-.02-13.61,0-27.23,0-40.84,0-.48.05-.95.07-1.43,13.59.27,26.56,3.18,38.91,8.91,5.75,2.67,10.84,6.22,15.54,10.44,1.9,1.71,3.76,3.44,5.38,5.42.5.6.92,1.27,1.38,1.9ZM169.31,93.74c-.21,2.38.2,4.46,1.72,6.16,3.05,3.4,6.91,4.18,11.15,3.02,3.52-.96,6.36-2.98,6.93-6.85.52-3.49-.87-6.54-3.48-8.83-3.36-2.95-7.42-3.67-11.78-3.33-6.64.52-11.36,5.68-12.7,11.9-.08.39-.22.9.24,1.21.42.28.77-.06,1.09-.23,2.18-1.13,4.37-2.21,6.83-3.05Z"/>
+                    <path fill="#060707" d="M169.31,93.74c-2.46.84-4.65,1.92-6.83,3.05-.33.17-.68.51-1.09.23-.46-.31-.32-.82-.24-1.21,1.35-6.22,6.06-11.38,12.7-11.9,4.36-.34,8.43.38,11.78,3.33,2.62,2.3,4,5.34,3.48,8.83-.58,3.87-3.41,5.88-6.93,6.85-4.24,1.16-8.1.39-11.15-3.02-1.53-1.7-1.93-3.78-1.72-6.16Z"/>
+                </svg>
+            </div>
+            <div class="btn-info">
+                <div class="btn-title-row">
+                    <span class="btn-title title-promo">Pedí con 25% OFF</span>
+                    <span class="badge-pill gold">Promo Web</span>
+                </div>
+                <span class="btn-desc">Menú digital y pedidos con descuento</span>
+            </div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+        </a>
+
+        <!-- SUCURSALES (PEDIDO DIRECTO VÍA WHATSAPP) -->
+        <span class="section-label">📍 Pedí a tu sucursal más cercana</span>
+
+        <div class="branches-grid">
+            <!-- PALERMO SOHO -->
+            <a href="https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Palermo Soho</span>
+                        <span class="badge-24h-live"><span class="live-dot"></span>24 HS</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Borges 1687 · Palermo
+                    </span>
+                </div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
+
+            <!-- LAS LOMITAS -->
+            <a href="https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Las Lomitas</span>
+                        <span class="badge-24h-live"><span class="live-dot"></span>24 HS</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        España 467 · Lomas de Zamora
+                    </span>
+                </div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
+
+            <!-- CABALLITO -->
+            <a href="https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Caballito</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Av. Pedro Goyena 326 · CABA
+                    </span>
+                </div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
+
+            <!-- RAMOS MEJÍA -->
+            <a href="https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Ramos Mejía</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Alsina 14 · Ramos Mejía
+                    </span>
+                </div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- ACCESOS RÁPIDOS A MENÚ Y COMBOS -->
+        <span class="section-label">🥟 Sabores & Promociones</span>
+
+        <a href="https://empanadazas.com/catalogo.html" target="_blank" rel="noopener noreferrer" class="btn-card">
+            <div class="icon-box" style="padding: 6px;">
+                <svg viewBox="0 0 219.19 219.19" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#ECA244" d="M109.6,219.19c45.02,0,85.42-27.64,101.89-69.24.71-1.78-.62-3.72-2.54-3.72h-29.69c-.98,0-1.88.54-2.37,1.4-13.73,24.27-39.35,39.28-67.29,39.28s-53.56-15-67.29-39.28c-.49-.86-1.38-1.4-2.37-1.4H10.25c-1.92,0-3.24,1.94-2.54,3.72,16.46,41.59,56.86,69.24,101.89,69.24"/>
+                    <path fill="#FEFAE4" d="M218.48,108.13s0-.02-.01-.04l-.05-.15c-.06-.18-.1-.32-.15-.45-.58-1.6-1.42-3.06-2.49-4.34-1.34-1.6-2.47-3.38-3.36-5.28-.09-.19-.17-.38-.25-.58l-.14-.32c-.07-.16-.15-.35-.23-.53-.05-.13-.11-.28-.16-.44l-.12-.32c-.08-.21-.16-.44-.24-.67-1.63-5.01-1.66-10.31-.08-15.32,0,0,0-.02,0-.03h0s0-.04.01-.06c.03-.13.07-.27.11-.4l.06-.21c.07-.23.13-.43.17-.63.04-.16.06-.33.09-.5l.14-.82c.04-.3.06-.65.08-1l.02-.29c.02-.32.02-.7,0-1.13,0-.05,0-.16,0-.25-.07-1.56-.42-3.18-1.03-4.74-.01-.04-.03-.08-.04-.11l-.04-.09c-.32-.77-.7-1.51-1.12-2.2-.24-.38-.47-.72-.72-1.05-.28-.37-.52-.66-.75-.92-.07-.06-.14-.14-.21-.21-.23-.25-.46-.5-.71-.73l-.56-.48c-.18-.15-.28-.25-.39-.33-.23-.18-.47-.34-.71-.5-.18-.12-.29-.2-.4-.28l-.07-.05c-.22-.13-.6-.35-.98-.55-5.04-2.63-9.02-7.02-11.22-12.35-1-2.42-1.6-4.98-1.81-7.6-.03-.42-.08-.83-.15-1.25l-.08-.39c-.06-.29-.11-.56-.17-.83-.02-.09-.05-.18-.07-.26l-.06-.21c-.06-.23-.13-.46-.21-.7-.05-.16-.11-.32-.18-.49-.08-.2-.17-.42-.26-.64-.07-.17-.14-.32-.21-.46-.1-.21-.21-.43-.33-.64l-.07-.13c-.07-.12-.11-.21-.16-.29-.13-.22-.27-.44-.41-.65l-.25-.38c-.22-.31-.45-.62-.68-.9-.53-.64-1.12-1.25-1.75-1.8-.26-.22-.55-.45-.86-.68-.05-.03-.11-.07-.18-.12l-.15-.1c-.25-.17-.47-.32-.7-.46l-.37-.21c-.22-.12-.43-.24-.66-.35-.13-.06-.26-.12-.39-.18l-1.14-.46c-.22-.08-.46-.15-.71-.23l-.45-.13c-.24-.06-.52-.12-.81-.18l-.43-.09c-.32-.05-.72-.1-1.11-.14-7.29-.59-13.84-4.47-17.96-10.64l-.14-.22c-.16-.24-.43-.67-.69-1.11-.16-.28-.31-.58-.47-.87-.05-.07-.1-.15-.14-.25-.32-.65-.66-1.23-.99-1.75l-.29-.42c-.11-.16-.23-.32-.34-.47-.08-.1-.16-.2-.25-.3l-.39-.47h0s-.04-.04-.06-.07c-.23-.26-.47-.5-.71-.73-.06-.06-.16-.16-.26-.26-.18-.16-.46-.4-.74-.63l-.19-.16c-.2-.15-.5-.37-.84-.6,0,0,0,0,0,0,0,0-.1-.07-.13-.09-.09-.06-.28-.17-.49-.29l-.11-.07c-.13-.07-.32-.16-.52-.25l-.27-.11c-.08-.03-.17-.07-.26-.1-2.25-.8-4.34-.39-5.29-.11-.1.04-.2.06-.3.1-.14.05-.23.08-.23.08h0c-1.28.37-2.6.57-3.95.57-3.43,0-6.75-1.25-9.33-3.51-1.51-1.32-3.41-2.05-5.36-2.07-1.93.02-3.82.75-5.33,2.07-2.58,2.26-5.9,3.51-9.33,3.51-1.62,0-3.2-.28-4.72-.82-.32-.11-.69-.19-1.1-.23-.09,0-.16-.01-.24-.02-.21-.02-.38-.04-.55-.05h-.1s-.3,0-.3,0h-.32c-.17,0-.33.02-.5.04l-.31.03c-.12.02-.32.06-.52.1l-.18.03c-.14.03-.35.09-.55.15l-.14.04c-.14.05-.34.12-.54.2l-.27.11c-.16.07-.35.16-.53.25-.03.02-.05.03-.08.05-.2.11-.39.22-.55.33-.03.02-.06.04-.09.06-.18.12-.36.25-.52.38l-.02.02c-.21.17-.37.31-.55.48-.03.03-.06.06-.09.09-.14.14-.28.28-.42.43-.02.03-.04.06-.04.06l-.15.18s-.04.04-.04.05c-.1.11-.17.2-.24.29-.03.04-.05.08-.08.11l-.25.37c-.06.09-.09.12-.11.15-.11.18-.22.38-.34.62l-.09.16c-.09.18-.24.46-.4.74-.15.26-.31.52-.45.73l-.02.03c-2.47,3.7-6.37,6.01-10.7,6.36-.23.02-.46.05-.72.09l-.17.04c-.19.04-.36.07-.52.11l-.24.07c-.15.04-.3.09-.44.14-.07.03-.16.06-.25.09l-.46.2s-.11.05-.18.09c-.13.07-.26.14-.39.21l-.25.14c-.11.07-.24.16-.37.25l-.13.09h0s-.03.02-.05.03c-.2.15-.38.29-.55.43-.37.32-.72.68-1.04,1.07-.14.17-.28.35-.42.56l-.12.18c-.09.14-.18.28-.26.41l-.13.24c-.07.13-.14.26-.2.39-.04.08-.08.17-.12.26-.06.13-.11.27-.16.4-.03.09-.07.18-.1.28-.05.14-.09.28-.13.42l-.08.3c-.03.14-.06.3-.1.46l-.06.28c-.03.21-.06.46-.08.71-.12,1.56-.48,3.08-1.07,4.51-1.31,3.17-3.67,5.78-6.67,7.34-.21.11-.43.24-.63.36,0,0,0,0,0,0-.05.04-.12.09-.19.13-.18.12-.33.22-.46.33-.07.05-.13.1-.19.16l-.41.35c-.11.11-.25.25-.38.4-.04.04-.08.09-.16.16-.11.12-.24.29-.39.48-.01.02-.05.06-.07.09-.11.15-.24.35-.38.56-.26.42-.48.85-.67,1.31l-.04.11c-.37.94-.58,1.92-.62,2.9v.02c0,.31,0,.54,0,.79v.06c.02.26.04.46.06.67l.07.4s.01.06.01.07c.02.11.03.2.05.3.02.1.05.2.08.3l.06.2c.02.07.04.15.06.23l.02.08c.93,2.94.92,6.09-.05,9.07-.05.15-.1.28-.15.42l-.06.17c-.03.09-.06.18-.1.28-.04.11-.09.21-.14.32l-.08.2c-.04.09-.09.2-.14.31-.53,1.14-1.21,2.19-2,3.14-.64.76-1.14,1.63-1.48,2.58-.02.06-.04.13-.06.19l-.05.16c-.28.9-.43,1.8-.43,2.7,0,1.45.37,2.9,1.07,4.2.23.42.51.84.83,1.23l.1.12c1,1.14,2.92,2.68,6.3,3.46l.07.02c1.49.34,3.14.51,4.92.51h103.7c1.77,0,3.42-.17,4.89-.5l.1-.02c3.38-.78,5.29-2.32,6.3-3.46h0s0,0,0,0l.11-.13c.31-.37.59-.79.83-1.23.69-1.28,1.06-2.73,1.06-4.18,0-.89-.14-1.8-.42-2.68M109.75,56.47c-.43.55-1.07.87-1.77.87H22.29c-.7,0-1.34-.32-1.77-.87-.43-.55-.57-1.26-.39-1.93,5.44-20.81,23.95-35.37,45-35.42,21.06.04,39.57,14.61,45.01,35.42.18.67.03,1.37-.39,1.93"/>
+                </svg>
+            </div>
+            <div class="btn-info">
+                <span class="btn-title">Catálogo de Sabores</span>
+                <span class="btn-desc">18 variedades y creaciones Miti-Miti</span>
+            </div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+        </a>
+
+        <a href="https://empanadazas.com/empacombos.html" target="_blank" rel="noopener noreferrer" class="btn-card">
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16l-1.5 14H5.5L4 7z" fill="rgba(247, 194, 104, 0.15)" stroke="#F7C268" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7V4.5a3 3 0 0 1 6 0V7" stroke="#FEFAE4" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="14" r="2.5" fill="#F7C268"/></svg>
+            </div>
+            <div class="btn-info">
+                <span class="btn-title">Nuestros EmpaCombos</span>
+                <span class="btn-desc">Promos x3, x6, Docenas y EmpaPets</span>
+            </div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+        </a>
+
+        <!-- FOOTER -->
+        <footer class="hub-footer">
+            <div class="footer-badge">
+                <span>EMPANADAZAS®</span>
+                <span style="color: var(--bronze-bright);">★</span>
+                <span>ORIGINAL MITI-MITI</span>
+            </div>
+            <span class="footer-legal">© 2026 EMPANADAZAS · Todos los derechos reservados</span>
+        </footer>
+
+    </main>
+
+    <!-- MOTOR DE INSTALACIÓN PWA Y DETECCIÓN NATIVA -->
+    <script>
+        let deferredPrompt;
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        const isInstalled = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
+
+        // Registro de Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
+            });
+        }
+
+        // Si ya está abierta desde el acceso rápido o instalada, ocultar completamente la tarjeta de instalación
+        if (isStandalone || isInstalled) {
+            const pwaBox = document.getElementById('pwaInstallBox');
+            if (pwaBox) pwaBox.style.display = 'none';
+        }
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            if (isStandalone || isInstalled) return;
+            e.preventDefault();
+            deferredPrompt = e;
+            const pwaBox = document.getElementById('pwaInstallBox');
+            if (pwaBox) pwaBox.style.display = 'flex';
+        });
+
+        window.addEventListener('appinstalled', () => {
+            localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+            const pwaBox = document.getElementById('pwaInstallBox');
+            if (pwaBox) pwaBox.style.display = 'none';
+        });
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                        const pwaBox = document.getElementById('pwaInstallBox');
+                        if (pwaBox) pwaBox.style.display = 'none';
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent);
+                if (isIos) {
+                    const prompt = document.getElementById('iosPrompt');
+                    prompt.style.display = prompt.style.display === 'block' ? 'none' : 'block';
+                } else {
+                    alert("Para instalar: tocá los 3 puntos de tu navegador y seleccioná 'Instalar aplicación' o 'Agregar a la pantalla principal'.");
+                }
+            }
+        }
+
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.navigator.standalone) {
+            const btn = document.getElementById('installBtn');
+            if (btn) btn.innerText = "Ver Cómo";
+        }
+    </script>
+</body>
+</html>

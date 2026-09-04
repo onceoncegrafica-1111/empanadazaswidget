@@ -1,8 +1,9 @@
 {
   "name": "Empanadazas® Oficial",
   "short_name": "Empanadazas",
-  "description": "Hub Oficial de Pedidos y Sucursales Miti-Miti",
+  "description": "Pedí en 1 toque con beneficios VIP.",
   "start_url": "./app.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0E0F0D",
   "theme_color": "#0E0F0D",
@@ -11,13 +12,13 @@
       "src": "./empanadazas-icon.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     },
     {
       "src": "./empanadazas-icon.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ]
 }

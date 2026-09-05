@@ -143,23 +143,31 @@
             100% { background-position: 1000px 1000px; }
         }
 
-        /* ANIMACIÓN DE LA LUPA (CINZEL DETECTIVE) */
+        /* ANIMACIÓN DE LA LUPA (CINZEL DETECTIVE) - TOTALMENTE ADAPTATIVA */
         .brand-bio .detective-text {
             font-family: 'Cinzel', serif;
-            font-size: 0.88rem;
+            font-size: clamp(0.60rem, 3.15vw, 0.88rem);
             font-weight: 700;
             color: var(--bronze-bright);
             text-transform: uppercase;
-            letter-spacing: 0.11em;
+            letter-spacing: clamp(0.03em, 0.7vw, 0.11em);
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            white-space: nowrap;
+            flex-wrap: nowrap;
             position: relative;
-            padding: 8px 14px;
+            padding: 6px clamp(10px, 2.5vw, 16px);
             margin-top: 6px;
             cursor: pointer;
             user-select: none;
             -webkit-user-select: none;
+            max-width: 100%;
+        }
+
+        #textToScan, #textToScanEnd {
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .detective-text .char {
@@ -189,6 +197,8 @@
             position: relative;
             padding: 0 4px;
             margin: 0 1px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .detective-text .highlight-100 {
@@ -349,7 +359,16 @@
         .badge-pill { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: var(--neon-bronze-subtle); color: var(--bronze-bright); border: 1px solid rgba(229, 169, 82, 0.45); text-transform: uppercase; }
         .badge-pill.hot { background: rgba(239, 68, 68, 0.16); color: #F87171; border-color: rgba(239, 68, 68, 0.38); }
         .badge-pill.gold { background: rgba(247, 194, 104, 0.22); color: var(--bronze-light); border-color: var(--bronze-bright); }
-        .btn-desc { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* DESCRIPCIÓN ADAPTADA: MULTILÍNEA FLUIDA */
+        .btn-desc { 
+            font-size: 0.8rem; 
+            color: var(--text-muted); 
+            font-weight: 600; 
+            white-space: normal; 
+            line-height: 1.35; 
+            word-wrap: break-word; 
+        }
 
         .arrow-box { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; min-width: 32px; border-radius: 50%; background: rgba(20, 21, 18, 0.85); border: 1px solid var(--border-card); color: var(--text-muted); transition: all 0.32s ease; }
         .btn-card:hover .arrow-box { background: linear-gradient(135deg, var(--bronze-bright) 0%, var(--bronze-mid) 100%); color: #151412; border-color: var(--bronze-bright); }
@@ -621,8 +640,7 @@
                 </a>
             </div>
         </header>
-
-        <!-- BOTÓN 1: PÁGINA WEB OFICIAL -->
+<!-- BOTÓN 1: PÁGINA WEB OFICIAL -->
         <a href="https://www.empanadazas.com/" target="_blank" rel="noopener noreferrer" class="btn-card">
             <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.2" stroke="#ECA244" stroke-width="1.8"/><ellipse cx="12" cy="12" rx="4.2" ry="9.2" stroke="#FEFAE4" stroke-width="1.8"/><line x1="2.8" y1="12" x2="21.2" y2="12" stroke="#ECA244" stroke-width="1.8"/></svg>
@@ -666,7 +684,7 @@
                     <span class="btn-title title-promo">Pegá tu EmpaImán</span>
                     <span class="badge-pill hot">Beneficios VIP</span>
                 </div>
-                <span class="btn-desc">Pedí en segundos a tu sucursal más cercana</span>
+                <span class="btn-desc">Con tu EmpaIman-App: ¡pedís a tu sucursal más cercana, al instante, y estés en donde estés!</span>
             </div>
             <div class="arrow-box"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
         </div>

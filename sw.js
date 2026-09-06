@@ -1,11 +1,11 @@
-const CACHE_NAME = 'empanadazas-v4';
+const CACHE_NAME = 'empanadazas-v5';
 
-// ARCHIVOS CRÍTICOS QUE SE GUARDAN EN EL TELÉFONO DE INMEDIATO
+// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA (ALINEADOS AL MANIFEST)
 const ASSETS_TO_CACHE = [
-  './',
-  './app.html',
-  './manifest.json',
-  './empanadazas-icon.png'
+  '/empanadazaswidget/',
+  '/empanadazaswidget/app.html',
+  '/empanadazaswidget/manifest.json',
+  '/empanadazaswidget/empanadazas-icon.png'
 ];
 
 // 1. INSTALACIÓN: Guarda los archivos en el almacenamiento físico del celular
@@ -38,17 +38,19 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// 3. FETCH: Arranque instantáneo (Cache-First) con actualización en segundo plano
+// 3. FETCH: Arranque instantáneo (Cache-First) compatible con Atajos y parámetros (?branch=...)
 self.addEventListener('fetch', (event) => {
   // Solo procesar peticiones GET y esquemas HTTP/HTTPS válidos
   if (event.request.method !== 'GET') return;
   if (!event.request.url.startsWith('http')) return;
 
-  // A. SI EL USUARIO ESTÁ ABRIENDO LA APP (Navegación / Arranque):
+  // A. MODO NAVEGACIÓN (Cuando el usuario abre la app o toca un atajo de sucursal)
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      caches.match(event.request).then((cachedResponse) => {
-        // Petición a la red en segundo plano para mantener la app actualizada
+      // ignoreSearch: true es la clave para que ?branch=palermo abra app.html sin trabarse
+      caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
+        
+        // Petición a la red en segundo plano para refrescar caché silenciosamente
         const networkFetch = fetch(event.request)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
@@ -61,17 +63,17 @@ self.addEventListener('fetch', (event) => {
           })
           .catch(() => null);
 
-        // Si ya está guardada en el celular, ARRANCAR EN 0ms (sin parpadeo ni espera)
+        // Si ya está guardada en el teléfono, arranca en 0ms
         if (cachedResponse) {
           return cachedResponse;
         }
 
-        // Si es la primera vez que entra y no estaba en caché, esperar a la red
+        // Si no estaba en caché, espera a la red con rescate de emergencia absoluto
         return networkFetch.then(async (response) => {
           if (response) return response;
 
-          // Rescate de emergencia: si la red titubea, servir app.html o la raíz
-          const fallback = (await caches.match('./app.html')) || (await caches.match('./'));
+          const fallback = (await caches.match('/empanadazaswidget/app.html', { ignoreSearch: true })) || 
+                           (await caches.match('/empanadazaswidget/'));
           if (fallback) return fallback;
 
           return new Response('Contenido temporalmente no disponible', {
@@ -84,11 +86,10 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // B. PARA EL RESTO DE RECURSOS (Imágenes, íconos, tipografías):
+  // B. RESTO DE RECURSOS (Imágenes, iconos, tipografías)
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
-        // Si está en caché lo entrega y actualiza silenciosamente de fondo
         fetch(event.request).then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
             const responseClone = networkResponse.clone();
@@ -100,7 +101,6 @@ self.addEventListener('fetch', (event) => {
         return cachedResponse;
       }
 
-      // Si no estaba en caché, va a internet
       return fetch(event.request).then((networkResponse) => {
         if (networkResponse && networkResponse.status === 200) {
           const responseClone = networkResponse.clone();

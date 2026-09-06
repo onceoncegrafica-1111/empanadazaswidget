@@ -13,13 +13,13 @@
       "src": "/empanadazaswidget/empanadazas-icon.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     },
     {
       "src": "/empanadazaswidget/empanadazas-icon.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ],
   "shortcuts": [
@@ -27,49 +27,25 @@
       "name": "Palermo Soho",
       "short_name": "Palermo",
       "description": "Pedir a sucursal Palermo Soho",
-      "url": "/empanadazaswidget/app.html?branch=palermo",
-      "icons": [
-        {
-          "src": "/empanadazaswidget/empanadazas-icon.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/empanadazaswidget/app.html?branch=palermo"
     },
     {
       "name": "Las Lomitas",
       "short_name": "Lomitas",
       "description": "Pedir a sucursal Las Lomitas",
-      "url": "/empanadazaswidget/app.html?branch=lomitas",
-      "icons": [
-        {
-          "src": "/empanadazaswidget/empanadazas-icon.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/empanadazaswidget/app.html?branch=lomitas"
     },
     {
       "name": "Caballito",
       "short_name": "Caballito",
       "description": "Pedir a sucursal Caballito",
-      "url": "/empanadazaswidget/app.html?branch=caballito",
-      "icons": [
-        {
-          "src": "/empanadazaswidget/empanadazas-icon.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/empanadazaswidget/app.html?branch=caballito"
     },
     {
       "name": "Ramos Mejía",
       "short_name": "Ramos",
       "description": "Pedir a sucursal Ramos Mejía",
-      "url": "/empanadazaswidget/app.html?branch=ramos",
-      "icons": [
-        {
-          "src": "/empanadazaswidget/empanadazas-icon.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/empanadazaswidget/app.html?branch=ramos"
     }
   ]
 }

@@ -1,24 +1,24 @@
 {
-  "id": "empanadazas-pwa",
+  "id": "/empanadazaswidget/app.html",
   "name": "Empanadazas® Oficial",
   "short_name": "Empanadazas",
   "description": "Pedí en 1 toque con beneficios VIP.",
   "lang": "es",
-  "start_url": "./app.html",
-  "scope": "./",
+  "start_url": "/empanadazaswidget/app.html",
+  "scope": "/empanadazaswidget/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0E0F0D",
   "theme_color": "#0E0F0D",
   "icons": [
     {
-      "src": "./empanadazas-icon.png",
+      "src": "/empanadazaswidget/empanadazas-icon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./empanadazas-icon.png",
+      "src": "/empanadazaswidget/empanadazas-icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"

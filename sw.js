@@ -1,4 +1,4 @@
-const CACHE_NAME = 'empanadazas-v3';
+const CACHE_NAME = 'empanadazas-v4';
 
 // ARCHIVOS CRÍTICOS QUE SE GUARDAN EN EL TELÉFONO DE INMEDIATO
 const ASSETS_TO_CACHE = [
@@ -38,41 +38,80 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// 3. FETCH: Estrategia Network-First con Rescate Infalible
+// 3. FETCH: Arranque instantáneo (Cache-First) con actualización en segundo plano
 self.addEventListener('fetch', (event) => {
-  // Solo procesar peticiones GET
+  // Solo procesar peticiones GET y esquemas HTTP/HTTPS válidos
   if (event.request.method !== 'GET') return;
+  if (!event.request.url.startsWith('http')) return;
 
-  event.respondWith(
-    fetch(event.request)
-      .then((networkResponse) => {
-        // Si hay internet, actualiza la copia local en segundo plano
-        if (networkResponse && networkResponse.status === 200) {
-          const responseClone = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
-        }
-        return networkResponse;
-      })
-      .catch(async () => {
-        // SI EL INTERNET TITUBEA O FALLA: Usa la copia local guardada
-        const cachedResponse = await caches.match(event.request);
+  // A. SI EL USUARIO ESTÁ ABRIENDO LA APP (Navegación / Arranque):
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      caches.match(event.request).then((cachedResponse) => {
+        // Petición a la red en segundo plano para mantener la app actualizada
+        const networkFetch = fetch(event.request)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              const responseClone = networkResponse.clone();
+              caches.open(CACHE_NAME).then((cache) => {
+                cache.put(event.request, responseClone).catch(() => {});
+              });
+            }
+            return networkResponse;
+          })
+          .catch(() => null);
+
+        // Si ya está guardada en el celular, ARRANCAR EN 0ms (sin parpadeo ni espera)
         if (cachedResponse) {
           return cachedResponse;
         }
 
-        // Si intentaba abrir la app o navegar y no hay red, sirve app.html siempre
-        if (event.request.mode === 'navigate') {
-          const fallback = await caches.match('./app.html');
-          if (fallback) return fallback;
-        }
+        // Si es la primera vez que entra y no estaba en caché, esperar a la red
+        return networkFetch.then(async (response) => {
+          if (response) return response;
 
-        // Respuesta limpia de emergencia para que Android NUNCA cierre la app
-        return new Response('Contenido temporalmente no disponible', {
-          status: 200,
-          headers: { 'Content-Type': 'text/plain' }
+          // Rescate de emergencia: si la red titubea, servir app.html o la raíz
+          const fallback = (await caches.match('./app.html')) || (await caches.match('./'));
+          if (fallback) return fallback;
+
+          return new Response('Contenido temporalmente no disponible', {
+            status: 200,
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+          });
         });
       })
+    );
+    return;
+  }
+
+  // B. PARA EL RESTO DE RECURSOS (Imágenes, íconos, tipografías):
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        // Si está en caché lo entrega y actualiza silenciosamente de fondo
+        fetch(event.request).then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone).catch(() => {});
+            });
+          }
+        }).catch(() => {});
+        return cachedResponse;
+      }
+
+      // Si no estaba en caché, va a internet
+      return fetch(event.request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone).catch(() => {});
+          });
+        }
+        return networkResponse;
+      });
+    }).catch(() => {
+      return new Response('', { status: 408 });
+    })
   );
 });

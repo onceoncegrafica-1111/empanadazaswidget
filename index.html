@@ -563,7 +563,7 @@
                             <polygon fill="#FEFAE4" points="139.47 405.96 147.81 411.61 135.25 430.16 128.98 425.9 136.31 415.07 136.16 414.96 123.23 422.01 117.96 418.44 119.68 403.8 119.52 403.69 112.18 414.53 105.9 410.27 118.46 391.73 126.81 397.38 124.83 413.82 124.96 413.91 139.47 405.96"/>
                             <rect fill="#FEFAE4" x="141.41" y="421.94" width="22.4" height="7.71" transform="translate(-297.17 378.01) rotate(-64.22)"/>
                             <polygon fill="#FEFAE4" points="162.87 424.3 164.59 419.44 189.24 428.17 187.52 433.03 178.83 429.95 173.07 446.21 165.8 443.64 171.56 427.38 162.87 424.3"/>
-                            <rect fill="#FEFAE4" x="183.35" y="436.78" width="22.4" height="7.71" transform="translate(-278.87 529.42) rotate(-76.8)"/>
+                            <rect fill="#FEFAE4" x="183.35" y="436.78" width="22.4" height="7.71" transform="translate(-288.87 529.42) rotate(-76.8)"/>
                             <path fill="#FEFAE4" d="M219.66,434.12l14.71.6c4.6.19,8.11,1.32,10.49,3.44,2.41,2.08,3.55,4.85,3.41,8.33-.14,3.49-1.5,6.15-4.07,8.06-2.54,1.88-6.13,2.73-10.73,2.54l-14.7-.6.91-22.38ZM227.15,439.58l-.49,12.08,6.62.27c4.35.18,7.02-1.83,7.18-5.76.16-3.93-2.34-6.15-6.69-6.32l-6.62-.27Z"/>
                             <polygon fill="#FEFAE4" points="282.66 448.57 283.31 453.68 256.4 457.11 253.57 434.89 280.07 431.51 280.72 436.62 261.87 439.03 262.34 442.71 278.97 440.59 279.53 445.03 262.9 447.15 263.4 451.02 282.66 448.57"/>
                             <polygon fill="#FEFAE4" points="285.09 430.26 292.49 428.08 297.37 444.63 314.81 439.49 316.27 444.43 291.43 451.75 285.09 430.26"/>
@@ -761,6 +761,12 @@
         const isInApp = /Instagram|TikTok|FBAN|FBAV/.test(navigator.userAgent);
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
+        // MODO TEST: Si ingresas con ?test=1 o ?test=pwa en la URL, limpia el bloqueo para probarlo siempre
+        if (window.location.search.includes('test=1') || window.location.search.includes('test=pwa')) {
+            localStorage.removeItem('EMPANADAZAS_NUDGE_SNOOZE');
+            localStorage.removeItem('EMPANADAZAS_INSTALLED');
+        }
+
         // Registro de Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -777,7 +783,9 @@
                 userWantsInstall = false;
                 deferredPrompt.prompt().then(({ outcome }) => {
                     if (outcome === 'accepted') {
-                        localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                        // Silencio temporal de 30 días para no bloquear para siempre si luego la desinstala
+                        const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
+                        localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
                         showCelebrationToast("🎉 ¡EmpaImán pegado con éxito!");
                         dismissNudge();
                     }
@@ -788,7 +796,8 @@
 
         // SI SE COMPLETA LA INSTALACIÓN
         window.addEventListener('appinstalled', () => {
-            localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+            const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
+            localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
             deferredPrompt = null;
             dismissNudge();
         });
@@ -809,15 +818,15 @@
             }
 
             // REVISIÓN CON SNOOZE INTELIGENTE (REAPARECE A LOS 7 DÍAS SI NO LO INSTALÓ)
+            const isTesting = window.location.search.includes('test=1') || window.location.search.includes('test=pwa');
             setTimeout(() => {
                 const snoozeUntil = parseInt(localStorage.getItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
                 const isSnoozed = Date.now() < snoozeUntil;
-                const isInstalled = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
 
-                if (!isSnoozed && !isStandalone && !isInstalled) {
+                if ((isTesting || !isSnoozed) && !isStandalone) {
                     document.getElementById('smartNudgeModal').classList.add('active');
                 }
-            }, 5000);
+            }, isTesting ? 800 : 5000);
 
             // Iniciar animación Lupa
             if (document.fonts && document.fonts.ready) {
@@ -876,9 +885,12 @@
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 if (outcome === 'accepted') {
-                    localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                    const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
+                    localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
                     showCelebrationToast("🎉 ¡EmpaImán pegado con éxito!");
                     dismissNudge();
+                } else {
+                    dismissNudge(); // 7 días de descanso si cancela
                 }
                 deferredPrompt = null;
             } else {

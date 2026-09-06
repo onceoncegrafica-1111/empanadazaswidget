@@ -13,11 +13,9 @@
     <meta name="apple-mobile-web-app-title" content="Empanadazas">
     <meta name="format-detection" content="telephone=no">
     
-    <!-- FAVICON Y TOUCH ICONS (CANÓNICOS) -->
+    <!-- FAVICON Y TOUCH ICONS -->
     <link rel="icon" href="/empanadazaswidget/empanadazas-icon.png" type="image/png">
     <link rel="apple-touch-icon" href="/empanadazaswidget/empanadazas-icon.png">
-
-    <!-- SPLASH SCREEN NATIVO PARA IPHONE (PANTALLA DE ARRANQUE EN NEGRO MARCA) -->
     <link rel="apple-touch-startup-image" href="/empanadazaswidget/empanadazas-icon.png">
 
     <!-- TIPOGRAFÍAS -->
@@ -29,7 +27,6 @@
     <link rel="manifest" href="/empanadazaswidget/manifest.json">
 
     <style>
-        /* FUENTE NEÓN MEXCELLENT */
         @font-face {
             font-family: 'Mexcellent';
             src: local('Mexcellent'),
@@ -62,7 +59,7 @@
             --text-subtle: #6E7068;
             
             --shadow-card: 0 10px 28px -4px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.4);
-            --shadow-hero: 0 12px 36px -2px rgba(215, 139, 40, 0.4), 0 0 18px rgba(247, 194, 104, 0.3);
+            --shadow-hero: 0 12px 36px -2px rgba(215, 139, 40, 0.45), 0 0 18px rgba(247, 194, 104, 0.3);
             --spring-curve: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -91,7 +88,6 @@
             position: relative;
         }
 
-        /* FONDO PAPEL DE REGALO CONTINUO */
         .hub-bg-canvas {
             position: fixed;
             top: 0;
@@ -137,7 +133,6 @@
             100% { background-position: 1000px 1000px; }
         }
 
-        /* CONTENEDOR CENTRAL MAESTRO */
         .hub-inner-frame {
             width: 100%;
             max-width: 460px;
@@ -148,7 +143,6 @@
             position: relative;
         }
 
-        /* CABECERA CON ISOLOGOTIPO COMPLETO */
         .hub-brand-header {
             text-align: center;
             display: flex;
@@ -240,7 +234,6 @@
         }
         .social-btn svg { width: 17px; height: 17px; }
 
-        /* SECCIÓN EMBAJADOR PACHU CON SLOGAN INTEGRADO */
         .celebrity-stage {
             display: flex;
             flex-direction: column;
@@ -288,7 +281,6 @@
             transform: translateZ(0);
         }
 
-        /* TARJETAS BOTONES CON ACELERACIÓN GPU */
         .btn-card {
             display: flex;
             align-items: center;
@@ -319,11 +311,12 @@
             transform: scale(0.98) translateZ(0);
         }
 
+        /* BOTÓN HERO PRINCIPAL CON RESPLANDOR CONTINUO */
         .btn-hero {
             background: linear-gradient(135deg, rgba(38, 40, 34, 0.96) 0%, rgba(25, 26, 22, 0.96) 100%);
             border: 2px solid var(--bronze-bright);
             box-shadow: var(--shadow-hero);
-            padding: 16px 20px;
+            padding: 18px 20px;
             overflow: hidden;
         }
         .btn-hero::before {
@@ -379,7 +372,6 @@
         .btn-card:hover .btn-title { color: #FFFFFF; }
         .btn-title.title-promo { font-size: clamp(1.00rem, 3.4vw, 1.18rem); letter-spacing: 0.12em; }
 
-        /* ADAPTACIÓN RESPONSIVE DE LAS DESCRIPCIONES (MULTILÍNEA FLUIDA) */
         .btn-desc { 
             font-size: 0.78rem; 
             color: var(--text-muted); 
@@ -590,13 +582,49 @@
             flex-shrink: 0;
         }
 
+        /* BOTÓN DE SUGERENCIAS ULTRA VELOZ */
+        .btn-feedback-card {
+            background: rgba(26, 27, 23, 0.85);
+            border: 1.5px dashed rgba(247, 194, 104, 0.45);
+            border-radius: 18px;
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.28s ease;
+            margin-top: 4px;
+        }
+        .btn-feedback-card:hover {
+            background: rgba(35, 37, 30, 0.95);
+            border-color: var(--bronze-bright);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 14px var(--neon-bronze-glow);
+            transform: translateY(-2px);
+        }
+        .btn-feedback-card:active { transform: scale(0.98); }
+
+        .feedback-icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(247, 194, 104, 0.14);
+            border: 1px solid var(--bronze-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
         /* PWA CARD CON TEXTOS EMPAIMÁN */
         .pwa-install-card {
             background: linear-gradient(135deg, rgba(247, 194, 104, 0.16) 0%, rgba(162, 92, 16, 0.22) 100%);
             border: 1.5px dashed var(--bronze-bright);
             border-radius: 18px;
             padding: 12px 16px;
-            display: none; /* Se activa por script solo si NO está instalada */
+            display: none;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
@@ -727,26 +755,9 @@
             </picture>
         </div>
 
-        <!-- BOTÓN HERO 1: DELIVERY OFICIAL -->
-        <a href="https://pedidos.masdelivery.com/empanadazas" target="_blank" rel="noopener noreferrer" class="btn-card btn-hero" data-track="delivery_masdelivery">
+        <!-- BOTÓN 1: HERO TUCÁN CON 25% OFF (AHORA PRINCIPAL DEBAJO DE PACHU) -->
+        <a href="https://pedir.tucan.la/menu/Empanadazas?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer" class="btn-card btn-hero" data-track="delivery_tucan_promo">
             <div class="icon-box hero-gold">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="20" r="1.8" fill="#231F20"/><circle cx="19" cy="20" r="1.8" fill="#231F20"/><path d="M2 3h3.5l2.4 11.2a1.8 1.8 0 0 0 1.8 1.4h9.6a1.8 1.8 0 0 0 1.8-1.4l1.6-7.2H6.2" stroke="#231F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 7c0-2.2 1.8-4 4-4s4 1.8 4 4H11z" fill="#FEFAE4"/></svg>
-            </div>
-            <div class="btn-info">
-                <div class="btn-title-row">
-                    <span class="btn-title">¡Hacé tu Pedido!</span>
-                    <span class="badge-pill gold">Delivery Oficial</span>
-                </div>
-                <span class="btn-desc">Envío directo a tu domicilio</span>
-            </div>
-            <div class="arrow-box">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-            </div>
-        </a>
-
-        <!-- BOTÓN HERO 2: TUCÁN PROMO WEB -->
-        <a href="https://pedir.tucan.la/menu/Empanadazas?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer" class="btn-card" data-track="delivery_tucan_promo">
-            <div class="icon-box" style="padding: 6px; background: rgba(237, 31, 44, 0.1);">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.72 283.86">
                     <path fill="#ed1f2c" d="M214.35,0c.81.45,1.74.28,2.6.5,4.32,1.1,7.75,3.46,10.25,7.12.54.8.86.79,1.62.28,7.81-5.21,17.61-3.52,22.97,3.99,3.05,4.27,3.25,9.01,2.03,13.94-.26,1.06-1.18,2.23-.69,3.14.47.88,1.72,1.35,2.65,1.96,4.64,3.04,7.49,7.19,7.9,12.81.28,3.89-.8,7.42-3.25,10.46-2.91,3.6-6.42,6.25-11.26,6.65-3.87.33-7.44-.53-10.69-2.64-.72-.46-1.08-.38-1.69.19-3.2,2.94-6.05,6.25-9.38,9.03-2.58,2.16-3.38,2.04-5.68-.43-6.82-7.3-14.7-13.28-23.23-18.42-1.26-.76-2.6-1.38-3.93-2-2.36-1.09-2.83-2.5-1.49-4.77,2.37-3.97,5.21-7.63,7.71-11.51,1.4-2.18,1.42-2.16-.06-4.21-3.94-5.45-4.68-11.28-1.63-17.32,2.63-5.21,7.17-7.82,12.87-8.54.25-.03.58.15.71-.24h1.68Z"/>
                     <path fill="#030303" d="M143.78,40.9c4.06-.04,8.13-.04,12.16.43,6.26.74,12.38,2.18,18.35,4.23,13.18,4.53,25.05,11.31,35.46,20.6,9.55,8.52,17.18,18.51,22.87,29.97,4.74,9.54,7.85,19.6,9.31,30.17.69,4.97.97,9.96.96,14.98-.03,15.18.1,30.37-.04,45.55-.13,13.92-3.36,27.17-9.25,39.79-3.99,8.56-9.12,16.38-15.34,23.46-5.57,6.34-11.87,11.86-18.85,16.63-10.61,7.24-22.22,12.12-34.71,14.94-4.06.92-8.19,1.43-12.34,1.77-8.6.72-17.22.34-25.82.39-9.35.06-18.7.11-28.05-.01-9.84-.13-19.5-1.5-28.76-5-5.26-1.99-10.33-4.39-14.76-7.92-1.34-1.07-2.51-2.31-2.94-4.09-.48-1.98.37-3.51,2.35-3.94,2.16-.47,4.36-.24,6.54-.18.43.01.87.11,1.3.11,4.11,0,8.22.09,12.33-.01,8.95-.21,17.72-1.58,26.31-4.21,13.55-4.15,25.48-11.16,36.15-20.35,6.09-5.25,10.67-11.77,14.48-18.81,4.82-8.9,7.86-18.42,9.57-28.36.72-4.18,1.33-8.39,1.58-12.64.08-1.27.17-2.54.2-3.81.51-.15.94.13,1.38.27,5.73,1.89,11.4,3.97,17.28,5.35,6.92,1.62,13.9,2.34,20.91.57,10.7-2.7,18.4-8.72,21.82-19.64,3.49-11.14,3.99-22.41,2.02-33.83-1.69-9.79-5.03-19.02-9.66-27.79-1.39-2.63-2.79-5.27-4.83-7.48-.46-.64-.88-1.3-1.38-1.9-1.62-1.98-3.48-3.71-5.38-5.42-4.69-4.21-9.79-7.77-15.54-10.44-12.35-5.74-25.32-8.65-38.91-8.91-.22-.41-.14-.86-.14-1.29,0-2.83,0-5.66,0-8.49,0-2.93-.46-5.79-1.6-8.48-1.07-2.52-2.24-5.04-5.02-6.2Z"/>
@@ -762,20 +773,21 @@
             <div class="btn-info">
                 <div class="btn-title-row">
                     <span class="btn-title title-promo">Pedí con 25% OFF</span>
-                    <span class="badge-pill gold">Promo Web</span>
+                    <span class="badge-pill gold">Delivery Oficial</span>
                 </div>
-                <span class="btn-desc">Menú digital y pedidos con descuento</span>
+                <span class="btn-desc">Menú digital Tucán con descuento directo</span>
             </div>
             <div class="arrow-box">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             </div>
         </a>
-<!-- SUCURSALES (PEDIDO DIRECTO VÍA WHATSAPP) -->
+
+        <!-- SUCURSALES (PEDIDO DIRECTO VÍA WHATSAPP CON CARITA OFICIAL 😋) -->
         <span class="section-label">📍 Pedí a tu sucursal más cercana</span>
 
         <div class="branches-grid">
             <!-- PALERMO SOHO -->
-            <a href="https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_palermo_soho">
+            <a href="https://api.whatsapp.com/send/?phone=5491151435364&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_palermo_soho">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Palermo Soho</span>
@@ -797,7 +809,7 @@
             </a>
 
             <!-- LAS LOMITAS -->
-            <a href="https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_las_lomitas">
+            <a href="https://api.whatsapp.com/send/?phone=5491150510287&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_las_lomitas">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Las Lomitas</span>
@@ -817,9 +829,8 @@
                     <span>Pedir</span>
                 </div>
             </a>
-
-            <!-- CABALLITO -->
-            <a href="https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_caballito">
+<!-- CABALLITO -->
+            <a href="https://api.whatsapp.com/send/?phone=5491125428760&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener" data-track="whatsapp_caballito">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Caballito</span>
@@ -840,7 +851,7 @@
             </a>
 
             <!-- RAMOS MEJÍA -->
-            <a href="https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_ramos_mejia">
+            <a href="https://api.whatsapp.com/send/?phone=5491130091870&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa" class="branch-wsp-card" target="_blank" rel="noopener" data-track="whatsapp_ramos_mejia">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Ramos Mejía</span>
@@ -859,12 +870,33 @@
                     <span>Pedir</span>
                 </div>
             </a>
+
+            <!-- NUEVA SUCURSAL: ITUZAINGÓ / CASTELAR -->
+            <a href="https://api.whatsapp.com/send/?phone=5491153457755&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ituzaing%C3%B3" class="branch-wsp-card" target="_blank" rel="noopener" data-track="whatsapp_ituzaingo">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Ituzaingó / Castelar</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Santa Rosa 1592 · Ituzaingó
+                    </span>
+                </div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
         </div>
 
-        <!-- ACCESOS RÁPIDOS A MENÚ Y COMBOS -->
+        <!-- ACCESOS RÁPIDOS A MENÚ Y COMBOS (RUTAS CANÓNICAS DIRECTAS Y BLINDADAS) -->
         <span class="section-label">🥟 Sabores & Promociones</span>
 
-        <a href="https://empanadazas.com/catalogo.html" target="_blank" rel="noopener noreferrer" class="btn-card" data-track="menu_catalogo">
+        <a href="https://www.empanadazas.com/catalogo.html" target="_blank" rel="noopener" class="btn-card" data-track="menu_catalogo">
             <div class="icon-box" style="padding: 6px;">
                <svg viewBox="0 0 219.19 219.19" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#ECA244" d="M109.6,219.19c45.02,0,85.42-27.64,101.89-69.24.71-1.78-.62-3.72-2.54-3.72h-29.69c-.98,0-1.88.54-2.37,1.4-13.73,24.27-39.35,39.28-67.29,39.28s-53.56-15-67.29-39.28c-.49-.86-1.38-1.4-2.37-1.4H10.25c-1.92,0-3.24,1.94-2.54,3.72,16.46,41.59,56.86,69.24,101.89,69.24"/>
@@ -880,7 +912,7 @@
             </div>
         </a>
 
-        <a href="https://empanadazas.com/empacombos.html" target="_blank" rel="noopener noreferrer" class="btn-card" data-track="empacombos">
+        <a href="https://www.empanadazas.com/empacombos.html" target="_blank" rel="noopener" class="btn-card" data-track="empacombos">
             <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16l-1.5 14H5.5L4 7z" fill="rgba(247, 194, 104, 0.15)" stroke="#F7C268" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7V4.5a3 3 0 0 1 6 0V7" stroke="#FEFAE4" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="14" r="2.5" fill="#F7C268"/></svg>
             </div>
@@ -893,7 +925,20 @@
             </div>
         </a>
 
-        <!-- INSTALADOR PWA INTELIGENTE CON TEXTOS EMPAIMÁN (SE OCULTA AUTOMÁTICAMENTE SI YA ESTÁ INSTALADA) -->
+        <!-- BOTÓN DE SUGERENCIAS ULTRA VELOZ (MENSAJE INTERNO SIN EMAIL VISIBLE) -->
+        <span class="section-label">💡 Ayudanos a mejorar</span>
+        <a href="mailto:diseno.graficoindustrial@gmail.com?subject=Sugerencia%20o%20Mejora%20para%20la%20App%20Empanadazas&body=%C2%A1Hola%20equipo%20de%20Empanadazas!%20%F0%9F%A5%9F%0A%0AMe%20gustar%C3%ADa%20sugerir%20lo%20siguiente%20para%20la%20App:%0A%0A-%20Cosas%20que%20me%20gustar%C3%ADa%20agregar:%20%0A-%20Cosas%20que%20no%20me%20funcionaron%20bien%20o%20quisiera%20mejorar:%20%0A%0A%C2%A1Muchas%20gracias!" class="btn-feedback-card" data-track="buzon_sugerencias">
+            <div class="feedback-icon-box">✍️</div>
+            <div class="btn-info">
+                <span class="btn-title" style="font-size: 0.95rem;">Buzón de Sugerencias</span>
+                <span class="btn-desc">¿Querés sumar algo a la app o reportar un error? Tocá acá y escribinos.</span>
+            </div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+        </a>
+
+        <!-- INSTALADOR PWA INTELIGENTE CON TEXTOS EMPAIMÁN -->
         <div class="pwa-install-card" id="pwaInstallBox" onclick="installPWA()" data-track="empaiman_install">
             <div class="pwa-text">
                 <span class="pwa-title">🧲 Pegá tu EmpaImán en tu celular</span>
@@ -923,7 +968,6 @@
         let deferredPrompt;
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone || document.referrer.includes('android-app://');
 
-        // MÓDULO DE ALMACENAMIENTO SEGURO CONTRA FALLOS DE WEBVIEW
         function getSafeItem(key) {
             try { return localStorage.getItem(key); } catch (e) { return null; }
         }
@@ -936,26 +980,20 @@
 
         const isInstalled = getSafeItem('EMPANADAZAS_INSTALLED') === 'true';
 
-        // FEEDBACK HÁPTICO NATIVO (12ms DE RESPUESTA INMEDIATA)
         function triggerHaptic() {
             if ('vibrate' in navigator) {
                 try { navigator.vibrate(12); } catch (e) {}
             }
         }
         document.addEventListener('pointerdown', (e) => {
-            if (e.target.closest('.btn-card, .branch-wsp-card, .social-btn, .pwa-install-card')) {
+            if (e.target.closest('.btn-card, .branch-wsp-card, .social-btn, .pwa-install-card, .btn-feedback-card')) {
                 triggerHaptic();
             }
         }, { passive: true });
 
-        // DISPACHADOR DE ANALÍTICA SILENCIOSO PARA GERENCIA (GA4 / META PIXEL / GTM)
         function trackHubEvent(eventName, eventParams = {}) {
-            if (typeof gtag === 'function') {
-                gtag('event', eventName, eventParams);
-            }
-            if (typeof fbq === 'function') {
-                fbq('trackCustom', eventName, eventParams);
-            }
+            if (typeof gtag === 'function') gtag('event', eventName, eventParams);
+            if (typeof fbq === 'function') fbq('trackCustom', eventName, eventParams);
             if (window.dataLayer && Array.isArray(window.dataLayer)) {
                 window.dataLayer.push({ event: eventName, ...eventParams });
             }
@@ -968,33 +1006,31 @@
             }
         }, { passive: true });
 
-        // MODO TEST: Si entras con ?test=1 limpia el bloqueo para probarlo siempre
         if (window.location.search.includes('test=1') || window.location.search.includes('test=pwa')) {
             removeSafeItem('EMPANADAZAS_NUDGE_SNOOZE');
             removeSafeItem('EMPANADAZAS_INSTALLED');
         }
 
-        // REGISTRO DE SERVICE WORKER BLINDADO PARA GITHUB PAGES Y DESARROLLO
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/empanadazaswidget/sw.js', { scope: '/empanadazaswidget/' })
                     .catch(() => {
-                        // Fallback relativo para entornos locales de prueba
                         navigator.serviceWorker.register('./sw.js').catch(() => {});
                     });
             });
         }
 
-        // SALTO DIRECTO E INMEDIATO A WHATSAPP (SIN ESPERAR EVENTOS)
+        // SALTO DIRECTO E INMEDIATO A WHATSAPP CON API OFICIAL BLINDADA
         (function handleDirectBranch() {
             var urlParams = new URLSearchParams(window.location.search);
             var branch = urlParams.get('branch');
             if (branch) {
                 var wspLinks = {
-                    'palermo': 'https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho',
-                    'lomitas': 'https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas',
-                    'caballito': 'https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito',
-                    'ramos': 'https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa'
+                    'palermo': 'https://api.whatsapp.com/send/?phone=5491151435364&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho',
+                    'lomitas': 'https://api.whatsapp.com/send/?phone=5491150510287&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas',
+                    'caballito': 'https://api.whatsapp.com/send/?phone=5491125428760&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito',
+                    'ramos': 'https://api.whatsapp.com/send/?phone=5491130091870&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa',
+                    'ituzaingo': 'https://api.whatsapp.com/send/?phone=5491153457755&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ituzaing%C3%B3'
                 };
                 if (wspLinks[branch]) {
                     window.location.replace(wspLinks[branch]);
@@ -1002,7 +1038,6 @@
             }
         })();
 
-        // DETECCIÓN INTELIGENTE: Si ya está instalada en el celular, NO MOSTRAR EL BOTÓN
         function checkAlreadyInstalled() {
             const pwaBox = document.getElementById('pwaInstallBox');
             if (!pwaBox) return;
@@ -1011,19 +1046,16 @@
             const snoozeUntil = parseInt(getSafeItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
             const isSnoozed = Date.now() < snoozeUntil;
 
-            // 1. Si ya se abrió desde la app o guardó instalación previa (y no es test)
             if (isStandalone || (isInstalled && !isTesting)) {
                 pwaBox.style.display = 'none';
                 return;
             }
 
-            // 2. RESCATE PARA IPHONE (Safari no usa beforeinstallprompt):
             const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent);
             if (isIos && (isTesting || (!isSnoozed && !isInstalled))) {
                 pwaBox.style.display = 'flex';
             }
 
-            // 3. Consulta nativa W3C a Android (si la PWA ya está presente en el sistema)
             if ('getInstalledRelatedApps' in navigator) {
                 navigator.getInstalledRelatedApps().then((apps) => {
                     if (apps && apps.length > 0 && !isTesting) {
@@ -1036,7 +1068,6 @@
 
         window.addEventListener('DOMContentLoaded', checkAlreadyInstalled);
 
-        // DISPARADOR NATIVO ANDROID / CHROME
         window.addEventListener('beforeinstallprompt', (e) => {
             if (isStandalone) return;
             e.preventDefault();
@@ -1046,14 +1077,12 @@
             const snoozeUntil = parseInt(getSafeItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
             const isSnoozed = Date.now() < snoozeUntil;
 
-            // Solo mostrar si no la tiene instalada y no está en período de descanso
             if ((isTesting || (!isSnoozed && !isInstalled))) {
                 const pwaBox = document.getElementById('pwaInstallBox');
                 if (pwaBox) pwaBox.style.display = 'flex';
             }
         });
 
-        // SI SE COMPLETA LA INSTALACIÓN (Se oculta al instante)
         window.addEventListener('appinstalled', () => {
             setSafeItem('EMPANADAZAS_INSTALLED', 'true');
             const pwaBox = document.getElementById('pwaInstallBox');
@@ -1070,7 +1099,6 @@
                         setSafeItem('EMPANADAZAS_INSTALLED', 'true');
                         if (pwaBox) pwaBox.style.display = 'none';
                     } else {
-                        // Si dijo que no, 5 días de silencio para no molestarlo
                         const snoozeTime = Date.now() + (5 * 24 * 60 * 60 * 1000);
                         setSafeItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
                         if (pwaBox) pwaBox.style.display = 'none';

@@ -877,24 +877,20 @@
                 if (btnAction) btnAction.innerText = "🧲 Pegar EmpaImán en mi iPhone";
             }
 
-            // CONTADOR DE VISITAS Y TIEMPOS INTELIGENTES (5s, 7s, 10s SIEMPRE)
+           // CONTADOR DE VISITAS Y TIEMPOS INTELIGENTES (5s, 7s, 10s SIEMPRE)
 if (!isStandalone) {
     // 1. Aumentamos el contador de visitas
     let visitas = parseInt(localStorage.getItem('EMPANADAZAS_VISITAS') || '0', 10);
     visitas += 1;
     localStorage.setItem('EMPANADAZAS_VISITAS', visitas.toString());
 
-    // 2. Calculamos los segundos exactos
-    let demora = 10000; // A partir de la 3ra vez: siempre 10 segundos
+    // 2. Calculamos los segundos exactos (TIEMPOS REALES)
+    let demora = 10000; // A partir de la 3ra vez: 10 segundos
     if (visitas === 1) {
-        demora = 5000;  // 1ra vez: 5 segundos
+        demora = 5000;  // 1ra vez: exactamente 5 segundos
     } else if (visitas === 2) {
-        demora = 7000;  // 2da vez: 7 segundos
+        demora = 7000;  // 2da vez: exactamente 7 segundos
     }
-
-    // Modo test rápido con ?test=1
-    const isTesting = window.location.search.includes('test=1') || window.location.search.includes('test=pwa');
-    if (isTesting) demora = 800;
 
     // 3. Disparo garantizado del popup
     setTimeout(() => {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Abriendo WhatsApp... | Empanadazas®</title>
+    <title>Empanadazas® | Pedido WhatsApp</title>
     
     <meta name="theme-color" content="#0E0F0D">
     <meta name="mobile-web-app-capable" content="yes">
@@ -11,116 +11,157 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
             background-color: #0E0F0D;
             color: #FEFAE4;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .redirect-box {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            text-align: center;
+            justify-content: center;
             padding: 24px;
+            text-align: center;
+        }
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            max-width: 340px;
+            width: 100%;
+        }
+        .sucursal-tag {
+            font-size: 0.8rem;
+            color: #F7C268;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            line-height: 1.2;
+            color: #FEFAE4;
+        }
+        .desc {
+            font-size: 0.85rem;
+            color: #8E9086;
+            line-height: 1.4;
+        }
+        .btn-wsp {
+            background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+            color: #032311;
+            font-size: 0.95rem;
+            font-weight: 900;
+            padding: 16px 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.35);
+            margin-top: 8px;
+        }
+        .btn-wsp svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
         }
         .spinner {
-            width: 38px;
-            height: 38px;
+            width: 28px;
+            height: 28px;
             border: 3px solid rgba(247, 194, 104, 0.2);
             border-top-color: #F7C268;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-        .redirect-text {
-            font-size: 0.95rem;
-            color: #D3CEB8;
-            font-weight: 600;
-        }
-        .btn-manual-wsp {
-            display: none;
-            margin-top: 8px;
-            background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
-            color: #032311;
-            font-size: 0.88rem;
-            font-weight: 800;
-            padding: 12px 22px;
-            border-radius: 12px;
-            text-decoration: none;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
-        }
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
+</head>
+<body>
 
-    <!-- MOTOR DE SALTO DIRECTO A LA APP NATIVA -->
+    <div class="box">
+        <div class="spinner" id="spinner"></div>
+        <span class="sucursal-tag" id="sucursalTag">Conectando...</span>
+        <h2 class="title" id="sucursalTitle">Abriendo tu chat</h2>
+        <p class="desc">Si no se abre automáticamente en tu WhatsApp, tocá el botón verde:</p>
+        
+        <a id="wspActionBtn" href="#" class="btn-wsp">
+            <svg viewBox="0 0 24 24">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+            </svg>
+            <span>Continuar a WhatsApp</span>
+        </a>
+    </div>
+
     <script>
         (function() {
-            // CARITA OFICIAL: 😋 (%F0%9F%98%8B)
             var branchData = {
                 'palermo': {
+                    name: 'Palermo Soho',
                     phone: '5491151435364',
-                    text: '%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho'
+                    text: '¡Hola Empanadazas! 😋 Quiero hacer un pedido para Palermo Soho'
                 },
                 'lomitas': {
+                    name: 'Las Lomitas',
                     phone: '5491150510287',
-                    text: '%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas'
+                    text: '¡Hola Empanadazas! 😋 Quiero hacer un pedido para Las Lomitas'
                 },
                 'caballito': {
+                    name: 'Caballito',
                     phone: '5491125428760',
-                    text: '%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito'
+                    text: '¡Hola Empanadazas! 😋 Quiero hacer un pedido para Caballito'
                 },
                 'ramos': {
+                    name: 'Ramos Mejía',
                     phone: '5491130091870',
-                    text: '%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa'
+                    text: '¡Hola Empanadazas! 😋 Quiero hacer un pedido para Ramos Mejía'
                 }
             };
 
             var params = new URLSearchParams(window.location.search);
             var branchKey = params.get('branch');
-            var data = branchData[branchKey];
+            var branch = branchData[branchKey];
 
-            if (data) {
-                // 1. Enlace nativo directo al celular (salta la web y abre la app)
-                var nativeAppUrl = "whatsapp://send?phone=" + data.phone + "&text=" + data.text;
-                // 2. Enlace de respaldo web por si falla el protocolo nativo
-                var webFallbackUrl = "https://wa.me/" + data.phone + "?text=" + data.text;
-
-                // Disparo prioritario a la app de WhatsApp
-                window.location.href = nativeAppUrl;
-
-                // Si en 1.5 segundos no abrió la app, recurre a la web
-                setTimeout(function() {
-                    window.location.href = webFallbackUrl;
-                }, 1500);
-
-                // Botón manual de respaldo
-                window.addEventListener('DOMContentLoaded', function() {
-                    var btn = document.getElementById('manualBtn');
-                    if (btn) {
-                        btn.href = nativeAppUrl;
-                        btn.style.display = 'inline-block';
-                    }
-                });
-            } else {
-                // Si no hay parámetro, regresa al menú de la app
+            if (!branch) {
                 window.location.replace('/empanadazaswidget/app.html');
+                return;
             }
+
+            // Actualizar interfaz con datos de la marca
+            document.getElementById('sucursalTag').innerText = 'Sucursal ' + branch.name;
+            document.getElementById('sucursalTitle').innerText = 'WhatsApp ' + branch.name;
+
+            var encodedText = encodeURIComponent(branch.text);
+
+            // 1. Android Intent directo para saltar directo a la app instalada
+            var androidIntentUrl = "intent://send?phone=" + branch.phone + "&text=" + encodedText + "#Intent;package=com.whatsapp;scheme=whatsapp;end";
+            
+            // 2. Enlace API directo oficial (NO usa wa.me para que no se corrompa el emoji)
+            var directApiUrl = "https://api.whatsapp.com/send/?phone=" + branch.phone + "&text=" + encodedText;
+
+            var btn = document.getElementById('wspActionBtn');
+            btn.href = androidIntentUrl;
+
+            // Intentar el salto directo
+            try {
+                window.location.href = androidIntentUrl;
+            } catch(e) {
+                window.location.href = directApiUrl;
+            }
+
+            // Si el sistema operativo frena el salto automático, el botón manual tiene el link directo
+            btn.addEventListener('click', function(e) {
+                // Al hacer clic manual con User Gesture, Android abre la app sin bloqueos
+                window.location.href = androidIntentUrl;
+            });
         })();
     </script>
-</head>
-<body>
-    <div class="redirect-box">
-        <div class="spinner"></div>
-        <p class="redirect-text">Abriendo WhatsApp...</p>
-        <a id="manualBtn" href="#" class="btn-manual-wsp">Abrir WhatsApp</a>
-    </div>
 </body>
 </html>

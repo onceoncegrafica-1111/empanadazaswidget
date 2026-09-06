@@ -1,5 +1,4 @@
 {
-  "id": "/empanadazaswidget/app.html",
   "name": "Empanadazas® Oficial",
   "short_name": "Empanadazas",
   "description": "Pedí en 1 toque con beneficios VIP.",
@@ -7,7 +6,6 @@
   "start_url": "/empanadazaswidget/app.html",
   "scope": "/empanadazaswidget/",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#0E0F0D",
   "theme_color": "#0E0F0D",
   "icons": [

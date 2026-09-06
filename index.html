@@ -844,6 +844,7 @@
                 deferredPrompt.prompt().then(({ outcome }) => {
                     if (outcome === 'accepted') {
                         // Silencio temporal de 30 días para no bloquear para siempre si luego la desinstala
+    localStorage.setItem('EMPANADAZAS_INSTALLED', 'true'); // <--- AGREGÁ ESTA LÍNEA
                         const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
                         localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
                         showCelebrationToast("🎉 ¡EmpaImán pegado con éxito!");
@@ -856,6 +857,7 @@
 
         // SI SE COMPLETA LA INSTALACIÓN
         window.addEventListener('appinstalled', () => {
+    localStorage.setItem('EMPANADAZAS_INSTALLED', 'true'); // <--- AGREGÁ ESTA LÍNEA
             const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
             localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
             deferredPrompt = null;
@@ -877,12 +879,13 @@
                 if (btnAction) btnAction.innerText = "🧲 Pegar EmpaImán en mi iPhone";
             }
 
-          // CONTADOR DE VISITAS Y TIEMPOS (5s, 7s, 15s - REGLA DE LOS 3 RECHAZOS)
+          // CONTADOR DE VISITAS Y TIEMPOS (5s, 7s, 15s - REGLA DE LOS 3 RECHAZOS Y SI YA INSTALÓ)
 if (!isStandalone) {
     let rechazos = parseInt(localStorage.getItem('EMPANADAZAS_RECHAZOS') || '0', 10);
+    let yaInstalo = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
 
-    // Solo se activa si el cliente rechazó MENOS de 3 veces
-    if (rechazos < 3) {
+    // Solo se activa si NO la instaló y si rechazó MENOS de 3 veces
+    if (!yaInstalo && rechazos < 3) {
         // 1. Aumentamos el contador de visitas
         let visitas = parseInt(localStorage.getItem('EMPANADAZAS_VISITAS') || '0', 10);
         visitas += 1;
@@ -965,6 +968,7 @@ if (!isStandalone) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 if (outcome === 'accepted') {
+    localStorage.setItem('EMPANADAZAS_INSTALLED', 'true'); // <--- AGREGÁ ESTA LÍNEA
                     const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
                     localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
                     showCelebrationToast("🎉 ¡EmpaImán pegado con éxito!");

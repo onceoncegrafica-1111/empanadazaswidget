@@ -877,16 +877,31 @@
                 if (btnAction) btnAction.innerText = "🧲 Pegar EmpaImán en mi iPhone";
             }
 
-            // REVISIÓN CON SNOOZE INTELIGENTE (REAPARECE A LOS 7 DÍAS SI NO LO INSTALÓ)
-            const isTesting = window.location.search.includes('test=1') || window.location.search.includes('test=pwa');
-            setTimeout(() => {
-                const snoozeUntil = parseInt(localStorage.getItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
-                const isSnoozed = Date.now() < snoozeUntil;
+            // CONTADOR DE VISITAS Y TIEMPOS INTELIGENTES (5s, 7s, 10s SIEMPRE)
+if (!isStandalone) {
+    // 1. Aumentamos el contador de visitas
+    let visitas = parseInt(localStorage.getItem('EMPANADAZAS_VISITAS') || '0', 10);
+    visitas += 1;
+    localStorage.setItem('EMPANADAZAS_VISITAS', visitas.toString());
 
-                if ((isTesting || !isSnoozed) && !isStandalone) {
-                    document.getElementById('smartNudgeModal').classList.add('active');
-                }
-            }, isTesting ? 800 : 5000);
+    // 2. Calculamos los segundos exactos
+    let demora = 10000; // A partir de la 3ra vez: siempre 10 segundos
+    if (visitas === 1) {
+        demora = 5000;  // 1ra vez: 5 segundos
+    } else if (visitas === 2) {
+        demora = 7000;  // 2da vez: 7 segundos
+    }
+
+    // Modo test rápido con ?test=1
+    const isTesting = window.location.search.includes('test=1') || window.location.search.includes('test=pwa');
+    if (isTesting) demora = 800;
+
+    // 3. Disparo garantizado del popup
+    setTimeout(() => {
+        const modal = document.getElementById('smartNudgeModal');
+        if (modal) modal.classList.add('active');
+    }, demora);
+}
 
             // Iniciar animación Lupa
             if (document.fonts && document.fonts.ready) {
@@ -897,11 +912,11 @@
         });
 
         // BOTÓN "AHORA NO" (SNOOZE INTELIGENTE DE 7 DÍAS)
-        function dismissNudge() {
-            document.getElementById('smartNudgeModal').classList.remove('active');
-            const snoozeTime = Date.now() + (7 * 24 * 60 * 60 * 1000); // 7 días exactos
-            localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
-        }
+     function dismissNudge() {
+    // Solo lo oculta de la pantalla sin bloquear los próximos ingresos
+    const modal = document.getElementById('smartNudgeModal');
+    if (modal) modal.classList.remove('active');
+}
 
         function showCelebrationToast(msg) {
             const toast = document.getElementById('toastMsg');

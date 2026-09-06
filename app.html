@@ -582,7 +582,7 @@
             flex-shrink: 0;
         }
 
-        /* BOTÓN DE SUGERENCIAS ULTRA VELOZ */
+      /* BOTÓN DE SUGERENCIAS ULTRA VELOZ */
         .btn-feedback-card {
             background: rgba(26, 27, 23, 0.85);
             border: 1.5px dashed rgba(247, 194, 104, 0.45);
@@ -616,6 +616,164 @@
             justify-content: center;
             font-size: 20px;
             flex-shrink: 0;
+        }
+
+        /* ESTILOS DE LA VENTANA DE SUGERENCIAS (ESPACIADOS OPTIMIZADOS) */
+        .feedback-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .feedback-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .feedback-card {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(22, 23, 20, 0.98);
+            border: 1.5px solid var(--bronze-bright);
+            border-radius: 24px;
+            padding: 26px 22px 22px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 24px var(--neon-bronze-glow);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-close-modal {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: rgba(35, 37, 30, 0.8);
+            border: 1px solid var(--border-card);
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .feedback-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--brand-cream);
+            text-transform: uppercase;
+            line-height: 1.2;
+            text-align: center;
+            margin-top: 2px;
+        }
+        .feedback-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.45;
+            margin-top: 8px;
+            margin-bottom: 20px; /* Despega el texto del primer campo */
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;             /* Despega la etiqueta del recuadro de texto */
+            margin-bottom: 14px;  /* Despega cada campo del siguiente */
+        }
+        .form-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.70rem;
+            font-weight: 800;
+            color: var(--bronze-bright);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .form-label span {
+            color: var(--text-subtle);
+            font-weight: 600;
+            text-transform: lowercase;
+        }
+        .form-input, .form-textarea {
+            background: rgba(14, 15, 13, 0.9);
+            border: 1.5px solid rgba(229, 169, 82, 0.3);
+            border-radius: 12px;
+            padding: 12px 14px;   /* Mayor aire interno para escribir cómodo */
+            color: #FEFAE4;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+            width: 100%;
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--bronze-bright);
+            box-shadow: 0 0 10px rgba(247, 194, 104, 0.25);
+        }
+        .form-textarea {
+            resize: none;
+            height: 90px;
+            line-height: 1.45;
+        }
+        .btn-submit-feedback {
+            background: linear-gradient(135deg, #F7C268 0%, #E5A952 100%);
+            color: #12130F;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 900;
+            padding: 14px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            box-shadow: 0 6px 18px rgba(247, 194, 104, 0.35);
+            margin-top: 10px;    /* Despega el botón de la última caja */
+            transition: transform 0.15s ease;
+            width: 100%;
+        }
+        .btn-submit-feedback:active {
+            transform: scale(0.98);
+        }
+        .feedback-success-box {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 22px 10px;
+            text-align: center;
+        }
+        .feedback-success-icon {
+            font-size: 42px;
+            animation: bounceIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .feedback-success-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.28rem;
+            font-weight: 900;
+            color: var(--bronze-bright);
+            text-transform: uppercase;
+        }
+        .feedback-success-desc {
+            font-size: 0.86rem;
+            color: var(--brand-cream-muted);
+            line-height: 1.45;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); }
         }
 
         /* PWA CARD CON TEXTOS EMPAIMÁN */

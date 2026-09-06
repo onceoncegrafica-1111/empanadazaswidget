@@ -965,21 +965,31 @@
             });
         }
 
-        // DETECCIÓN INTELIGENTE: Si ya está instalada en el celular, NO MOSTRAR EL BOTÓN
+    // DETECCIÓN INTELIGENTE: Si ya está instalada en el celular, NO MOSTRAR EL BOTÓN
         function checkAlreadyInstalled() {
             const pwaBox = document.getElementById('pwaInstallBox');
             if (!pwaBox) return;
 
-            // 1. Si ya se abrió desde la app o guardó instalación previa
-            if (isStandalone || (isInstalled && !window.location.search.includes('test=1'))) {
+            const isTesting = window.location.search.includes('test=1') || window.location.search.includes('test=pwa');
+            const snoozeUntil = parseInt(localStorage.getItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
+            const isSnoozed = Date.now() < snoozeUntil;
+
+            // 1. Si ya se abrió desde la app o guardó instalación previa (y no es test)
+            if (isStandalone || (isInstalled && !isTesting)) {
                 pwaBox.style.display = 'none';
                 return;
             }
 
-            // 2. Consulta nativa W3C a Android (si la PWA ya está presente en el sistema)
+            // 2. RESCATE PARA IPHONE (Safari no usa beforeinstallprompt):
+            const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent);
+            if (isIos && (isTesting || (!isSnoozed && !isInstalled))) {
+                pwaBox.style.display = 'flex';
+            }
+
+            // 3. Consulta nativa W3C a Android (si la PWA ya está presente en el sistema)
             if ('getInstalledRelatedApps' in navigator) {
                 navigator.getInstalledRelatedApps().then((apps) => {
-                    if (apps && apps.length > 0 && !window.location.search.includes('test=1')) {
+                    if (apps && apps.length > 0 && !isTesting) {
                         localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
                         pwaBox.style.display = 'none';
                     }

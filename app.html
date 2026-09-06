@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Empanadazas® | Hub Oficial & Pedidos</title>
-    <meta name="description" content="Creadores de las primeras Miti-Miti del mundo. Pedí online con descuento, conocé nuestro menú y sucursales.">
+    <title>Empanadazas® | Hub Oficial</title>
     
-    <!-- CONEXIÓN PWA NATIVA -->
-    <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#131412">
+    <!-- METAS PWA STANDALONE -->
+    <meta name="theme-color" content="#0d0e0c">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Empanadazas">
+    
+    <!-- FAVICON -->
+    <link rel="icon" href="./empanadazas-icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="./empanadazas-icon.png">
 
     <!-- TIPOGRAFÍAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Outfit:wght@800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Cinzel:wght@600;700;800;900&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800;900&family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=block" rel="stylesheet">
 
-   <!-- FAVICON OFICIAL -->
-    <link rel="icon" href="./empanadazas-icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="./empanadazas-icon.png">
+    <!-- MANIFEST PWA OFICIAL -->
+    <link rel="manifest" href="./manifest.json">
 
     <style>
         /* FUENTE NEÓN MEXCELLENT */
@@ -37,36 +38,28 @@
         }
 
         :root {
-            --bg-base: #131412;
-            --bg-card: rgba(22, 23, 20, 0.88);
-            --bg-card-hover: rgba(30, 31, 27, 0.96);
+            --bg-base: #0E0F0D;
+            --bg-card: rgba(22, 23, 20, 0.90);
+            --bg-card-hover: rgba(30, 31, 27, 0.98);
             
-            --bronze-light: #FBE2B5;
+            --bronze-light: #FCEBD0;
             --bronze-bright: #F7C268;
             --bronze-mid: #E5A952;
-            --bronze-dark: #A25C10;
-            --bronze-deep: #753E04;
-            
             --brand-cream: #FEFAE4;
             --brand-cream-muted: #D3CEB8;
             
             --neon-bronze-glow: rgba(229, 169, 82, 0.55);
             --neon-bronze-subtle: rgba(247, 194, 104, 0.12);
-            --border-card: rgba(229, 169, 82, 0.3);
-            --border-card-hover: rgba(247, 194, 104, 0.9);
+            --border-card: rgba(229, 169, 82, 0.32);
+            --border-card-hover: rgba(247, 194, 104, 0.95);
             
             --text-light: #FEFAE4;
-            --text-muted: #9E9F97;
+            --text-muted: #8E9086;
             --text-subtle: #6E7068;
             
-            --shadow-card: 0 10px 28px -4px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
-            --shadow-hero: 0 12px 36px -2px rgba(215, 139, 40, 0.35), 0 0 18px rgba(247, 194, 104, 0.25);
+            --shadow-card: 0 10px 28px -4px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-hero: 0 12px 36px -2px rgba(215, 139, 40, 0.4), 0 0 18px rgba(247, 194, 104, 0.3);
             --spring-curve: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        body.preload * {
-            transition: none !important;
-            animation: none !important;
         }
 
         * {
@@ -76,59 +69,52 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html {
-            background-color: var(--bg-base);
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: transparent;
-            color: var(--text-light);
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--brand-cream);
             min-height: 100vh;
             min-height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding: 26px 16px 36px;
+            padding: 20px 14px 45px;
             overflow-x: hidden;
             position: relative;
-            letter-spacing: -0.015em;
         }
 
-        /* FONDO PAPEL DE REGALO */
-        .b2b-bg-canvas {
+        /* FONDO PAPEL DE REGALO CONTINUO */
+        .hub-bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -2;
-            background: radial-gradient(circle at 50% 20%, #20221E 0%, #151614 60%, #0E0F0D 100%);
+            z-index: 0;
+            background: radial-gradient(circle at 50% 15%, #20221E 0%, #151614 60%, #0E0F0D 100%);
             overflow: hidden;
             pointer-events: none;
         }
 
-        .ambient-fire-spotlight {
+        .hub-ambient-spotlight {
             position: absolute;
             top: -120px;
             left: 50%;
             transform: translateX(-50%);
-            width: 800px;
-            height: 700px;
-            background: radial-gradient(ellipse at 50% 30%, rgba(247, 194, 104, 0.18) 0%, rgba(215, 139, 40, 0.08) 45%, transparent 75%);
-            filter: blur(75px);
+            width: 850px;
+            height: 750px;
+            background: radial-gradient(ellipse at 50% 30%, rgba(247, 194, 104, 0.22) 0%, rgba(215, 139, 40, 0.10) 45%, transparent 75%);
+            filter: blur(80px);
             z-index: 1;
         }
 
-        .stencil-gift-wrap {
+        .hub-stencil-wrap {
             position: absolute;
             top: -20%;
             left: -20%;
             width: 140%;
             height: 140%;
-            opacity: 0.1;
+            opacity: 0.12;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='180' viewBox='-40 -40 440 160'%3E%3Cpath fill='%23EAE6D2' d='M41.38,54.78c-.74,8.44-1.47,16.68-2.22,25.24-1.05-.36-1.87-.38-2.11-.76-4.92-7.76-6.48-16.24-4.64-25.19,1.31-6.37,3.05-12.66,4.8-18.94.32-1.15,1.59-2.85,2.41-2.85,1.22,0,3.01,1.02,3.54,2.11,2.08,4.26,3.77,8.72,5.57,13.11.64,1.57,1.2,3.18,2.51,4.72,1.01-4.22,1.87-8.48,3.08-12.63.73-2.49,1.73-5,3.1-7.19,1.51-2.42,3.84-2.3,5.46.09.9,1.33,1.56,2.88,2.04,4.41,2.48,8.01,4.89,16.05,7.29,24.08.39,1.32.71,2.67.97,4.02.49,2.5-.1,4.58-2.75,5.42-2.71.85-3.95-1.01-4.76-3.1-1.73-4.42-3.33-8.89-5.75-13.42-.41,2.07-.82,4.14-1.22,6.21-.33,1.72-.35,3.58-1.06,5.13-.71,1.57-1.99,3.85-3.22,3.98-1.76.19-4.4-.76-5.44-2.15-2.83-3.76-5.02-8-7.61-12.3Z'/%3E%3Cpath fill='%23EAE6D2' d='M149.66,61.16c-.66,1.75-1.19,3.15-1.72,4.55-.66-1.43-1.36-2.84-1.96-4.29-1.3-3.13-2.55-6.27-3.82-9.41-.55.14-1.1.28-1.64.42.36,3.22.89,6.43,1.02,9.66.15,3.81,0,7.64-.16,11.46-.02.55-.69,1.25-1.24,1.53-.28.14-1.27-.42-1.41-.83-2.1-6.41-5-12.72-5.94-19.31-1.34-9.4-1.33-19-1.6-28.53-.04-1.33,1.38-3.47,2.56-3.84,1.1-.34,3.39.82,4.08,1.97,1.52,2.54,2.28,5.53,3.5,8.27,1.91,4.3,3.95,8.54,5.94,12.8.37-.1.73-.2,1.1-.3.11-.75.34-1.51.31-2.26-.21-6.65-.63-13.3-.59-19.94,0-1.45,1.27-3.58,2.54-4.18,2.28-1.09,3.5,1.02,3.82,2.92,1.07,6.41,1.89,12.86,2.83,19.29.91,6.19,1.95,12.37,2.73,18.57.18,1.43,0,3.76-.86,4.27-1.23.73-3.35.55-4.85.04-1.71-.57-3.16-1.92-4.63-2.87Z'/%3E%3Cpath fill='%23EAE6D2' d='M228.22,29.83c.07,12.02-9.64,23.38-20.92,27.85-1.32.52-2.99.44-4.45.27-2.88-.33-3.58-2.17-2.62-4.83.67-1.83,1.09-4.02.76-5.89-1.01-5.67-2.35-11.28-3.77-16.86-.32-1.24-1.29-2.59-2.35-3.31-2.56-1.74-2.86-3.64-1.08-5.99,3.69-4.89,17.89-9.71,23.76-8.1,6.34,1.74,10.67,8.57,10.68,16.87ZM208.98,48.12c6.31-4.28,9.73-9.07,10.21-15.41.23-2.98-.2-6.29-1.33-9.03-1.41-3.41-4.92-3.8-8.05-2.62-1.84.69-4.74,2.67-4.62,3.79.83,7.51,2.35,14.95,3.79,23.28Z'/%3E%3Cpath fill='%23EAE6D2' d='M280.5,15.47c-4.39,1.71-8.03,3.25-11.76,4.49-1.41.47-3.06.22-4.59.3-.11-1.77-.13-3.67.43-5.28.39-1.12,1.73-2.3,2.91-2.71,6.37-2.21,12.78-4.35,19.28-6.13,1.49-.41,4.45.23,4.85,1.18.69,1.63.52,4.25-.38,5.82-4.48,7.8-9.33,15.39-14.04,23.05.21.27.41.54.62.81,2.74-.92,5.43-2.06,8.23-2.69,2.63-.59,5.48-1.15,8.05-.7,1.52.27,3.31,2.32,3.83,3.94.4,1.23-.57,3.83-1.69,4.47-3.89,2.21-4.32,5.42-3.95,9.29.09.9-.66,1.88-1.03,2.82-.56-.94-1.61-1.86-1.62-2.81-.17-10.13-2.45-9.51-10.43-6.56-3.41,1.26-6.75,2.77-10.25,3.67-1.55.4-3.42-.45-5.14-.73.35-1.59.34-3.4,1.12-4.75,4.78-8.37,9.73-16.63,14.61-24.95.29-.5.42-1.09.96-2.54Z'/%3E%3Cpath fill='%23EAE6D2' d='M11.77,72.92c4.01-2.67,7.13-4.85,10.36-6.84,1.46-.9,3.15-1.41,4.73-2.1.52,1.69,1.57,3.42,1.46,5.07-.25,3.51-1.07,6.98-1.73,10.46-.07.39-.54.91-.91.99-.39.08-1.11-.16-1.28-.48-.52-.97-.85-2.05-1.41-3.5-3.06,1.24-5.97,2.55-8.97,3.62-6.75,2.4-9.51.91-10.42-6.07-1.01-7.82-1.58-15.71-2.35-23.56-.13-1.37-.09-2.8-.5-4.09-1.53-4.78-.92-6.48,3.86-7.7,4.84-1.23,9.79-2.1,14.74-2.8,2.44-.34,5.14.23,5.23,3.42.09,2.98-2.3,3.85-4.86,4.18-1.74.22-3.48.42-5.21.73q-6.44,1.19-5.04,8.29c2.11-.7,4.14-1.64,6.26-1.97,1.38-.22,2.9.44,4.35.71-.41,1.63-.31,3.79-1.34,4.76-1.67,1.57-3.98,2.62-6.19,3.39-2.14.75-2.65,1.89-2.26,3.93.5,2.68.84,5.39,1.48,9.55Z'/%3E%3Cpath fill='%23EAE6D2' d='M115.95,60.71c-.5-1.38-1.01-2.76-1.62-4.44-2.61.7-5.31,1.23-7.83,2.21-.93.36-1.5,1.78-2.1,2.79-.83,1.38-1.23,3.19-2.38,4.16-.95.8-2.87,1.13-4.05.74-.78-.25-1.17-2.12-1.45-3.34-.37-1.59-.67-3.25-.62-4.86.04-1.28.5-2.62,1.05-3.8,1.02-2.19,2.56-4.19,3.33-6.45,2.35-6.87,4.36-13.87,6.71-20.74.47-1.37,1.79-3.3,2.84-3.38,1.17-.09,3.01,1.35,3.66,2.6,5.35,10.21,10.54,20.5,15.65,30.83.69,1.4,1.1,3.2.9,4.72-.16,1.25-1.23,3.04-2.24,3.32-.98.27-2.92-.76-3.56-1.77-1.83-2.92-3.22-6.11-4.78-9.2-.45.02-.9.04-1.35.06-.36,2.09-.71,4.18-1.07,6.28-.37.09-.74.18-1.11.27ZM111.07,39.24l-.97.18c-.8,3.45-1.61,6.89-2.56,10.98,2.91-.98,5.18-1.75,7.86-2.66-1.56-3.06-2.94-5.78-4.33-8.5Z'/%3E%3Cpath fill='%23EAE6D2' d='M180.92,52.93c-.32-1.18-.64-2.36-1.06-3.93-2.72.76-5.41,1.32-7.91,2.32-.92.37-1.44,1.79-2.11,2.75-1.05,1.51-1.85,3.28-3.18,4.46-.71.62-2.59.66-3.44.14-.78-.47-1.01-2.03-1.23-3.16-.3-1.5-.5-3.05-.46-4.57.04-1.43.21-2.95.74-4.26.81-1.98,2.27-3.72,2.96-5.73,2.46-7.24,4.61-14.58,7.07-21.81,1.21-3.57,3.23-3.92,5.68-1.13,1.14,1.31,2.13,2.81,2.93,4.35,3.97,7.69,7.89,15.4,11.74,23.14,1.06,2.12,2.34,4.35,2.54,6.62.15,1.74-.72,4.4-2.04,5.26-2.22,1.45-3.46-.87-4.4-2.71-1.35-2.61-2.68-5.24-4.01-7.86-.38.04-.76.08-1.14.13-.5,2.15-1.01,4.29-1.51,6.44-.38-.15-.77-.3-1.15-.46ZM180.83,40.83c-1.77-3.41-3.28-6.3-4.78-9.18-.27.05-.54.09-.81.14-.73,3.59-1.47,7.17-2.33,11.38,2.86-.84,5.06-1.49,7.92-2.34Z'/%3E%3Cpath fill='%23EAE6D2' d='M248.48,40.04c-.28,2.14-.56,4.28-.83,6.41-.32.08-.64.16-.96.24-.58-1.46-1.16-2.92-1.84-4.64-2.49.57-5.11.92-7.5,1.85-1.01.4-1.62,1.99-2.28,3.12-.74,1.28-1.01,3.12-2.08,3.85-1.13.77-3.02.83-4.45.55-.52-.1-.78-2.04-.99-3.17-.25-1.38-.46-2.8-.44-4.2.02-1.4.08-2.91.6-4.18.87-2.11,2.43-3.95,3.14-6.09,2.34-7,4.33-14.12,6.66-21.12,1.31-3.92,3.47-4.17,6.04-.88,1,1.28,1.87,2.68,2.6,4.13,4.33,8.62,8.62,17.25,12.87,25.92.65,1.33,1.53,2.9,1.33,4.22-.24,1.62-1.49,3.09-2.3,4.63-1.38-.95-3.18-1.61-4.05-2.9-1.65-2.44-2.77-5.24-4.11-7.89-.47.05-.94.1-1.41.14ZM245.65,33.6c-1.58-3.15-2.96-5.9-4.34-8.65-.26.07-.53.14-.79.21-.78,3.41-1.56,6.81-2.49,10.88,2.9-.93,5.08-1.63,7.62-2.44Z'/%3E%3Cpath fill='%23EAE6D2' d='M319.98,32.19c-.32,2.02-.63,4.03-.95,6.05-.3.08-.59.15-.89.23-.56-1.41-1.12-2.83-1.76-4.43-1.89.48-3.8,1.02-5.73,1.42-2.19.45-3.54,1.54-3.86,3.9-.15,1.08-.48,2.55-1.24,3.05-1.29.84-3,1.35-4.52,1.32-.45,0-.95-2.26-1.26-3.53-.25-1.01.04-2.22-.38-3.12-1.13-2.35-.64-4.1.93-6.16,1.28-1.69,1.8-4,2.48-6.1,2.17-6.66,4.08-13.4,6.45-19.99,1.43-3.96,3.56-4.07,6.14-.65.9,1.19,1.68,2.51,2.35,3.85,3.86,7.73,7.72,15.47,11.48,23.25,1.03,2.13,2.19,4.38,2.39,6.66.13,1.4-1.18,3.27-2.38,4.28-.43.36-2.95-.84-3.65-1.9-1.68-2.56-2.85-5.46-4.22-8.22-.46.03-.91.06-1.37.09ZM309.65,28.5c3.12-1.13,5.28-1.92,7.81-2.84-1.58-3.19-2.96-5.98-4.34-8.76-.31.05-.62.1-.93.15-.76,3.45-1.53,6.91-2.54,11.45Z'/%3E%3Cpath fill='%23EAE6D2' d='M92.45,26.31c7.81,0,11.12,4.35,8.21,10.14-2.09,4.15-5.57,7.59-8.49,11.31-.61.78-1.4,1.48-2.24,2-5.92,3.71-7.39,8.39-4.72,15.14,1.22,3.09.21,7.09.09,10.67-.01.39-.86,1.12-1.21,1.06-.63-.1-1.44-.55-1.73-1.09-6.26-11.72-8.26-24.65-10.51-37.5-.14-.81.24-2.13.85-2.6,6.27-4.74,12.97-8.57,19.76-9.13ZM81.84,46.91c4.24-3.52,8.82-6.05,10.03-11.82-8.41-.18-12.14,4.15-10.03,11.82Z'/%3E%3Cpath fill='%23EAE6D2' d='M340.93,47.54c-.76-2.38-1.17-4.98-2.4-7.09-1.21-2.08-3.84-3.43-4.75-5.56-.62-1.47.03-4.35,1.19-5.49,1.72-1.69,4.08-.88,5.31,1.38,1.48,2.73,3.75,1.93,5.51.98,1.93-1.04,3.58-2.74,4.98-4.46.2-.25-1.5-2.79-2.72-3.29-3.23-1.32-6.69-2.08-10.04-3.12-4.11-1.27-7.85-2.99-8.41-7.98-.48-4.24,2.11-8.27,7-10.61,4.28-2.05,8.79-3.03,13.51-1.67,3.41.98,5.01,3.44,3.82,6.13-1.35,3.06-3.79,2.29-6.41,1.78-2.31-.45-4.84-.26-7.19.14-.9.15-2.16,1.65-2.18,2.56-.02.85,1.24,2.14,2.21,2.5,2.45.91,5.08,1.32,7.6,2.09,2.03.62,4.12,1.22,5.94,2.26,5.97,3.41,7.25,10.79,2.35,15.63-2.68,2.65-6.16,4.74-9.64,6.25-2.85,1.24-4.93,2.19-4.16,5.74.11.5-.29,1.11-.46,1.68-.36.05-.72.1-1.08.16Z'/%3E%3C/svg%3E");
             background-repeat: round;
             background-size: 280px auto;
@@ -143,226 +129,226 @@
             100% { background-position: 1000px 1000px; }
         }
 
-        /* ANIMACIÓN DE LA LUPA (CINZEL DETECTIVE) - TOTALMENTE ADAPTATIVA */
-        .brand-bio .detective-text {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(0.60rem, 3.15vw, 0.88rem);
-            font-weight: 700;
-            color: var(--bronze-bright);
-            text-transform: uppercase;
-            letter-spacing: clamp(0.03em, 0.7vw, 0.11em);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-            flex-wrap: nowrap;
-            position: relative;
-            padding: 6px clamp(10px, 2.5vw, 16px);
-            margin-top: 6px;
-            cursor: pointer;
-            user-select: none;
-            -webkit-user-select: none;
-            max-width: 100%;
-        }
-
-        #textToScan, #textToScanEnd {
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .detective-text .char {
-            display: inline-block;
-            filter: blur(4px);
-            opacity: 0.25;
-            transition: filter 0.22s ease-out, opacity 0.22s ease-out;
-            will-change: filter, opacity;
-        }
-
-        .detective-text .char.revealed {
-            filter: blur(0px);
-            opacity: 1;
-        }
-
-        .detective-text .char-space {
-            display: inline-block;
-            width: 0.36em;
-            filter: none !important;
-            opacity: 1 !important;
-        }
-
-        .detective-text .target-100-wrapper {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 0 4px;
-            margin: 0 1px;
-            flex-shrink: 0;
-            white-space: nowrap;
-        }
-
-        .detective-text .highlight-100 {
-            display: inline-block;
-            color: var(--bronze-bright);
-            font-weight: 700;
-            transform-origin: center 60%;
-            transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1), color 0.4s ease, text-shadow 0.4s ease;
-        }
-
-        .detective-text .highlight-100.zoomed {
-            transform: scale(1.12);
-            color: #FFFFFF;
-            font-weight: 900;
-            text-shadow: 0 0 10px rgba(247, 194, 104, 0.8), 0 0 20px rgba(247, 194, 104, 0.4);
-        }
-
-        .detective-text .magnifier-lens {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 22px;
-            height: 22px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='goldRim' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FBE2B5'/%3E%3Cstop offset='50%25' stop-color='%23F7C268'/%3E%3Cstop offset='100%25' stop-color='%23A25C10'/%3E%3C/linearGradient%3E%3ClinearGradient id='handle' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23E5A952'/%3E%3Cstop offset='60%25' stop-color='%236A3602'/%3E%3Cstop offset='100%25' stop-color='%23FBE2B5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='10' cy='10' r='6.6' stroke='url(%23goldRim)' stroke-width='1.5' fill='rgba(247, 194, 104, 0.08)'/%3E%3Cpath d='M6.8 6.8A4.8 4.8 0 0 1 12.5 5.5' stroke='%23FFFFFF' stroke-width='1' stroke-linecap='round' opacity='0.75'/%3E%3Cpath d='M15 15L16.2 16.2' stroke='%23FBE2B5' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M16.2 16.2L21.2 21.2' stroke='url(%23handle)' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            transform-origin: 41.67% 41.67%;
-            filter: drop-shadow(0 0 5px rgba(247, 194, 104, 0.5));
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0;
-            will-change: left, top, transform, filter, opacity;
-        }
-
-        .detective-text .magnifier-lens.docked {
-            filter: drop-shadow(0 0 8px var(--bronze-bright));
-            opacity: 0.95;
-        }
-
-        .detective-text.bounce-click {
-            animation: pantherJump 0.52s ease-in-out forwards !important;
-        }
-
-        @keyframes pantherJump {
-            0% { transform: translateY(0) scale(1); }
-            30% { transform: translateY(-12px) scale(1.06) rotate(-2deg); }
-            60% { transform: translateY(3px) scale(0.97) rotate(1.5deg); }
-            85% { transform: translateY(-2px) scale(1.01) rotate(-0.5deg); }
-            100% { transform: translateY(0) scale(1) rotate(0deg); }
-        }
-
-        /* CONTENEDOR CENTRAL */
-        .hub-container {
+        /* CONTENEDOR CENTRAL MAESTRO */
+        .hub-inner-frame {
             width: 100%;
-            max-width: 480px;
+            max-width: 460px;
             display: flex;
             flex-direction: column;
-            gap: 13px;
+            gap: 12px;
             z-index: 1;
+            position: relative;
         }
 
-        .brand-header {
+        /* CABECERA CON ISOLOGOTIPO COMPLETO */
+        .hub-brand-header {
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            margin-bottom: 4px;
-            perspective: 1000px;
+            margin-bottom: 2px;
         }
 
-        .logo-stage {
-            perspective: 800px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-wrapper {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+        .hub-logo-box {
+            width: 100%;
+            max-width: 310px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: coinFlipSway 5.2s infinite ease-in-out;
-            filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7));
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,0.75)) drop-shadow(0 0 14px rgba(247, 194, 104, 0.22));
         }
 
-        @keyframes coinFlipSway {
-            0% { transform: rotateY(0deg) rotateZ(0deg); }
-            25% { transform: rotateY(26deg) rotateZ(1.2deg); }
-            50% { transform: rotateY(0deg) rotateZ(0deg); }
-            75% { transform: rotateY(-26deg) rotateZ(-1.2deg); }
-            100% { transform: rotateY(0deg) rotateZ(0deg); }
+        .hub-logo-box svg {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .logo-svg-main { width: 100%; height: 100%; display: block; backface-visibility: hidden; }
-        .brand-title-svg { width: 100%; max-width: 270px; height: auto; display: block; margin: 4px 0 2px; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5)); }
-        .brand-bio { font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); font-weight: 500; max-width: 95%; display: flex; flex-direction: column; gap: 2px; }
+        .cls-1 { fill: #eca244; stroke-width: 0px; }
+        .cls-2 { fill: #fefae4; stroke-width: 0px; }
+
+        .badges-top-row {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .badge-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.60rem, 2.5vw, 0.66rem);
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--neon-bronze-subtle);
+            color: var(--bronze-bright);
+            border: 1px solid rgba(229, 169, 82, 0.45);
+            text-transform: uppercase;
+        }
+
+        .badge-pill.gold {
+            background: rgba(247, 194, 104, 0.2);
+            color: var(--bronze-light);
+            border-color: var(--bronze-bright);
+        }
+
+        .brand-bio {
+            font-size: 0.84rem;
+            line-height: 1.45;
+            color: var(--text-muted);
+            font-weight: 500;
+            max-width: 95%;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            text-align: center;
+        }
+
         .highlight-bio { color: var(--brand-cream); font-weight: 700; }
+        .quote-slogan { font-style: italic; color: var(--bronze-bright); font-weight: 600; font-size: 0.82rem; }
 
-        .social-bar { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 4px; }
-        .social-btn { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(28, 29, 25, 0.9); border: 1.5px solid var(--border-card); color: var(--brand-cream); text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.4); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .social-btn:hover { border-color: var(--bronze-bright); color: var(--bronze-bright); background: rgba(40, 42, 36, 0.95); box-shadow: 0 0 14px var(--neon-bronze-glow); transform: translateY(-2px); }
-        .social-btn svg { width: 19px; height: 19px; }
+        .social-bar { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 2px; }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(28, 29, 25, 0.9);
+            border: 1.5px solid var(--border-card);
+            color: var(--brand-cream);
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: all 0.25s ease;
+        }
+        .social-btn:hover {
+            border-color: var(--bronze-bright);
+            color: var(--bronze-bright);
+            background: rgba(40, 42, 36, 0.95);
+            box-shadow: 0 0 14px var(--neon-bronze-glow);
+            transform: translateY(-2px);
+        }
+        .social-btn svg { width: 17px; height: 17px; }
 
+        /* SECCIÓN FOTO DEL FAMOSO / EMBAJADOR (PACHU) */
+        .celebrity-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 100%;
+            margin: 2px 0 -12px;
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .celebrity-img {
+            width: auto;
+            height: clamp(175px, 44vw, 235px);
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 18px rgba(247, 194, 104, 0.22));
+            mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* TARJETAS BOTONES */
         .btn-card {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 14px;
-            padding: 16px 18px;
+            padding: 14px 18px;
             background: var(--bg-card);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             border: 1.5px solid var(--border-card);
-            border-radius: 19px;
+            border-radius: 18px;
             text-decoration: none;
             color: var(--text-light);
             box-shadow: var(--shadow-card);
-            transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.28s var(--spring-curve);
             position: relative;
-            user-select: none;
-            cursor: pointer;
         }
 
-        .btn-card:hover { background: var(--bg-card-hover); border-color: var(--border-card-hover); box-shadow: 0 10px 30px -2px rgba(0, 0, 0, 0.75), 0 0 18px var(--neon-bronze-glow); transform: translateY(-2px); }
+        .btn-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-card-hover);
+            box-shadow: 0 10px 30px -2px rgba(0, 0, 0, 0.75), 0 0 18px var(--neon-bronze-glow);
+            transform: translateY(-2px);
+        }
 
-        .btn-hero { background: linear-gradient(135deg, rgba(38, 40, 34, 0.96) 0%, rgba(25, 26, 22, 0.96) 100%); border: 2px solid var(--bronze-bright); box-shadow: var(--shadow-hero); padding: 18px 20px; overflow: hidden; }
-        .btn-hero::before { content: ''; position: absolute; top: 0; left: -130%; width: 70%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(247, 194, 104, 0.28) 42%, rgba(255, 255, 255, 0.55) 50%, rgba(247, 194, 104, 0.28) 58%, transparent 100%); transform: skewX(-25deg); animation: jewelBeamSweep 5.6s infinite ease-in-out; }
+        .btn-card:active {
+            transform: scale(0.98);
+        }
+
+        .btn-hero {
+            background: linear-gradient(135deg, rgba(38, 40, 34, 0.96) 0%, rgba(25, 26, 22, 0.96) 100%);
+            border: 2px solid var(--bronze-bright);
+            box-shadow: var(--shadow-hero);
+            padding: 16px 20px;
+            overflow: hidden;
+        }
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -130%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(247, 194, 104, 0.28) 42%, rgba(255, 255, 255, 0.55) 50%, rgba(247, 194, 104, 0.28) 58%, transparent 100%);
+            transform: skewX(-25deg);
+            animation: jewelBeamSweep 5.6s infinite ease-in-out;
+        }
         @keyframes jewelBeamSweep { 0%, 50% { left: -130%; } 85%, 100% { left: 190%; } }
 
-        .icon-box { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; min-width: 48px; border-radius: 15px; background: rgba(20, 21, 18, 0.9); border: 1.5px solid var(--border-card); transition: all 0.32s ease; overflow: hidden; }
+        .icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 13px;
+            background: rgba(20, 21, 18, 0.9);
+            border: 1.5px solid var(--border-card);
+            transition: all 0.28s ease;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
         .icon-box svg { width: 100%; height: 100%; display: block; }
-        .icon-box.hero-gold { background: linear-gradient(135deg, #F7C268 0%, #D78B28 100%) !important; border: 1.5px solid rgba(255, 255, 255, 0.5); color: #1A1815; padding: 8px; }
-        .icon-box.hero-gold svg { width: 28px; height: 28px; }
+        .icon-box.hero-gold {
+            background: linear-gradient(135deg, #F7C268 0%, #D78B28 100%) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            color: #1A1815;
+            padding: 8px;
+        }
+        .icon-box.hero-gold svg { width: 25px; height: 25px; }
 
-        .btn-info { display: flex; flex-direction: column; flex: 1; min-width: 0; gap: 3px; }
+        .btn-info { display: flex; flex-direction: column; flex: 1; min-width: 0; gap: 2px; }
         .btn-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
         .btn-title {
             font-family: 'Mexcellent', 'Outfit', sans-serif;
-            font-size: clamp(1.3rem, 4.6vw, 1.48rem);
+            font-size: clamp(1.10rem, 3.8vw, 1.35rem);
             font-weight: normal;
             letter-spacing: 0.14em; 
             color: var(--bronze-light);
             text-transform: uppercase;
-            line-height: 1.1;
-            transition: color 0.3s ease;
+            line-height: 1.15;
+            transition: color 0.25s ease;
         }
 
         .btn-card:hover .btn-title { color: #FFFFFF; }
-        .btn-title.title-promo { font-size: clamp(1.1rem, 3.8vw, 1.25rem); letter-spacing: 0.12em; }
+        .btn-title.title-promo { font-size: clamp(1.00rem, 3.4vw, 1.18rem); letter-spacing: 0.12em; }
 
-        .badge-pill { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: var(--neon-bronze-subtle); color: var(--bronze-bright); border: 1px solid rgba(229, 169, 82, 0.45); text-transform: uppercase; }
-        .badge-pill.hot { background: rgba(239, 68, 68, 0.16); color: #F87171; border-color: rgba(239, 68, 68, 0.38); }
-        .badge-pill.gold { background: rgba(247, 194, 104, 0.22); color: var(--bronze-light); border-color: var(--bronze-bright); }
-
-        /* DESCRIPCIÓN ADAPTADA: MULTILÍNEA FLUIDA */
+        /* ADAPTACIÓN RESPONSIVE DE LAS DESCRIPCIONES (MULTILÍNEA FLUIDA) */
         .btn-desc { 
-            font-size: 0.8rem; 
+            font-size: 0.78rem; 
             color: var(--text-muted); 
             font-weight: 600; 
             white-space: normal; 
@@ -370,288 +356,356 @@
             word-wrap: break-word; 
         }
 
-        .arrow-box { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; min-width: 32px; border-radius: 50%; background: rgba(20, 21, 18, 0.85); border: 1px solid var(--border-card); color: var(--text-muted); transition: all 0.32s ease; }
-        .btn-card:hover .arrow-box { background: linear-gradient(135deg, var(--bronze-bright) 0%, var(--bronze-mid) 100%); color: #151412; border-color: var(--bronze-bright); }
-        .arrow-box svg { width: 15px; height: 15px; stroke-width: 2.6; }
-
-        /* POPUP FLOTANTE INTELIGENTE PWA */
-        .smart-nudge-overlay {
-            position: fixed;
-            bottom: -120%;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.68);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 9999;
+        .arrow-box {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
-            padding: 16px;
-            transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            border-radius: 50%;
+            background: rgba(20, 21, 18, 0.85);
+            border: 1px solid var(--border-card);
+            color: var(--text-muted);
+            transition: all 0.28s ease;
+            flex-shrink: 0;
+        }
+        .btn-card:hover .arrow-box {
+            background: linear-gradient(135deg, var(--bronze-bright) 0%, var(--bronze-mid) 100%);
+            color: #151412;
+            border-color: var(--bronze-bright);
+        }
+        .arrow-box svg { width: 13px; height: 13px; stroke-width: 2.6; }
+
+        /* SUCURSALES */
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--bronze-mid);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 8px;
+            margin-bottom: -2px;
         }
 
-        .smart-nudge-overlay.active {
-            bottom: 0;
-        }
-
-        .smart-nudge-box {
-            width: 100%;
-            max-width: 440px;
-            background: rgba(20, 21, 18, 0.96);
-            border: 2px solid var(--bronze-bright);
-            border-radius: 26px;
-            padding: 22px 20px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px var(--neon-bronze-glow);
+        .branches-grid {
             display: flex;
             flex-direction: column;
+            gap: 10px;
+        }
+
+        .branch-wsp-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 12px;
+            padding: 13px 16px;
+            background: rgba(20, 22, 18, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(229, 169, 82, 0.28);
+            border-radius: 17px;
+            text-decoration: none;
+            color: var(--text-light);
+            box-shadow: var(--shadow-card);
+            transition: all 0.25s var(--spring-curve);
             position: relative;
-            text-align: center;
+            overflow: hidden;
         }
 
-        .nudge-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 800;
-            color: var(--bronze-bright);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+        .branch-wsp-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3.5px;
+            background: linear-gradient(180deg, var(--bronze-bright) 0%, var(--bronze-mid) 100%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
         }
 
-        .nudge-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.32rem;
-            font-weight: 900;
-            color: #FEFAE4;
-            text-transform: uppercase;
-            line-height: 1.18;
+        .branch-wsp-card:hover {
+            border-color: #22C55E;
+            background: rgba(26, 31, 23, 0.97);
+            box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.7), 0 0 16px rgba(34, 197, 94, 0.28);
+            transform: translateY(-2px);
         }
 
-        .nudge-desc {
-            font-size: 0.84rem;
-            color: #D3CEB8;
-            line-height: 1.45;
-            font-weight: 500;
+        .branch-wsp-card:hover::before {
+            opacity: 1;
+            background: #22C55E;
         }
 
-        .btn-nudge-primary {
-            background: linear-gradient(135deg, #F7C268 0%, #E5A952 100%);
-            color: #12130F;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 900;
-            padding: 13px;
-            border-radius: 14px;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            box-shadow: 0 6px 18px rgba(247, 194, 104, 0.35);
-            transition: transform 0.15s ease;
-        }
-
-        .btn-nudge-primary:active {
+        .branch-wsp-card:active {
             transform: scale(0.98);
         }
 
-        .btn-nudge-dismiss {
-            background: transparent;
-            border: none;
-            color: #8E9086;
+        .branch-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .branch-header-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .branch-name-text {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            color: var(--brand-cream);
+            line-height: 1.2;
+            transition: color 0.25s ease;
+        }
+
+        .branch-wsp-card:hover .branch-name-text {
+            color: #FFFFFF;
+        }
+
+        .badge-24h-live {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            background: rgba(34, 197, 94, 0.16);
+            color: #4ADE80;
+            border: 1px solid rgba(34, 197, 94, 0.42);
+            padding: 2px 7px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            line-height: 1;
+        }
+
+        .live-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #22C55E;
+            box-shadow: 0 0 6px #22C55E;
+            animation: livePulse 2s infinite ease-in-out;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.5; }
+        }
+
+        .branch-addr-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: normal;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .branch-pin-icon {
+            width: 13px;
+            height: 13px;
+            color: var(--bronze-mid);
+            flex-shrink: 0;
+        }
+
+        .wsp-action-btn {
+            background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+            color: #032311;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.78rem;
-            font-weight: 700;
-            padding: 8px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            padding: 8px 13px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 3px 12px rgba(34, 197, 94, 0.32);
+            flex-shrink: 0;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+        }
+
+        .branch-wsp-card:hover .wsp-action-btn {
+            background: #22C55E;
+            color: #02170B;
+            box-shadow: 0 0 16px rgba(34, 197, 94, 0.6);
+            transform: scale(1.03);
+        }
+
+        .wsp-mini-icon {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* PWA CARD CON TEXTOS EMPAIMÁN */
+        .pwa-install-card {
+            background: linear-gradient(135deg, rgba(247, 194, 104, 0.16) 0%, rgba(162, 92, 16, 0.22) 100%);
+            border: 1.5px dashed var(--bronze-bright);
+            border-radius: 18px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
             cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            margin-top: 6px;
+        }
+        .pwa-install-card:hover {
+            background: rgba(247, 194, 104, 0.25);
+            box-shadow: 0 0 16px var(--neon-bronze-glow);
+        }
+        .pwa-install-card:active { transform: scale(0.97); }
+
+        .pwa-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+        .pwa-title { font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 900; color: var(--bronze-bright); }
+        .pwa-sub { font-size: 0.72rem; color: var(--brand-cream-muted); font-weight: 600; line-height: 1.3; }
+
+        .pwa-badge-btn {
+            background: linear-gradient(135deg, var(--bronze-bright) 0%, var(--bronze-mid) 100%);
+            color: #1A1815;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.74rem;
+            font-weight: 800;
+            padding: 7px 14px;
+            border-radius: 10px;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-        }
-
-        /* GUÍA VISUAL IPHONE */
-        .ios-visual-guide {
-            display: none;
-            background: rgba(32, 34, 28, 0.98);
-            border: 1.5px solid var(--bronze-bright);
-            border-radius: 18px;
-            padding: 14px;
-            margin-top: 6px;
-            animation: pulseIn 0.3s ease;
-        }
-
-        @keyframes pulseIn {
-            from { opacity: 0; transform: scale(0.96); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .ios-guide-step {
-            font-size: 0.84rem;
-            color: #FEFAE4;
-            font-weight: 600;
-            line-height: 1.5;
-            margin-bottom: 8px;
-        }
-
-        .ios-bouncing-arrow {
-            font-size: 26px;
-            display: inline-block;
-            animation: bounceDown 1.2s infinite ease-in-out;
-        }
-
-        @keyframes bounceDown {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(6px); }
-        }
-
-        /* TOAST DE CELEBRACIÓN */
-        .celebration-toast {
-            position: fixed;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #F7C268 0%, #E5A952 100%);
-            color: #12130F;
-            padding: 14px 22px;
-            border-radius: 999px;
-            font-weight: 800;
-            font-size: 0.86rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(247, 194, 104, 0.5);
-            z-index: 10000;
-            transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .celebration-toast.show {
-            top: 24px;
+        .ios-guide {
+            display: none;
+            background: rgba(30, 31, 27, 0.95);
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            padding: 10px 14px;
+            font-size: 0.75rem;
+            color: var(--brand-cream);
+            text-align: center;
+            line-height: 1.4;
         }
 
-        .hub-footer { margin-top: 22px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .hub-footer { margin-top: 18px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .footer-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; color: var(--brand-cream); background: rgba(24, 25, 21, 0.9); padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border-card); }
         .footer-legal { font-size: 0.72rem; color: var(--text-subtle); font-weight: 600; }
 
-        @media (max-width: 480px) { body { padding: 20px 14px 32px; } .brand-title-svg { max-width: 240px; } .logo-wrapper { width: 110px; height: 110px; } }
+        @media (max-width: 480px) {
+            .hub-logo-box { max-width: 280px; }
+            .branch-name-text { font-size: 1.08rem; }
+            .branch-addr-text { font-size: 0.76rem; }
+        }
+
+        @media (max-width: 360px) {
+            body { padding: 16px 10px 35px; }
+            .btn-card { padding: 12px 14px; gap: 10px; }
+            .branch-wsp-card { padding: 11px 12px; gap: 8px; }
+            .branch-name-text { font-size: 1rem; }
+            .wsp-action-btn { padding: 7px 10px; font-size: 0.72rem; }
+        }
     </style>
 </head>
-<body class="preload">
+<body>
 
-    <!-- FONDO PAPEL DE REGALO -->
-    <div class="b2b-bg-canvas">
-        <div class="ambient-fire-spotlight"></div>
-        <div class="stencil-gift-wrap"></div>
+    <!-- FONDO CANVAS ANIMADO -->
+    <div class="hub-bg-canvas">
+        <div class="hub-ambient-spotlight"></div>
+        <div class="hub-stencil-wrap"></div>
     </div>
 
-    <!-- TOAST DE FELICITACIÓN -->
-    <div class="celebration-toast" id="toastMsg">🥟 ¡EmpaImán listo en tu pantalla!</div>
-
-    <!-- CONTENEDOR MAESTRO -->
-    <main class="hub-container">
-
-        <header class="brand-header">
-            <div class="logo-stage">
-                <div class="logo-wrapper">
-                    <svg class="logo-svg-main" viewBox="0 0 482.94 482.94" xmlns="http://www.w3.org/2000/svg">
-                        <circle fill="#231F20" cx="241.47" cy="241.47" r="241.47"/>
-                        <g>
-                            <path fill="#ECA244" d="M241.47,351.07c45.02,0,85.42-27.64,101.89-69.24.71-1.78-.62-3.72-2.54-3.72h-29.69c-.98,0-1.88.54-2.37,1.4-13.73,24.27-39.35,39.28-67.29,39.28s-53.56-15-67.29-39.28c-.49-.86-1.38-1.4-2.37-1.4h-29.69c-1.92,0-3.24,1.94-2.54,3.72,16.46,41.59,56.86,69.24,101.89,69.24"/>
-                            <path fill="#FEFAE4" d="M350.36,240.01s0-.02-.01-.04l-.05-.15c-.06-.18-.1-.32-.15-.45-.58-1.6-1.42-3.06-2.49-4.34-1.34-1.6-2.47-3.38-3.36-5.28-.09-.19-.17-.38-.25-.58l-.14-.32c-.07-.16-.15-.35-.23-.53-.05-.13-.11-.28-.16-.44l-.12-.32c-.08-.21-.16-.44-.24-.67-1.63-5.01-1.66-10.31-.08-15.32,0,0,0-.02,0-.03h0s0-.04.01-.06c.03-.13.07-.27.11-.4l.06-.21c.07-.23.13-.43.17-.63.04-.16.06-.33.09-.5l.14-.82c.04-.3.06-.65.08-1l.02-.29c.02-.32.02-.7,0-1.13,0-.05,0-.16,0-.25-.07-1.56-.42-3.18-1.03-4.74-.01-.04-.03-.08-.04-.11l-.04-.09c-.32-.77-.7-1.51-1.12-2.2-.24-.38-.47-.72-.72-1.05-.28-.37-.52-.66-.75-.92-.07-.06-.14-.14-.21-.21-.23-.25-.46-.5-.71-.73l-.56-.48c-.18-.15-.28-.25-.39-.33-.23-.18-.47-.34-.71-.5-.18-.12-.29-.2-.4-.28l-.07-.05c-.22-.13-.6-.35-.98-.55-5.04-2.63-9.02-7.02-11.22-12.35-1-2.42-1.6-4.98-1.81-7.6-.03-.42-.08-.83-.15-1.25l-.08-.39c-.06-.29-.11-.56-.17-.83-.02-.09-.05-.18-.07-.26l-.06-.21c-.06-.23-.13-.46-.21-.7-.05-.16-.11-.32-.18-.49-.08-.2-.17-.42-.26-.64-.07-.17-.14-.32-.21-.46-.1-.21-.21-.43-.33-.64l-.07-.13c-.07-.12-.11-.21-.16-.29-.13-.22-.27-.44-.41-.65l-.25-.38c-.22-.31-.45-.62-.68-.9-.53-.64-1.12-1.25-1.75-1.8-.26-.22-.55-.45-.86-.68-.05-.03-.11-.07-.18-.12l-.15-.1c-.25-.17-.47-.32-.7-.46l-.37-.21c-.22-.12-.43-.24-.66-.35-.13-.06-.26-.12-.39-.18l-1.14-.46c-.22-.08-.46-.15-.71-.23l-.45-.13c-.24-.06-.52-.12-.81-.18l-.43-.09c-.32-.05-.72-.1-1.11-.14-7.29-.59-13.84-4.47-17.96-10.64l-.14-.22c-.16-.24-.43-.67-.69-1.11-.16-.28-.31-.58-.47-.87-.05-.07-.1-.15-.14-.25-.32-.65-.66-1.23-.99-1.75l-.29-.42c-.11-.16-.23-.32-.34-.47-.08-.1-.16-.2-.25-.3l-.39-.47h0s-.04-.04-.06-.07c-.23-.26-.47-.5-.71-.73-.06-.06-.16-.16-.26-.26-.18-.16-.46-.4-.74-.63l-.19-.16c-.2-.15-.5-.37-.84-.6,0,0,0,0,0,0,0,0-.17-.11-.22-.15-.15-.1-.47-.29-.83-.48l-.19-.11c-.22-.12-.55-.27-.87-.41l-.45-.19c-.14-.06-.28-.11-.43-.17-3.79-1.35-7.31-.65-8.89-.19-.17.06-.34.11-.51.16-.24.08-.38.14-.38.14v-.02c-2.16.64-4.38.98-6.65.98-5.78,0-11.35-2.1-15.7-5.9-2.53-2.22-5.74-3.46-9.03-3.49-3.24.03-6.43,1.27-8.97,3.48-4.35,3.8-9.92,5.9-15.7,5.9-2.72,0-5.39-.46-7.93-1.38-.54-.19-1.16-.32-1.85-.38-.15-.01-.28-.02-.4-.04-.36-.04-.64-.07-.92-.09h-.16s-.5,0-.5,0h-.54c-.28,0-.56.04-.84.07l-.51.05c-.2.03-.54.1-.87.17l-.3.06c-.24.05-.58.15-.92.26l-.23.07c-.24.08-.58.2-.91.34l-.46.19c-.27.12-.59.27-.88.43-.04.03-.09.05-.14.08-.34.19-.66.38-.93.55-.05.04-.1.07-.15.1-.3.2-.6.42-.87.63l-.03.03c-.35.29-.63.52-.93.8-.05.05-.1.11-.15.16-.23.23-.47.47-.7.72h0c-.04.05-.07.1-.08.1l-.25.31s-.06.07-.07.08c-.16.19-.29.34-.4.49-.05.07-.09.13-.13.19l-.42.63c-.11.16-.14.21-.18.26-.18.3-.37.63-.57,1.04l-.15.27c-.15.31-.4.78-.67,1.24-.26.44-.52.87-.77,1.23l-.03.05c-4.16,6.23-10.71,10.11-18.01,10.7-.38.03-.78.08-1.21.16l-.29.06c-.31.06-.6.12-.87.19l-.4.12c-.26.08-.5.15-.73.24-.12.05-.27.1-.41.16l-.78.33c-.05.03-.18.09-.31.15-.22.11-.44.23-.65.35l-.43.24c-.19.11-.41.26-.63.42l-.22.15h0s-.05.04-.08.06c-.34.25-.64.48-.92.73-.63.54-1.22,1.15-1.75,1.79-.24.29-.46.59-.7.94l-.2.31c-.16.24-.3.46-.43.69l-.22.41c-.12.22-.23.44-.34.66-.06.14-.13.29-.2.44-.1.23-.19.45-.27.67-.05.15-.11.31-.17.47-.08.23-.15.47-.21.71l-.14.51c-.06.23-.11.5-.16.77l-.09.47c-.06.36-.11.77-.14,1.2-.2,2.62-.81,5.18-1.81,7.6-2.2,5.33-6.18,9.72-11.22,12.35-.36.19-.72.4-1.06.61,0,0,0,0,0,0-.09.07-.2.15-.32.23-.31.21-.55.37-.78.55-.11.09-.21.18-.31.27l-.7.6c-.19.18-.42.42-.64.67-.07.07-.14.15-.26.27-.18.21-.41.49-.66.82-.02.03-.08.1-.12.15-.19.26-.41.59-.64.94-.44.7-.81,1.44-1.13,2.2l-.07.18c-.62,1.58-.97,3.22-1.04,4.88v.03c-.01.53-.01.91,0,1.33v.11c.04.43.06.78.11,1.13l.12.67s.02.1.02.11c.03.19.05.34.09.5.04.17.09.34.14.51l.1.34c.03.11.07.25.1.38l.03.13c1.57,4.95,1.55,10.26-.09,15.27-.08.24-.17.48-.25.71l-.1.29c-.05.15-.11.31-.18.47-.07.18-.15.36-.23.54l-.14.33c-.06.15-.14.34-.23.52-.9,1.91-2.03,3.69-3.36,5.29-1.07,1.28-1.91,2.75-2.5,4.35-.04.11-.07.21-.11.32l-.09.27c-.48,1.51-.72,3.04-.72,4.55,0,2.45.62,4.89,1.79,7.06.39.71.87,1.41,1.4,2.06l.17.2c1.68,1.91,4.92,4.51,10.61,5.83l.11.03c2.51.57,5.29.86,8.27.86h174.48c2.98,0,5.75-.28,8.23-.85l.16-.04c5.68-1.32,8.9-3.9,10.6-5.83,0,0,0,0,0-.01l.19-.22c.51-.63.98-1.32,1.39-2.06,1.16-2.15,1.78-4.59,1.78-7.03,0-1.5-.24-3.02-.71-4.52M316.54,226.89c-.72.93-1.8,1.47-2.98,1.47h-144.18c-1.17,0-2.26-.53-2.97-1.46-.72-.93-.96-2.11-.66-3.24,9.16-35.02,40.3-59.52,75.72-59.59,35.43.07,66.58,24.58,75.73,59.59.3,1.13.06,2.31-.66,3.24"/>
-                            <polygon fill="#FEFAE4" points="63.16 316.8 66.71 326.23 45.76 334.13 43.08 327.04 55.33 322.42 55.26 322.24 40.63 320.54 38.39 314.59 48.24 303.62 48.17 303.44 35.92 308.06 33.25 300.96 54.2 293.06 57.76 302.49 46.67 314.78 46.72 314.93 63.16 316.8"/>
-                            <rect fill="#FEFAE4" x="51.26" y="336.71" width="22.4" height="7.71" transform="translate(-157.32 73.02) rotate(-29.01)"/>
-                            <polygon fill="#FEFAE4" points="71.7 345.26 75.91 342.29 91.01 363.63 86.8 366.61 81.48 359.08 67.4 369.04 62.95 362.75 77.03 352.79 71.7 345.26"/>
-                            <rect fill="#FEFAE4" x="76.95" y="373.05" width="22.4" height="7.71" transform="translate(-227.54 152.92) rotate(-41.48)"/>
-                            <rect fill="#FEFAE4" x="98.65" y="381.56" width="5.15" height="17.73" transform="translate(-252.41 196.47) rotate(-46.72)"/>
-                            <polygon fill="#FEFAE4" points="139.47 405.96 147.81 411.61 135.25 430.16 128.98 425.9 136.31 415.07 136.16 414.96 123.23 422.01 117.96 418.44 119.68 403.8 119.52 403.69 112.18 414.53 105.9 410.27 118.46 391.73 126.81 397.38 124.83 413.82 124.96 413.91 139.47 405.96"/>
-                            <rect fill="#FEFAE4" x="141.41" y="421.94" width="22.4" height="7.71" transform="translate(-297.17 378.01) rotate(-64.22)"/>
-                            <polygon fill="#FEFAE4" points="162.87 424.3 164.59 419.44 189.24 428.17 187.52 433.03 178.83 429.95 173.07 446.21 165.8 443.64 171.56 427.38 162.87 424.3"/>
-                            <rect fill="#FEFAE4" x="183.35" y="436.78" width="22.4" height="7.71" transform="translate(-278.87 529.42) rotate(-76.8)"/>
-                            <path fill="#FEFAE4" d="M219.66,434.12l14.71.6c4.6.19,8.11,1.32,10.49,3.44,2.41,2.08,3.55,4.85,3.41,8.33-.14,3.49-1.5,6.15-4.07,8.06-2.54,1.88-6.13,2.73-10.73,2.54l-14.7-.6.91-22.38ZM227.15,439.58l-.49,12.08,6.62.27c4.35.18,7.02-1.83,7.18-5.76.16-3.93-2.34-6.15-6.69-6.32l-6.62-.27Z"/>
-                            <polygon fill="#FEFAE4" points="282.66 448.57 283.31 453.68 256.4 457.11 253.57 434.89 280.07 431.51 280.72 436.62 261.87 439.03 262.34 442.71 278.97 440.59 279.53 445.03 262.9 447.15 263.4 451.02 282.66 448.57"/>
-                            <polygon fill="#FEFAE4" points="285.09 430.26 292.49 428.08 297.37 444.63 314.81 439.49 316.27 444.43 291.43 451.75 285.09 430.26"/>
-                            <polygon fill="#FEFAE4" points="345.94 404.4 354.63 399.29 365.99 418.61 359.45 422.45 352.82 411.17 352.65 411.26 353.46 425.97 347.97 429.2 335.49 421.35 335.33 421.45 341.96 432.73 335.42 436.58 324.07 417.27 332.76 412.16 346.76 421 346.89 420.92 345.94 404.4"/>
-                            <path fill="#FEFAE4" d="M367.03,404.51l-7.91-8.94,5.78-5.11,7.63,8.63c2.63,2.97,5.68,3.05,8.63.44,2.9-2.57,3.22-5.63.6-8.6l-7.63-8.63,5.78-5.11,7.84,8.87c2.25,2.54,3.09,5.34,2.59,8.39-.53,3.03-2.46,6.01-5.79,8.96-6.62,5.85-13.03,6.14-17.52,1.1"/>
-                            <polygon fill="#FEFAE4" points="396.73 356.94 401.34 351.16 418.85 365.13 414.1 371.08 396.55 373.21 396.47 373.31 406.15 381.04 401.52 386.84 384.02 372.87 388.71 366.99 406.38 364.8 406.46 364.7 396.73 356.94"/>
-                            <path fill="#FEFAE4" d="M404.86,345.87l7.03-12.93c2.2-4.05,4.77-6.69,7.72-7.89,2.94-1.24,5.92-1.04,8.98.62,3.06,1.67,4.86,4.06,5.43,7.22.57,3.11-.26,6.71-2.46,10.75l-7.03,12.93-19.67-10.7ZM413.07,341.56l10.62,5.78,3.16-5.82c2.08-3.82,1.46-7.11-1.99-8.99-3.46-1.88-6.55-.61-8.63,3.21l-3.16,5.82Z"/>
-                            <path fill="#FEFAE4" d="M424.49,303.05c1.51-4.49,3.65-7.62,6.43-9.38,2.76-1.77,5.84-2.09,9.2-.96,3.37,1.13,5.63,3.24,6.78,6.33,1.12,3.08.93,6.86-.58,11.35-1.51,4.49-3.65,7.62-6.4,9.39-2.79,1.76-5.87,2.08-9.23.95-3.37-1.13-5.63-3.25-6.75-6.33-1.15-3.09-.96-6.87.55-11.36M437.7,299.93c-3.91-1.32-6.9.52-8.32,4.76-1.44,4.28-.17,7.54,3.74,8.86,3.91,1.32,6.9-.52,8.33-4.79,1.43-4.25.16-7.51-3.75-8.83"/>
-                            <path fill="#ECA244" d="M16.81,234.13h10.54c3.88,0,5.82,1.19,5.82,3.58,0,1.53-.84,2.56-2.51,3.1v.1c2.11.48,3.16,1.61,3.16,3.42,0,2.49-1.95,3.72-5.82,3.72h-11.19v-13.92ZM20.82,236.66v3.22h5.53c1.59,0,2.6-.58,2.6-1.61s-1.01-1.61-2.6-1.61h-5.53ZM27.01,245.53c1.59,0,2.6-.6,2.6-1.77s-1.01-1.79-2.6-1.79h-6.18v3.56h6.18Z"/>
-                            <path fill="#ECA244" d="M46.36,239.34c1.11.08,2.05.18,2.78.28.76.1,1.49.24,2.23.44,2.11.58,3.02,1.61,3.12,3.6,0,2.96-2.82,4.59-8.29,4.59-1.39,0-2.92-.14-4.61-.44-1.67-.3-3.08-.66-4.24-1.03v-3.06c.87.38,2.15.78,3.84,1.15,1.69.38,3.18.58,4.51.58,3.12,0,4.69-.48,4.69-1.43,0-.5-.36-.86-1.05-1.03-.7-.2-1.93-.36-3.74-.5-.87-.06-1.61-.14-2.21-.2-.58-.06-1.21-.16-1.91-.28-.7-.14-1.25-.3-1.69-.5-1.33-.6-2.43-1.57-2.33-3.26,0-2.88,2.84-4.31,8.53-4.31,1.09,0,2.25.08,3.42.26,2.37.32,3.42.64,3.9.82v2.94c-.54-.24-1.51-.5-2.88-.79-1.37-.3-2.86-.46-4.45-.46-2.88,0-4.34.44-4.34,1.29,0,.46.34.76,1.03.93.7.16,1.87.3,3.56.42h.12Z"/>
-                            <path fill="#ECA244" d="M438.21,234.13l6.74,13.92h-4.32l-1.19-2.54h-8.13l-1.21,2.54h-4.31l6.74-13.92h5.69ZM432.44,242.92h5.85l-2.86-5.98h-.12l-2.86,5.98Z"/>
-                            <path fill="#ECA244" d="M456.71,239.34c1.11.08,2.05.18,2.78.28.76.1,1.49.24,2.23.44,2.11.58,3.02,1.61,3.12,3.6,0,2.96-2.82,4.59-8.29,4.59-1.39,0-2.92-.14-4.61-.44-1.67-.3-3.08-.66-4.23-1.03v-3.06c.87.38,2.15.78,3.84,1.15,1.69.38,3.18.58,4.51.58,3.12,0,4.69-.48,4.69-1.43,0-.5-.36-.86-1.05-1.03-.7-.2-1.93-.36-3.74-.5-.87-.06-1.61-.14-2.21-.2-.58-.06-1.21-.16-1.91-.28-.7-.14-1.25-.3-1.69-.5-1.33-.6-2.43-1.57-2.33-3.26,0-2.88,2.84-4.31,8.53-4.31,1.09,0,2.25.08,3.42.26,2.37.32,3.42.64,3.9.82v2.94c-.54-.24-1.51-.5-2.88-.79-1.37-.3-2.86-.46-4.45-.46-2.88,0-4.33.44-4.33,1.29,0,.46.34.76,1.03.93.7.16,1.87.3,3.56.42h.12Z"/>
-                            <path fill="#ECA244" d="M481.79,217.88c-.12-1.25-.26-2.49-.4-3.73C467.77,93.82,365.38,0,241.47,0S15.17,93.82,1.55,214.15c-.14,1.24-.28,2.48-.4,3.73-.76,7.76-1.15,15.63-1.15,23.59s.4,15.83,1.15,23.59c.12,1.25.26,2.49.4,3.73,13.62,120.33,116.01,214.15,239.92,214.15s226.3-93.82,239.91-214.15c.14-1.24.28-2.48.4-3.73.76-7.76,1.15-15.63,1.15-23.59s-.4-15.83-1.15-23.59M241.47,3.73c121.85,0,222.56,92.15,236.16,210.42h-64.55c-13.15-82.88-85.09-146.44-171.61-146.44s-158.46,63.56-171.61,146.44H5.31C18.9,95.88,119.62,3.73,241.47,3.73M411.5,241.47c0,8.01-.57,15.88-1.65,23.59-.17,1.25-.36,2.49-.56,3.73-13.11,80.81-83.37,142.71-167.83,142.71s-154.72-61.9-167.83-142.71c-.2-1.24-.39-2.48-.56-3.73-1.08-7.71-1.64-15.59-1.64-23.59s.57-15.88,1.64-23.59c.17-1.25.36-2.49.56-3.73,13.11-80.81,83.37-142.71,167.83-142.71s154.72,61.9,167.83,142.71c.2,1.24.39,2.48.56,3.73,1.08,7.71,1.65,15.59,1.65,23.59M3.73,241.47c0-7.96.4-15.83,1.17-23.59h64.42c-1.05,7.72-1.61,15.59-1.61,23.59s.56,15.88,1.61,23.59H4.9c-.77-7.76-1.17-15.63-1.17-23.59M241.47,479.21c-121.85,0-222.57-92.15-236.16-210.42h64.55c13.15,82.88,85.09,146.44,171.61,146.44s158.46-63.56,171.61-146.44h64.55c-13.6,118.27-114.31,210.42-236.16,210.42M478.04,265.07h-64.42c1.05-7.72,1.61-15.59,1.61-23.59s-.56-15.88-1.61-23.59h64.42c.77,7.76,1.17,15.63,1.17,23.59s-.4,15.83-1.17,23.59"/>
-                            <polygon fill="#FEF7D5" points="33.78 188 35.25 183.17 48.67 187.23 52.9 173.25 56.23 174.26 50.54 193.07 33.78 188"/>
-                            <path fill="#FEF7D5" d="M47.49,150.41l19.43-.58-2.22,4.95-3.53.06-4.18,9.33,2.3,2.7-2.22,4.95-12.5-14.89,2.92-6.52ZM54.61,161.54l3-6.71-8.34.21-.06.14,5.39,6.36Z"/>
-                            <path fill="#FEF7D5" d="M64.57,132.54c.81-1.14,1.53-2.08,2.12-2.81.6-.74,1.23-1.44,1.93-2.1,2-1.88,3.71-2.19,5.91-.99,3.18,1.94,3.08,6.04-.5,11.91-.91,1.49-2.06,3.05-3.49,4.67-1.41,1.6-2.72,2.88-3.88,3.87l-3.29-2.01c.98-.69,2.24-1.8,3.75-3.36,1.51-1.57,2.7-3.04,3.57-4.47,2.04-3.35,2.56-5.35,1.54-5.97-.53-.33-1.15-.18-1.8.45-.67.62-1.65,1.84-2.98,3.69-.64.9-1.21,1.64-1.66,2.24-.44.58-.96,1.2-1.55,1.87-.61.66-1.14,1.15-1.64,1.49-1.51,1.04-3.28,1.58-5.02.36-3.1-1.89-2.77-5.88.96-11.98.72-1.17,1.56-2.36,2.52-3.5,1.89-2.33,2.92-3.25,3.43-3.65l3.16,1.93c-.61.42-1.52,1.3-2.74,2.57-1.22,1.28-2.37,2.77-3.41,4.48-1.89,3.1-2.37,4.94-1.45,5.5.49.3,1.03.13,1.68-.5.63-.64,1.54-1.81,2.78-3.55l.08-.13Z"/>
-                            <path fill="#FEF7D5" d="M87.88,110.52l3.71,3.32-3.36,3.77-13.05-11.66,7.96-8.92c4.15-4.64,7.62-5.26,10.66-2.55,3.11,2.78,2.68,6.42-1.32,10.9l-4.6,5.15ZM81.11,104.48l4.18,3.73,4.58-5.13c1.67-1.86,1.96-3.58.56-4.83-1.4-1.25-3.07-.77-4.74,1.1l-4.58,5.13Z"/>
-                            <path fill="#FEF7D5" d="M119.66,83.53l.63.58c.4.35.99.73,1.43.78l-4.04,3.48c-.26-.07-.57-.24-.89-.46-.32-.25-.57-.43-.73-.59l-1.11-1.06c-.76-.69-1.51-.95-2.29-.74-.79.19-1.78.81-3.01,1.87l-4.45,3.84,3.9,4.53-3.83,3.3-11.42-13.26,9.02-7.77c4.57-3.93,7.96-4.58,10.23-1.95,1.39,1.61,1.46,3.5.21,5.69l.1.11c1.06-.65,1.96-.86,2.75-.68.78.18,1.72.73,2.75,1.66l.75.68ZM108.33,84.37c1.87-1.62,2.47-3.22,1.38-4.49-1.06-1.23-2.7-.87-4.6.76l-5.19,4.47,3.21,3.73,5.19-4.47Z"/>
-                            <rect fill="#FEF7D5" x="120.01" y="65.11" width="5.05" height="17.49" transform="translate(-20.15 84.41) rotate(-35.31)"/>
-                            <polygon fill="#FEF7D5" points="143.37 50.88 149.23 47.63 157.71 62.94 153.34 65.37 147.84 55.43 147.73 55.49 147.91 68.37 144.17 70.44 133.35 63.45 133.24 63.51 138.74 73.45 134.37 75.87 125.89 60.56 131.73 57.32 143.53 64.99 143.63 64.93 143.37 50.88"/>
-                            <polygon fill="#FEF7D5" points="181.19 50.21 182.41 53.46 163.11 60.74 156.94 44.36 175.86 37.22 177.09 40.47 162.89 45.83 164.19 49.27 176.7 44.55 177.78 47.4 165.26 52.12 166.61 55.7 181.19 50.21"/>
-                            <path fill="#FEF7D5" d="M206.72,45.06l.29.8c.19.49.54,1.1.91,1.35l-5.18,1.22c-.2-.18-.39-.47-.58-.82-.16-.37-.31-.65-.38-.86l-.49-1.45c-.36-.97-.9-1.53-1.68-1.71-.79-.2-1.95-.11-3.53.27l-5.72,1.35,1.37,5.82-4.92,1.16-4.01-17.03,11.58-2.72c5.86-1.38,9.18-.39,9.97,3,.49,2.07-.32,3.77-2.44,5.14l.03.15c1.24-.09,2.14.14,2.75.66.61.52,1.19,1.44,1.67,2.74l.35.95ZM196.29,40.58c2.41-.57,3.68-1.71,3.3-3.34-.37-1.58-1.99-2.02-4.43-1.45l-6.67,1.57,1.13,4.79,6.67-1.57Z"/>
-                            <path fill="#FEF7D5" d="M223.87,27.87l10.17,16.57-5.4.54-1.81-3.03-10.17,1.01-1.2,3.34-5.4.54,6.69-18.25,7.11-.71ZM217.75,39.58l7.31-.73-4.33-7.13h-.15s-2.83,7.86-2.83,7.86Z"/>
-                            <path fill="#FEF7D5" d="M247.87,33.81c1.4.14,2.57.3,3.49.45.95.15,1.87.35,2.78.63,2.63.8,3.74,2.13,3.8,4.63-.11,3.72-3.71,5.67-10.58,5.48-1.75-.05-3.67-.28-5.78-.71-2.09-.43-3.85-.93-5.29-1.45l.11-3.85c1.09.51,2.67,1.05,4.78,1.59,2.11.53,3.98.84,5.65.89,3.92.11,5.92-.43,5.95-1.63.02-.62-.42-1.09-1.29-1.34-.87-.27-2.41-.52-4.68-.76-1.1-.11-2.02-.23-2.77-.33-.72-.1-1.52-.24-2.39-.42-.87-.2-1.56-.42-2.11-.68-1.65-.8-2.99-2.06-2.81-4.18.1-3.62,3.73-5.32,10.87-5.12,1.37.04,2.82.18,4.29.45,2.96.48,4.28.92,4.87,1.16l-.1,3.7c-.67-.32-1.88-.68-3.6-1.1-1.71-.42-3.58-.68-5.58-.73-3.62-.1-5.46.4-5.49,1.47-.02.57.4.96,1.27,1.21.87.22,2.34.44,4.46.65h.15Z"/>
-                            <polygon fill="#FEF7D5" points="293.49 47.79 292.77 51.19 272.59 46.91 276.22 29.79 296 33.98 295.28 37.38 280.44 34.24 279.68 37.83 292.76 40.6 292.13 43.59 279.04 40.82 278.25 44.56 293.49 47.79"/>
-                            <polygon fill="#FEF7D5" points="321.95 42.79 328.23 45.12 322.16 61.53 317.47 59.8 321.41 49.15 321.29 49.11 311.66 57.65 307.65 56.16 305.89 43.41 305.77 43.37 301.83 54.01 297.14 52.28 303.21 35.87 309.47 38.18 311.35 52.12 311.47 52.17 321.95 42.79"/>
-                            <path fill="#FEF7D5" d="M334.16,62.22l-2.38,4.37-4.43-2.42,8.38-15.36,10.49,5.72c5.47,2.98,6.86,6.22,4.91,9.79-2,3.67-5.64,4.07-10.91,1.2l-6.06-3.3ZM338.5,54.25l-2.68,4.92,6.04,3.29c2.2,1.2,3.93,1.09,4.83-.56s.05-3.16-2.15-4.36l-6.04-3.29Z"/>
-                            <path fill="#FEF7D5" d="M368.87,69.11l-3.25,19.17-4.42-3.15.64-3.48-8.33-5.93-3.1,1.72-4.42-3.15,17.05-9.33,5.82,4.15ZM356.55,73.9l5.98,4.27,1.43-8.22-.12-.09-7.3,4.04Z"/>
-                            <polygon fill="#FEF7D5" points="392.28 89.1 395.81 92.42 383.83 105.18 380.1 101.67 379.55 86.11 379.46 86.02 371.95 94.02 368.39 90.68 380.38 77.93 384.06 81.38 384.65 97.04 384.75 97.12 392.28 89.1"/>
-                            <path fill="#FEF7D5" d="M409.85,108.89l-8.22,17.61-3.42-4.21,1.53-3.18-6.45-7.93-3.44.84-3.42-4.21,18.92-4.47,4.51,5.54ZM396.71,110.24l4.64,5.7,3.56-7.54-.09-.12-8.11,1.95Z"/>
-                            <path fill="#FEFAE4" d="M418.56,120.4l5.7,9.29c1.87,3.05,2.63,5.77,2.31,8.2-.33,2.43-1.66,4.36-3.98,5.79-2.32,1.42-4.65,1.74-6.97.93-2.32-.81-4.4-2.72-6.27-5.77l-5.7-9.29,14.91-9.15ZM418.26,126.5l-9.03,5.54,2.93,4.77c2.03,3.3,4.8,4.33,7.76,2.51,2.96-1.82,3.31-4.73,1.27-8.05l-2.93-4.77Z"/>
-                            <path fill="#FEF7D5" d="M438.16,156.41l-12.45,14.94-2.24-4.94,2.3-2.69-4.22-9.32-3.54-.07-2.24-4.94,19.44.51,2.95,6.52ZM425.1,154.36l3.03,6.7,5.37-6.38-.06-.14-8.34-.18Z"/>
-                            <path fill="#FEF7D5" d="M440.21,181.06c.32,1.37.54,2.53.69,3.45.16.95.26,1.88.3,2.84.09,2.75-.82,4.23-3.17,5.08-3.56,1.1-6.56-1.7-8.59-8.27-.51-1.67-.91-3.57-1.18-5.71-.26-2.12-.35-3.95-.32-5.47l3.68-1.13c-.13,1.19-.14,2.87.03,5.04.17,2.17.48,4.04.97,5.64,1.15,3.75,2.31,5.46,3.46,5.11.6-.18.9-.75.85-1.65-.02-.91-.28-2.45-.78-4.68-.25-1.07-.43-1.99-.58-2.73-.14-.71-.26-1.52-.37-2.4-.09-.89-.11-1.62-.03-2.22.22-1.82.99-3.5,3.06-4,3.47-1.07,6.24,1.82,8.34,8.66.4,1.32.73,2.73.95,4.21.49,2.96.5,4.35.46,4.99l-3.54,1.09c.09-.73.04-2-.11-3.76-.15-1.76-.51-3.61-1.1-5.52-1.07-3.47-2.13-5.05-3.16-4.73-.55.17-.78.68-.74,1.59.07.9.33,2.36.81,4.43l.04.14Z"/>
-                        </g>
-                    </svg>
-                </div>
+    <!-- ESTRUCTURA PRINCIPAL DEL HUB -->
+    <main class="hub-inner-frame">
+        
+        <!-- CABECERA DEL HUB CON ISOLOGOTIPO COMPLETO -->
+        <header class="hub-brand-header">
+            <div class="hub-logo-box">
+                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 647.17 130.27">
+                    <path class="cls-1" d="M65.14,130.27c26.76,0,50.77-16.43,60.55-41.15.42-1.06-.37-2.21-1.51-2.21h-17.64c-.59,0-1.12.32-1.41.83-8.16,14.43-23.39,23.34-39.99,23.34s-31.83-8.92-39.99-23.34c-.29-.51-.82-.83-1.41-.83H6.09c-1.14,0-1.93,1.15-1.51,2.21,9.79,24.72,33.79,41.15,60.55,41.15"/>
+                    <path class="cls-2" d="M129.85,64.27s0-.01,0-.02l-.03-.09c-.03-.11-.06-.19-.09-.27-.35-.95-.85-1.82-1.48-2.58-.79-.95-1.46-2.01-2-3.14-.05-.12-.1-.23-.15-.34l-.08-.19c-.04-.09-.09-.21-.13-.32-.03-.08-.06-.17-.1-.26l-.07-.19c-.05-.12-.1-.26-.14-.4-.97-2.98-.99-6.13-.05-9.11,0,0,0,0,0-.01h0s0-.02,0-.04c.02-.08.04-.16.06-.24l.03-.12c.04-.14.08-.26.1-.37.02-.1.04-.2.05-.3l.09-.49c.02-.18.04-.39.05-.59v-.17c.02-.19.02-.42.01-.67,0-.03,0-.1,0-.15-.04-.93-.25-1.89-.61-2.82,0-.02-.02-.05-.02-.07l-.02-.05c-.19-.46-.41-.9-.67-1.3-.14-.22-.28-.43-.43-.62-.17-.22-.31-.39-.45-.55-.04-.04-.08-.08-.12-.13-.14-.15-.27-.3-.42-.43l-.33-.28c-.1-.09-.17-.15-.23-.2-.13-.11-.28-.2-.42-.3-.11-.07-.17-.12-.24-.17l-.04-.03c-.13-.08-.35-.21-.58-.33-2.99-1.57-5.36-4.17-6.67-7.34-.59-1.44-.95-2.96-1.07-4.52-.02-.25-.05-.49-.09-.75l-.05-.23c-.03-.17-.07-.34-.1-.49-.01-.05-.03-.1-.04-.16l-.03-.12c-.04-.13-.08-.28-.13-.41-.03-.09-.07-.19-.1-.29-.04-.12-.1-.25-.15-.38-.04-.1-.08-.19-.12-.28-.06-.12-.13-.25-.2-.38l-.04-.08c-.04-.07-.07-.12-.1-.17-.08-.13-.16-.26-.24-.39l-.15-.23c-.13-.19-.26-.37-.4-.54-.31-.38-.66-.74-1.04-1.07-.16-.13-.32-.27-.51-.4-.03-.02-.07-.04-.1-.07l-.09-.06c-.15-.1-.28-.19-.42-.27l-.22-.13c-.13-.07-.26-.14-.39-.21-.08-.04-.15-.07-.23-.11l-.68-.28c-.13-.05-.28-.09-.42-.13l-.27-.08c-.14-.04-.31-.07-.48-.11l-.26-.05c-.19-.03-.43-.06-.66-.08-4.33-.35-8.22-2.66-10.68-6.32l-.08-.13c-.1-.14-.26-.4-.41-.66-.1-.17-.19-.34-.28-.52-.03-.04-.06-.09-.08-.15-.19-.39-.39-.73-.59-1.04l-.17-.25c-.07-.1-.13-.19-.2-.28-.05-.06-.1-.12-.15-.18l-.23-.28h0s-.02-.03-.03-.04c-.14-.15-.28-.29-.43-.44-.04-.03-.09-.09-.15-.15-.1-.1-.27-.24-.44-.37l-.11-.1c-.12-.09-.3-.22-.5-.36,0,0,0,0,0,0,0,0-.1-.07-.13-.09-.09-.06-.28-.17-.49-.29l-.11-.07c-.13-.07-.32-.16-.52-.25l-.27-.11c-.08-.03-.17-.07-.26-.1-2.25-.8-4.34-.39-5.29-.11-.1.04-.2.06-.3.1-.14.05-.23.08-.23.08h0c-1.28.37-2.6.57-3.95.57-3.43,0-6.75-1.25-9.33-3.51-1.51-1.32-3.41-2.05-5.36-2.07-1.93.02-3.82.75-5.33,2.07-2.58,2.26-5.9,3.51-9.33,3.51-1.62,0-3.2-.28-4.72-.82-.32-.11-.69-.19-1.1-.23-.09,0-.16-.01-.24-.02-.21-.02-.38-.04-.55-.05h-.1s-.3,0-.3,0h-.32c-.17,0-.33.02-.5.04l-.31.03c-.12.02-.32.06-.52.1l-.18.03c-.14.03-.35.09-.55.15l-.14.04c-.14.05-.34.12-.54.2l-.27.11c-.16.07-.35.16-.53.25-.03.02-.05.03-.08.05-.2.11-.39.22-.55.33-.03.02-.06.04-.09.06-.18.12-.36.25-.52.38l-.02.02c-.21.17-.37.31-.55.48-.03.03-.06.06-.09.09-.14.14-.28.28-.42.43-.02.03-.04.06-.04.06l-.15.18s-.04.04-.04.05c-.1.11-.17.2-.24.29-.03.04-.05.08-.08.11l-.25.37c-.06.09-.09.12-.11.15-.11.18-.22.38-.34.62l-.09.16c-.09.18-.24.46-.4.74-.15.26-.31.52-.45.73l-.02.03c-2.47,3.7-6.37,6.01-10.7,6.36-.23.02-.46.05-.72.09l-.17.04c-.19.04-.36.07-.52.11l-.24.07c-.15.04-.3.09-.44.14-.07.03-.16.06-.25.09l-.46.2s-.11.05-.18.09c-.13.07-.26.14-.39.21l-.25.14c-.11.07-.24.16-.37.25l-.13.09h0s-.03.02-.05.03c-.2.15-.38.29-.55.43-.37.32-.72.68-1.04,1.07-.14.17-.28.35-.42.56l-.12.18c-.09.14-.18.28-.26.41l-.13.24c-.07.13-.14.26-.2.39-.04.08-.08.17-.12.26-.06.13-.11.27-.16.4-.03.09-.07.18-.1.28-.05.14-.09.28-.13.42l-.08.3c-.03.14-.06.3-.1.46l-.06.28c-.03.21-.06.46-.08.71-.12,1.56-.48,3.08-1.07,4.51-1.31,3.17-3.67,5.78-6.67,7.34-.21.11-.43.24-.63.36,0,0,0,0,0,0-.05.04-.12.09-.19.13-.18.12-.33.22-.46.33-.07.05-.13.1-.19.16l-.41.35c-.11.11-.25.25-.38.4-.04.04-.08.09-.16.16-.11.12-.24.29-.39.48-.01.02-.05.06-.07.09-.11.15-.24.35-.38.56-.26.42-.48.85-.67,1.31l-.04.11c-.37.94-.58,1.92-.62,2.9v.02c0,.31,0,.54,0,.79v.06c.02.26.04.46.06.67l.07.4s.01.06.01.07c.02.11.03.2.05.3.02.1.05.2.08.3l.06.2c.02.07.04.15.06.23l.02.08c.93,2.94.92,6.09-.05,9.07-.05.15-.1.28-.15.42l-.06.17c-.03.09-.06.18-.1.28-.04.11-.09.21-.14.32l-.08.2c-.04.09-.09.2-.14.31-.53,1.14-1.21,2.19-2,3.14-.64.76-1.14,1.63-1.48,2.58-.02.06-.04.13-.06.19l-.05.16c-.28.9-.43,1.8-.43,2.7,0,1.45.37,2.9,1.07,4.2.23.42.51.84.83,1.23l.1.12c1,1.14,2.92,2.68,6.3,3.46l.07.02c1.49.34,3.14.51,4.92.51h103.7c1.77,0,3.42-.17,4.89-.5l.1-.02c3.38-.78,5.29-2.32,6.3-3.46h0s0,0,0,0l.11-.13c.31-.37.59-.79.83-1.23.69-1.28,1.06-2.73,1.06-4.18,0-.89-.14-1.8-.42-2.68M109.75,56.47c-.43.55-1.07.87-1.77.87H22.29c-.7,0-1.34-.32-1.77-.87-.43-.55-.57-1.26-.39-1.93,5.44-20.81,23.95-35.37,45-35.42,21.06.04,39.57,14.61,45.01,35.42.18.67.03,1.37-.39,1.93"/>
+                    <path class="cls-2" d="M160.9,27.38c10.73-.01,21.46-.02,32.19-.04,0,4.68,0,7.01,0,11.69-7.91.08-11.87.13-19.78.22,0,7.98,0,15.96,0,23.94,6.8-.22,10.2-.32,17.01-.53,0,4.7,0,7.05,0,11.76-6.8.27-10.2.41-17.01.7,0,7.98,0,15.96,0,23.94,7.9-.5,11.86-.74,19.76-1.19,0,4.68,0,7.01,0,11.69-10.72.73-21.44,1.51-32.15,2.32V27.38"/>
+                    <path class="cls-2" d="M227.03,82.2c4.78-18.31,9.61-36.61,14.47-54.91,4.96,0,7.45,0,12.41,0-.02,26.25-.05,52.51-.07,78.76-4.75.23-7.13.35-11.88.59.01-14.84.02-29.68.04-44.52-3.57,15.02-7.12,30.05-10.65,45.09-3.37.19-5.05.28-8.42.47-3.65-14.93-7.28-29.87-10.88-44.81-.01,15.15-.02,30.3-.03,45.46-4.8.29-7.21.45-12.01.76.01-27.25.03-54.5.04-81.75,4.97,0,7.45,0,12.41-.01,4.82,18.3,9.67,36.6,14.56,54.88"/>
+                    <path class="cls-2" d="M261.27,27.28c7.23,0,10.84,0,18.07-.01,9.42,0,17.4,6.04,16.52,16.21,0,4.63,0,6.95-.01,11.59.22,7.58-4.69,13.64-11.9,15.64-1.9.59-4.67.93-8.29,1.02-.81.02-1.21.03-2.02.05,0,11.13-.02,22.26-.03,33.39-4.96.21-7.45.31-12.41.54.02-26.14.05-52.28.07-78.42M273.67,38.35c0,7.44-.01,14.88-.02,22.31,1.14-.02,1.71-.03,2.85-.05,1.73-.03,2.91-.16,3.55-.38,2.25-.86,3.38-2.52,3.38-4.99,0-4.66,0-6.99,0-11.65,0-3.53-1.79-5.28-5.39-5.26-1.76.01-2.63.02-4.39.03"/>
+                    <path class="cls-2" d="M332.83,76.3c1.34,8.96,2.68,17.92,4.02,26.88-5.02.11-7.53.16-12.55.29-.96-6.44-1.44-9.66-2.4-16.11-5.07.11-7.61.16-12.68.28-.99,6.52-1.48,9.79-2.47,16.32-5,.15-7.5.24-12.5.41,1.35-9.11,2.7-18.22,4.06-27.33,2.93-16.6,5.87-33.2,8.81-49.79,6.81,0,10.21,0,17.02,0,2.89,16.35,5.79,32.7,8.7,49.05M320.28,76.5c-1.57-10.57-3.15-21.14-4.71-31.71-1.59,10.63-3.18,21.26-4.76,31.89,3.79-.07,5.69-.11,9.48-.17"/>
+                    <path class="cls-2" d="M343.9,27.24c4.96,0,7.45,0,12.41,0,3.91,14.59,7.82,29.17,11.74,43.75,0-14.59.01-29.17.02-43.76,4.6,0,6.89,0,11.49,0,0,25.11-.01,50.22-.02,75.33-4.97.04-7.45.06-12.42.12-3.77-14.1-7.54-28.2-11.3-42.31,0,14.15-.01,28.31-.02,42.46-4.78.07-7.16.11-11.94.2.01-25.27.03-50.53.04-75.8"/>
+                    <path class="cls-2" d="M425.13,75.82c1.35,8.91,2.7,17.83,4.04,26.74-5.02-.04-7.53-.06-12.55-.08-.97-6.39-1.45-9.58-2.41-15.96-5.07-.01-7.61-.01-12.68-.01-.98,6.38-1.48,9.57-2.46,15.96-5,0-7.51.02-12.51.04,1.35-8.87,2.7-17.73,4.04-26.6,2.93-16.23,5.85-32.45,8.78-48.68,6.81,0,10.21,0,17.02,0,2.91,16.2,5.83,32.39,8.74,48.59M412.58,75.78c-1.58-10.43-3.16-20.86-4.74-31.3-1.58,10.43-3.16,20.86-4.74,31.29,3.79,0,5.69,0,9.48,0"/>
+                    <path class="cls-2" d="M436.16,27.23c7.65,0,11.47,0,19.12,0,9.94,0,16.68,5.86,16.54,15.99,0,14.67.02,29.34.03,44.01.15,10.48-7.33,15.82-17.32,15.62-7.34-.12-11.01-.17-18.34-.24,0-25.13-.02-50.26-.02-75.4M448.58,37.98c0,18.02.01,36.04.02,54.06,2.18.03,3.27.04,5.44.07,3.6.05,5.4-1.63,5.39-5.05,0-14.63-.01-29.25-.02-43.88,0-3.45-1.8-5.18-5.4-5.19-2.18,0-3.26,0-5.44-.01"/>
+                    <path class="cls-2" d="M515.73,77.07c1.36,9.18,2.71,18.35,4.06,27.53-5.02-.18-7.53-.27-12.55-.44-.97-6.55-1.46-9.83-2.43-16.37-5.07-.13-7.61-.19-12.68-.3-.98,6.46-1.47,9.69-2.44,16.14-5-.14-7.5-.2-12.51-.32,1.34-8.93,2.68-17.87,4.02-26.81,2.92-16.42,5.83-32.84,8.74-49.26,6.81,0,10.21,0,17.02,0,2.93,16.6,5.86,33.2,8.77,49.81M503.18,76.79c-1.59-10.65-3.17-21.31-4.76-31.96-1.57,10.59-3.14,21.19-4.71,31.78,3.79.07,5.69.11,9.48.18"/>
+                    <path class="cls-2" d="M557.17,34.13c-5.55,20.07-11.15,40.13-16.79,60.18,7.04.26,10.55.4,17.59.7,0,4.49,0,6.74.01,11.23-10.52-.5-21.05-.96-31.58-1.39,0-2.69,0-4.03,0-6.72,5.63-19.89,11.23-39.8,16.79-59.71-6.51-.05-9.76-.07-16.27-.11,0-4.41,0-6.62-.01-11.04,10.09,0,20.17.01,30.26.02,0,2.73,0,4.1,0,6.84"/>
+                    <path class="cls-2" d="M603.1,79.88c1.35,9.71,2.71,19.43,4.05,29.15-5.01-.32-7.52-.48-12.53-.79-.97-6.92-1.45-10.38-2.42-17.27-5.07-.24-7.6-.36-12.67-.58-.98,6.75-1.47,10.11-2.44,16.84-5-.28-7.5-.41-12.5-.66,1.34-9.29,2.68-18.57,4.01-27.86,2.92-17.13,5.83-34.26,8.73-51.4,6.81,0,10.21,0,17.02,0,2.94,17.52,5.86,35.04,8.76,52.56M590.56,79.38c-1.58-11.21-3.17-22.42-4.76-33.62-1.57,11.09-3.14,22.18-4.71,33.27,3.79.14,5.68.21,9.47.36"/>
+                    <path class="cls-2" d="M611.45,43.26c-.02-10.27,7.5-17.62,17.8-17.21,9.87.39,18.79,6.7,17.85,17.74v11.37c-4.96-.13-7.44-.19-12.41-.32,0-4.5,0-6.75,0-11.24,0-3.75-1.8-5.65-5.4-5.72-.03,0-.05,0-.09,0-3.57-.04-5.35,1.82-5.35,5.56,0,3,0,4.51,0,7.51,0,3.69,3.9,8.42,11.62,13.93,6.46,4.61,11.6,11.65,11.61,19.91v10.68c1.02,11.04-7.96,16.82-17.78,16.44-10.35-.41-17.82-8.12-17.84-18.5,0-4.41,0-6.62,0-11.03,4.96.22,7.44.33,12.4.57,0,4.46,0,6.68,0,11.14,0,3.74,1.81,5.72,5.43,5.95,3.59.23,5.39-1.54,5.39-5.32,0-3.82,0-5.73,0-9.54,0-4.03-3.9-9.12-11.62-14.58-6.4-4.53-11.61-11.44-11.63-19.64,0-3.07,0-4.61,0-7.69"/>
+                </svg>
             </div>
 
-            <svg class="brand-title-svg" viewBox="0 0 486.27 85.89" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#FEFAE4" d="M0,1.35c10.73-.01,21.46-.02,32.19-.04,0,4.68,0,7.01,0,11.69-7.91.08-11.87.13-19.78.22,0,7.98,0,15.96,0,23.94,6.8-.22,10.2-.32,17.01-.53,0,4.7,0,7.05,0,11.76-6.8.27-10.2.41-17.01.7,0,7.98,0,15.96,0,23.94,7.9-.5,11.86-.74,19.76-1.19,0,4.68,0,7.01,0,11.69-10.72.73-21.44,1.51-32.15,2.32V1.35"/>
-                <path fill="#FEFAE4" d="M66.13,56.18c4.78-18.31,9.61-36.61,14.47-54.91,4.96,0,7.45,0,12.41,0-.02,26.25-.05,52.51-.07,78.76-4.75.23-7.13.35-11.88.59.01-14.84.02-29.68.04-44.52-3.57,15.02-7.12,30.05-10.65,45.09-3.37.19-5.05.28-8.42.47-3.65-14.93-7.28-29.87-10.88-44.81-.01,15.15-.02,30.3-.03,45.46-4.8.29-7.21.45-12.01.76.01-27.25.03-54.5.04-81.75,4.97,0,7.45,0,12.41-.01,4.82,18.3,9.67,36.6,14.56,54.88"/>
-                <path fill="#FEFAE4" d="M100.37,1.26c7.23,0,10.84,0,18.07-.01,9.42,0,17.4,6.04,16.52,16.21,0,4.63,0,6.95-.01,11.59.22,7.58-4.69,13.64-11.9,15.64-1.9.59-4.67.93-8.29,1.02-.81.02-1.21.03-2.02.05,0,11.13-.02,22.26-.03,33.39-4.96.21-7.45.31-12.41.54.02-26.14.05-52.28.07-78.42M112.77,12.32c0,7.44-.01,14.88-.02,22.31,1.14-.02,1.71-.03,2.85-.05,1.73-.03,2.91-.16,3.55-.38,2.25-.86,3.38-2.52,3.38-4.99,0-4.66,0-6.99,0-11.65,0-3.53-1.79-5.28-5.39-5.26-1.76.01-2.63.02-4.39.03"/>
-                <path fill="#FEFAE4" d="M171.93,50.27c1.34,8.96,2.68,17.92,4.02,26.88-5.02.11-7.53.16-12.55.29-.96-6.44-1.44-9.66-2.4-16.11-5.07.11-7.61.16-12.68.28-.99,6.52-1.48,9.79-2.47,16.32-5,.15-7.5.24-12.5.41,1.35-9.11,2.7-18.22,4.06-27.33,2.93-16.6,5.87-33.2,8.81-49.79,6.81,0,10.21,0,17.02,0,2.89,16.35,5.79,32.7,8.7,49.05M159.38,50.48c-1.57-10.57-3.15-21.14-4.71-31.71-1.59,10.63-3.18,21.26-4.76,31.89,3.79-.07,5.69-.11,9.48-.17"/>
-                <path fill="#FEFAE4" d="M183.01,1.21c4.96,0,7.45,0,12.41,0,3.91,14.59,7.82,29.17,11.74,43.75,0-14.59.01-29.17.02-43.76,4.6,0,6.89,0,11.49,0,0,25.11-.01,50.22-.02,75.33-4.97.04-7.45.06-12.42.12-3.77-14.1-7.54-28.2-11.3-42.31,0,14.15-.01,28.31-.02,42.46-4.78.07-7.16.11-11.94.2.01-25.27.03-50.53.04-75.8"/>
-                <path fill="#FEFAE4" d="M264.23,49.8c1.35,8.91,2.7,17.83,4.04,26.74-5.02-.04-7.53-.06-12.55-.08-.97-6.39-1.45-9.58-2.41-15.96-5.07-.01-7.61-.01-12.68-.01-.98,6.38-1.48,9.57-2.46,15.96-5,0-7.51.02-12.51.04,1.35-8.87,2.7-17.73,4.04-26.6,2.93-16.23,5.85-32.45,8.78-48.68,6.81,0,10.21,0,17.02,0,2.91,16.2,5.83,32.39,8.74,48.59M251.68,49.76c-1.58-10.43-3.16-20.86-4.74-31.3-1.58,10.43-3.16,20.86-4.74,31.29,3.79,0,5.69,0,9.48,0"/>
-                <path fill="#FEFAE4" d="M275.26,1.21c7.65,0,11.47,0,19.12,0,9.94,0,16.68,5.86,16.54,15.99,0,14.67.02,29.34.03,44.01.15,10.48-7.33,15.82-17.32,15.62-7.34-.12-11.01-.17-18.34-.24,0-25.13-.02-50.26-.02-75.4M287.68,11.95c0,18.02.01,36.04.02,54.06,2.18.03,3.27.04,5.44.07,3.6.05,5.4-1.63,5.39-5.05,0-14.63-.01-29.25-.02-43.88,0-3.45-1.8-5.18-5.4-5.19-2.18,0-3.26,0-5.44-.01"/>
-                <path fill="#FEFAE4" d="M354.83,51.04c1.36,9.18,2.71,18.35,4.06,27.53-5.02-.18-7.53-.27-12.55-.44-.97-6.55-1.46-9.83-2.43-16.37-5.07-.13-7.61-.19-12.68-.3-.98,6.46-1.47,9.69-2.44,16.14-5-.14-7.5-.2-12.51-.32,1.34-8.93,2.68-17.87,4.02-26.81,2.92-16.42,5.83-32.84,8.74-49.26,6.81,0,10.21,0,17.02,0,2.93,16.6,5.86,33.2,8.77,49.81M342.29,50.77c-1.59-10.65-3.17-21.31-4.76-31.96-1.57,10.59-3.14,21.19-4.71,31.78,3.79.07,5.69.11,9.48.18"/>
-                <path fill="#FEFAE4" d="M396.27,8.1c-5.55,20.07-11.15,40.13-16.79,60.18,7.04.26,10.55.4,17.59.7,0,4.49,0,6.74.01,11.23-10.52-.5-21.05-.96-31.58-1.39,0-2.69,0-4.03,0-6.72,5.63-19.89,11.23-39.8,16.79-59.71-6.51-.05-9.76-.07-16.27-.11,0-4.41,0-6.62-.01-11.04,10.09,0,20.17.01,30.26.02,0,2.73,0,4.1,0,6.84"/>
-                <path fill="#FEFAE4" d="M442.2,53.85c1.35,9.71,2.71,19.43,4.05,29.15-5.01-.32-7.52-.48-12.53-.79-.97-6.92-1.45-10.38-2.42-17.27-5.07-.24-7.6-.36-12.67-.58-.98,6.75-1.47,10.11-2.44,16.84-5-.28-7.5-.41-12.5-.66,1.34-9.29,2.68-18.57,4.01-27.86,2.92-17.13,5.83-34.26,8.73-51.4,6.81,0,10.21,0,17.02,0.02,2.94,17.52,5.86,35.04,8.76,52.56M429.67,53.35c-1.58-11.21-3.17-22.42-4.76-33.62-1.57,11.09-3.14,22.18-4.71,33.27,3.79.14,5.68.21,9.47.36"/>
-                <path fill="#FEFAE4" d="M450.55,17.23c-.02-10.27,7.5-17.62,17.8-17.21,9.87.39,18.79,6.7,17.85,17.74v11.37c-4.96-.13-7.44-.19-12.41-.32,0-4.5,0-6.75,0-11.24,0-3.75-1.8-5.65-5.4-5.72-.03,0-.05,0-.09,0-3.57-.04-5.35,1.82-5.35,5.56,0,3,0,4.51,0,7.51,0,3.69,3.9,8.42,11.62,13.93,6.46,4.61,11.6,11.65,11.61,19.91v10.68c1.02,11.04-7.96,16.82-17.78,16.44-10.35-.41-17.82-8.12-17.84-18.5,0-4.41,0-6.62,0-11.03,4.96.22,7.44.33,12.4.57,0,4.46,0,6.68,0,11.14,0,3.74,1.81,5.72,5.43,5.95,3.59.23,5.39-1.54,5.39-5.32,0-3.82,0-5.73,0-9.54,0-4.03-3.9-9.12-11.62-14.58-6.4-4.53-11.61-11.44-11.63-19.64,0-3.07,0-4.61,0-7.69"/>
-            </svg>
+            <div class="badges-top-row">
+                <span class="badge-pill gold">Creadores de la Miti-Miti</span>
+                <span class="badge-pill">#EnBuscaDeLos100Locales</span>
+            </div>
 
             <div class="brand-bio">
-                <span class="highlight-bio">Creadores de las primeras Miti-Miti del mundo.</span>
-                <span>¡Somos LOS PRIMEROS en venderte las empanadas por KILO!</span>
-                <span>Creadores de Empadog y Empacat - Pets Food.</span>
-                <span class="detective-text" id="detectiveContainer">
-                    <span id="textToScan">En busca de los</span>
-                    <span class="target-100-wrapper" id="wrapper100"><strong class="highlight-100" id="num100">100</strong></span>
-                    <span id="textToScanEnd">locales</span>
-                    <div class="magnifier-lens" id="magnifierLens"></div>
-                </span>
+                <span class="highlight-bio">La evolución de lo rico.</span>
+                <span class="quote-slogan">"Ya nada será igual, será más rico."</span>
+                <span>Los primeros en venderte empanadas por kilo.</span>
             </div>
 
             <div class="social-bar">
                 <a href="https://www.instagram.com/empanadazas" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5" ry="5.5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                 </a>
-                <a href="https://www.youtube.com/channel/UChMr1rkVKusHStufaZamCQA" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                </a>
                 <a href="https://www.tiktok.com/@empanadazas" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.77 1.81-.02 3.38-1.47 3.54-3.27.09-1.42.04-2.84.05-4.26V.02z"/></svg>
                 </a>
+                <a href="https://www.youtube.com/channel/UChMr1rkVKusHStufaZamCQA" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
             </div>
         </header>
-<!-- BOTÓN 1: PÁGINA WEB OFICIAL -->
-        <a href="https://www.empanadazas.com/" target="_blank" rel="noopener noreferrer" class="btn-card">
-            <div class="icon-box">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.2" stroke="#ECA244" stroke-width="1.8"/><ellipse cx="12" cy="12" rx="4.2" ry="9.2" stroke="#FEFAE4" stroke-width="1.8"/><line x1="2.8" y1="12" x2="21.2" y2="12" stroke="#ECA244" stroke-width="1.8"/></svg>
+
+        <!-- FOTO EMBAJADOR / CELEBRIDAD (PACHU PEÑA PRESENTANDO LOS BOTONES) -->
+        <div class="celebrity-showcase">
+            <img src="./famoso.png" alt="Pachu Peña con Empanadazas Miti-Miti" class="celebrity-img">
+        </div>
+
+        <!-- BOTÓN HERO 1: DELIVERY OFICIAL -->
+        <a href="https://pedidos.masdelivery.com/empanadazas" target="_blank" rel="noopener noreferrer" class="btn-card btn-hero">
+            <div class="icon-box hero-gold">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="20" r="1.8" fill="#231F20"/><circle cx="19" cy="20" r="1.8" fill="#231F20"/><path d="M2 3h3.5l2.4 11.2a1.8 1.8 0 0 0 1.8 1.4h9.6a1.8 1.8 0 0 0 1.8-1.4l1.6-7.2H6.2" stroke="#231F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 7c0-2.2 1.8-4 4-4s4 1.8 4 4H11z" fill="#FEFAE4"/></svg>
             </div>
-            <div class="btn-info"><span class="btn-title">Página Web</span><span class="btn-desc">empanadazas.com</span></div>
-            <div class="arrow-box"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+            <div class="btn-info">
+                <div class="btn-title-row">
+                    <span class="btn-title">¡Hacé tu Pedido!</span>
+                    <span class="badge-pill gold">Delivery Oficial</span>
+                </div>
+                <span class="btn-desc">Envío directo a tu domicilio</span>
+            </div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
         </a>
 
-        <!-- BOTÓN 2: HERO TUCÁN CON HASTA 25% OFF -->
-        <a href="https://pedir.tucan.la/menu/Empanadazas?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer" class="btn-card btn-hero">
-            <div class="icon-box hero-gold">
+        <!-- BOTÓN HERO 2: TUCÁN PROMO WEB -->
+        <a href="https://pedir.tucan.la/menu/Empanadazas?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer" class="btn-card">
+            <div class="icon-box" style="padding: 6px; background: rgba(237, 31, 44, 0.1);">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.72 283.86">
                     <path fill="#ed1f2c" d="M214.35,0c.81.45,1.74.28,2.6.5,4.32,1.1,7.75,3.46,10.25,7.12.54.8.86.79,1.62.28,7.81-5.21,17.61-3.52,22.97,3.99,3.05,4.27,3.25,9.01,2.03,13.94-.26,1.06-1.18,2.23-.69,3.14.47.88,1.72,1.35,2.65,1.96,4.64,3.04,7.49,7.19,7.9,12.81.28,3.89-.8,7.42-3.25,10.46-2.91,3.6-6.42,6.25-11.26,6.65-3.87.33-7.44-.53-10.69-2.64-.72-.46-1.08-.38-1.69.19-3.2,2.94-6.05,6.25-9.38,9.03-2.58,2.16-3.38,2.04-5.68-.43-6.82-7.3-14.7-13.28-23.23-18.42-1.26-.76-2.6-1.38-3.93-2-2.36-1.09-2.83-2.5-1.49-4.77,2.37-3.97,5.21-7.63,7.71-11.51,1.4-2.18,1.42-2.16-.06-4.21-3.94-5.45-4.68-11.28-1.63-17.32,2.63-5.21,7.17-7.82,12.87-8.54.25-.03.58.15.71-.24h1.68Z"/>
                     <path fill="#030303" d="M143.78,40.9c4.06-.04,8.13-.04,12.16.43,6.26.74,12.38,2.18,18.35,4.23,13.18,4.53,25.05,11.31,35.46,20.6,9.55,8.52,17.18,18.51,22.87,29.97,4.74,9.54,7.85,19.6,9.31,30.17.69,4.97.97,9.96.96,14.98-.03,15.18.1,30.37-.04,45.55-.13,13.92-3.36,27.17-9.25,39.79-3.99,8.56-9.12,16.38-15.34,23.46-5.57,6.34-11.87,11.86-18.85,16.63-10.61,7.24-22.22,12.12-34.71,14.94-4.06.92-8.19,1.43-12.34,1.77-8.6.72-17.22.34-25.82.39-9.35.06-18.7.11-28.05-.01-9.84-.13-19.5-1.5-28.76-5-5.26-1.99-10.33-4.39-14.76-7.92-1.34-1.07-2.51-2.31-2.94-4.09-.48-1.98.37-3.51,2.35-3.94,2.16-.47,4.36-.24,6.54-.18.43.01.87.11,1.3.11,4.11,0,8.22.09,12.33-.01,8.95-.21,17.72-1.58,26.31-4.21,13.55-4.15,25.48-11.16,36.15-20.35,6.09-5.25,10.67-11.77,14.48-18.81,4.82-8.9,7.86-18.42,9.57-28.36.72-4.18,1.33-8.39,1.58-12.64.08-1.27.17-2.54.2-3.81.51-.15.94.13,1.38.27,5.73,1.89,11.4,3.97,17.28,5.35,6.92,1.62,13.9,2.34,20.91.57,10.7-2.7,18.4-8.72,21.82-19.64,3.49-11.14,3.99-22.41,2.02-33.83-1.69-9.79-5.03-19.02-9.66-27.79-1.39-2.63-2.79-5.27-4.83-7.48-.46-.64-.88-1.3-1.38-1.9-1.62-1.98-3.48-3.71-5.38-5.42-4.69-4.21-9.79-7.77-15.54-10.44-12.35-5.74-25.32-8.65-38.91-8.91-.22-.41-.14-.86-.14-1.29,0-2.83,0-5.66,0-8.49,0-2.93-.46-5.79-1.6-8.48-1.07-2.52-2.24-5.04-5.02-6.2Z"/>
@@ -666,100 +720,169 @@
             </div>
             <div class="btn-info">
                 <div class="btn-title-row">
-                    <span class="btn-title">Pedí con 25% OFF</span>
-                    <span class="badge-pill gold">Delivery Oficial</span>
+                    <span class="btn-title title-promo">Pedí con 25% OFF</span>
+                    <span class="badge-pill gold">Promo Web</span>
                 </div>
-                <span class="btn-desc">Menú digital Tucán con descuento</span>
+                <span class="btn-desc">Menú digital y pedidos con descuento</span>
             </div>
-            <div class="arrow-box"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
         </a>
 
-        <!-- BOTÓN 3: EMPAIMÁN EN TU CELULAR CON FRASES DIVERTIDAS -->
-        <div class="btn-card" onclick="triggerInstallAction()">
-            <div class="icon-box" style="background: linear-gradient(135deg, rgba(247, 194, 104, 0.2), rgba(162, 92, 16, 0.3)); border-color: var(--bronze-bright);">
-                <span style="font-size: 24px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.6));">🧲</span>
-            </div>
-            <div class="btn-info">
-                <div class="btn-title-row">
-                    <span class="btn-title title-promo">Pegá tu EmpaImán</span>
-                    <span class="badge-pill hot">Beneficios VIP</span>
+        <!-- SUCURSALES (PEDIDO DIRECTO VÍA WHATSAPP) -->
+        <span class="section-label">📍 Pedí a tu sucursal más cercana</span>
+
+        <div class="branches-grid">
+            <!-- PALERMO SOHO -->
+            <a href="https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Palermo Soho</span>
+                        <span class="badge-24h-live"><span class="live-dot"></span>24 HS</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Borges 1687 · Palermo
+                    </span>
                 </div>
-                <span class="btn-desc">Con tu EmpaIman-App: ¡pedís a tu sucursal más cercana, al instante, y estés en donde estés!</span>
-            </div>
-            <div class="arrow-box"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
+
+            <!-- LAS LOMITAS -->
+            <a href="https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Las Lomitas</span>
+                        <span class="badge-24h-live"><span class="live-dot"></span>24 HS</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        España 467 · Lomas de Zamora
+                    </span>
+                </div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
+
+            <!-- CABALLITO -->
+            <a href="https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Caballito</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Av. Pedro Goyena 326 · CABA
+                    </span>
+                </div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
+
+            <!-- RAMOS MEJÍA -->
+            <a href="https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+                <div class="branch-details">
+                    <div class="branch-header-line">
+                        <span class="branch-name-text">Ramos Mejía</span>
+                    </div>
+                    <span class="branch-addr-text">
+                        <svg class="branch-pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Alsina 14 · Ramos Mejía
+                    </span>
+                </div>
+                <div class="wsp-action-btn">
+                    <svg class="wsp-mini-icon" viewBox="0 0 24 24">
+                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.21c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32A8.17 8.17 0 0 1 3.73 12c0-4.57 3.71-8.28 8.28-8.28 2.21 0 4.29.86 5.85 2.43a8.214 8.214 0 0 1 2.42 5.85c0 4.57-3.71 8.21-8.28 8.21zm4.53-6.17c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                    </svg>
+                    <span>Pedir</span>
+                </div>
+            </a>
         </div>
 
-        <!-- BOTÓN 4: SUCURSALES -->
-        <a href="https://empanadazas.com/sucursales.html" target="_blank" rel="noopener noreferrer" class="btn-card">
-            <div class="icon-box">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="rgba(247, 194, 104, 0.15)" stroke="#F7C268" stroke-width="1.8"/><circle cx="12" cy="9" r="2.8" fill="#FEFAE4"/></svg>
-            </div>
-            <div class="btn-info"><span class="btn-title">Sucursales</span><span class="btn-desc">¡Pedí en tu sucursal más cercana!</span></div>
-            <div class="arrow-box"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
-        </a>
+        <!-- ACCESOS RÁPIDOS A MENÚ Y COMBOS -->
+        <span class="section-label">🥟 Sabores & Promociones</span>
 
-        <!-- BOTÓN 5: NUESTRO MENÚ -->
         <a href="https://empanadazas.com/catalogo.html" target="_blank" rel="noopener noreferrer" class="btn-card">
-            <div class="icon-box menu-icon-box" style="padding: 6px;">
-                <svg viewBox="0 0 219.19 219.19" xmlns="http://www.w3.org/2000/svg">
+            <div class="icon-box" style="padding: 6px;">
+            <svg viewBox="0 0 219.19 219.19" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#ECA244" d="M109.6,219.19c45.02,0,85.42-27.64,101.89-69.24.71-1.78-.62-3.72-2.54-3.72h-29.69c-.98,0-1.88.54-2.37,1.4-13.73,24.27-39.35,39.28-67.29,39.28s-53.56-15-67.29-39.28c-.49-.86-1.38-1.4-2.37-1.4H10.25c-1.92,0-3.24,1.94-2.54,3.72,16.46,41.59,56.86,69.24,101.89,69.24"/>
                     <path fill="#FEFAE4" d="M218.48,108.13s0-.02-.01-.04l-.05-.15c-.06-.18-.1-.32-.15-.45-.58-1.6-1.42-3.06-2.49-4.34-1.34-1.6-2.47-3.38-3.36-5.28-.09-.19-.17-.38-.25-.58l-.14-.32c-.07-.16-.15-.35-.23-.53-.05-.13-.11-.28-.16-.44l-.12-.32c-.08-.21-.16-.44-.24-.67-1.63-5.01-1.66-10.31-.08-15.32,0,0,0-.02,0-.03h0s0-.04.01-.06c.03-.13.07-.27.11-.4l.06-.21c.07-.23.13-.43.17-.63.04-.16.06-.33.09-.5l.14-.82c.04-.3.06-.65.08-1l.02-.29c.02-.32.02-.7,0-1.13,0-.05,0-.16,0-.25-.07-1.56-.42-3.18-1.03-4.74-.01-.04-.03-.08-.04-.11l-.04-.09c-.32-.77-.7-1.51-1.12-2.2-.24-.38-.47-.72-.72-1.05-.28-.37-.52-.66-.75-.92-.07-.06-.14-.14-.21-.21-.23-.25-.46-.5-.71-.73l-.56-.48c-.18-.15-.28-.25-.39-.33-.23-.18-.47-.34-.71-.5-.18-.12-.29-.2-.4-.28l-.07-.05c-.22-.13-.6-.35-.98-.55-5.04-2.63-9.02-7.02-11.22-12.35-1-2.42-1.6-4.98-1.81-7.6-.03-.42-.08-.83-.15-1.25l-.08-.39c-.06-.29-.11-.56-.17-.83-.02-.09-.05-.18-.07-.26l-.06-.21c-.06-.23-.13-.46-.21-.7-.05-.16-.11-.32-.18-.49-.08-.2-.17-.42-.26-.64-.07-.17-.14-.32-.21-.46-.1-.21-.21-.43-.33-.64l-.07-.13c-.07-.12-.11-.21-.16-.29-.13-.22-.27-.44-.41-.65l-.25-.38c-.22-.31-.45-.62-.68-.9-.53-.64-1.12-1.25-1.75-1.8-.26-.22-.55-.45-.86-.68-.05-.03-.11-.07-.18-.12l-.15-.1c-.25-.17-.47-.32-.7-.46l-.37-.21c-.22-.12-.43-.24-.66-.35-.13-.06-.26-.12-.39-.18l-1.14-.46c-.22-.08-.46-.15-.71-.23l-.45-.13c-.24-.06-.52-.12-.81-.18l-.43-.09c-.32-.05-.72-.1-1.11-.14-7.29-.59-13.84-4.47-17.96-10.64l-.14-.22c-.16-.24-.43-.67-.69-1.11-.16-.28-.31-.58-.47-.87-.05-.07-.1-.15-.14-.25-.32-.65-.66-1.23-.99-1.75l-.29-.42c-.11-.16-.23-.32-.34-.47-.08-.1-.16-.2-.25-.3l-.39-.47h0s-.04-.04-.06-.07c-.23-.26-.47-.5-.71-.73-.06-.06-.16-.16-.26-.26-.18-.16-.46-.4-.74-.63l-.19-.16c-.2-.15-.5-.37-.84-.6,0,0,0,0,0,0,0,0-.17-.11-.22-.15-.15-.1-.47-.29-.83-.48l-.19-.11c-.22-.12-.55-.27-.87-.41l-.45-.19c-.14-.06-.28-.11-.43-.17-3.79-1.35-7.31-.65-8.89-.19-.17.06-.34.11-.51.16-.24.08-.38.14-.38.14v-.02c-2.16.64-4.38.98-6.65.98-5.78,0-11.35-2.1-15.7-5.9-2.53-2.22-5.74-3.46-9.03-3.49-3.24.03-6.43,1.27-8.97,3.48-4.35,3.8-9.92,5.9-15.7,5.9-2.72,0-5.39-.46-7.93-1.38-.54-.19-1.16-.32-1.85-.38-.15-.01-.28-.02-.4-.04-.36-.04-.64-.07-.92-.09h-.16s-.5,0-.5,0h-.54c-.28,0-.56.04-.84.07l-.51.05c-.2.03-.54.1-.87.17l-.3.06c-.24.05-.58.15-.92.26l-.23.07c-.24.08-.58.2-.91.34l-.46.19c-.27.12-.59.27-.88.43-.04.03-.09.05-.14.08-.34.19-.66.38-.93.55-.05.04-.1.07-.15.1-.3.2-.6.42-.87.63l-.03.03c-.35.29-.63.52-.93.8-.05.05-.1.11-.15.16-.23.23-.47.47-.7.72h0c-.04.05-.07.1-.08.1l-.25.31s-.06.07-.07.08c-.16.19-.29.34-.4.49-.05.07-.09.13-.13.19l-.42.63c-.11.16-.14.21-.18.26-.18.3-.37.63-.57,1.04l-.15.27c-.15.31-.4.78-.67,1.24-.26.44-.52.87-.77,1.23l-.03.05c-4.16,6.23-10.71,10.11-18.01,10.7-.38.03-.78.08-1.21.16l-.29.06c-.31.06-.6.12-.87.19l-.4.12c-.26.08-.5.15-.73.24-.12.05-.27.1-.41.16l-.78.33c-.05.03-.18.09-.31.15-.22.11-.44.23-.65.35l-.43.24c-.19.11-.41.26-.63.42l-.22.15h0s-.05.04-.08.06c-.34.25-.64.48-.92.73-.63.54-1.22,1.15-1.75,1.79-.24.29-.46.59-.7.94l-.2.31c-.16.24-.3.46-.43.69l-.22.41c-.12.22-.23.44-.34.66-.06.14-.13.29-.2.44-.1.23-.19.45-.27.67-.05.15-.11.31-.17.47-.08.23-.15.47-.21.71l-.14.51c-.06.23-.11.5-.16.77l-.09.47c-.06.36-.11.77-.14,1.2-.2,2.62-.81,5.18-1.81,7.6-2.2,5.33-6.18,9.72-11.22,12.35-.36.19-.72.4-1.06.61,0,0,0,0,0,0-.09.07-.2.15-.32.23-.31.21-.55.37-.78.55-.11.09-.21.18-.31.27l-.7.6c-.19.18-.42.42-.64.67-.07.07-.14.15-.26.27-.18.21-.41.49-.66.82-.02.03-.08.1-.12.15-.19.26-.41.59-.64.94-.44.7-.81,1.44-1.13,2.2l-.07.18c-.62,1.58-.97,3.22-1.04,4.88v.03c-.01.53-.01.91,0,1.33v.11c.04.43.06.78.11,1.13l.12.67s.02.1.02.11c.03.19.05.34.09.5.04.17.09.34.14.51l.1.34c.03.11.07.25.1.38l.03.13c1.57,4.95,1.55,10.26-.09,15.27-.08.24-.17.48-.25.71l-.1.29c-.05.15-.11.31-.18.47-.07.18-.15.36-.23.54l-.14.33c-.06.15-.14.34-.23.52-.9,1.91-2.03,3.69-3.36,5.29-1.07,1.28-1.91,2.75-2.5,4.35-.04.11-.07.21-.11.32l-.09.27c-.48,1.51-.72,3.04-.72,4.55,0,2.45.62,4.89,1.79,7.06.39.71.87,1.41,1.4,2.06l.17.2c1.68,1.91,4.92,4.51,10.61,5.83l.11.03c2.51.57,5.29.86,8.27.86h174.48c2.98,0,5.75-.28,8.23-.85l.16-.04c5.68-1.32,8.9-3.9,10.6-5.83,0,0,0,0,0-.01l.19-.22c.51-.63.98-1.32,1.39-2.06,1.16-2.15,1.78-4.59,1.78-7.03,0-1.5-.24-3.02-.71-4.52M184.66,95.02c-.72.93-1.8,1.47-2.98,1.47H37.51c-1.17,0-2.26-.53-2.97-1.46-.72-.93-.96-2.11-.66-3.24,9.16-35.02,40.3-59.52,75.72-59.59,35.43.07,66.58,24.58,75.73,59.59.3,1.13.06,2.31-.66,3.24"/>
                 </svg>
             </div>
-            <div class="btn-info"><span class="btn-title">Nuestro Menú</span><span class="btn-desc">Catálogo de sabores Miti-Miti</span></div>
-            <div class="arrow-box"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+            <div class="btn-info">
+                <span class="btn-title">Catálogo de Sabores</span>
+                <span class="btn-desc">18 variedades y creaciones Miti-Miti</span>
+            </div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
         </a>
 
-        <!-- BOTÓN 6: EMPACOMBOS -->
         <a href="https://empanadazas.com/empacombos.html" target="_blank" rel="noopener noreferrer" class="btn-card">
             <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16l-1.5 14H5.5L4 7z" fill="rgba(247, 194, 104, 0.15)" stroke="#F7C268" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7V4.5a3 3 0 0 1 6 0V7" stroke="#FEFAE4" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="14" r="2.5" fill="#F7C268"/></svg>
             </div>
-            <div class="btn-info"><span class="btn-title">Nuestros EmpaCombos</span><span class="btn-desc">Promociones x3, x6 y x12 unidades</span></div>
-            <div class="arrow-box"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+            <div class="btn-info">
+                <span class="btn-title">Nuestros EmpaCombos</span>
+                <span class="btn-desc">Promos x3, x6, Docenas y EmpaPets</span>
+            </div>
+            <div class="arrow-box">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
         </a>
 
+        <!-- INSTALADOR PWA INTELIGENTE CON TEXTOS EMPAIMÁN (SE OCULTA AUTOMÁTICAMENTE SI YA ESTÁ INSTALADA) -->
+        <div class="pwa-install-card" id="pwaInstallBox" onclick="installPWA()">
+            <div class="pwa-text">
+                <span class="pwa-title">🧲 Pegá tu EmpaImán en tu celular</span>
+                <span class="pwa-sub">Pedí al instante a tu sucursal más cercana con beneficios exclusivos</span>
+            </div>
+            <button class="pwa-badge-btn" id="installBtn">Pegar Imán</button>
+        </div>
+
+        <div class="ios-guide" id="iosPrompt">
+            Para pegar tu EmpaImán en tu iPhone: tocá <strong>Compartir (⎋)</strong> y luego <strong>"Agregar a pantalla de inicio" (+)</strong>.
+        </div>
+
+        <!-- FOOTER -->
         <footer class="hub-footer">
-            <div class="footer-badge"><span>EMPANADAZAS®</span><span style="color: var(--bronze-bright);">★</span><span>ORIGINAL MITI-MITI</span></div>
+            <div class="footer-badge">
+                <span>EMPANADAZAS®</span>
+                <span style="color: var(--bronze-bright);">★</span>
+                <span>ORIGINAL MITI-MITI</span>
+            </div>
             <span class="footer-legal">© 2026 EMPANADAZAS · Todos los derechos reservados</span>
         </footer>
 
     </main>
 
-    <!-- POPUP FLOTANTE INTELIGENTE EMPAIMÁN -->
-    <div class="smart-nudge-overlay" id="smartNudgeModal">
-        <div class="smart-nudge-box">
-            <span class="nudge-tag">🥟 BENEFICIOS SECRETOS VIP 🧲</span>
-            <h3 class="nudge-title">¡Pegá tu EmpaImán en tu celular!</h3>
-            <p class="nudge-desc">
-                Pegá tu imán en la pantalla de tu teléfono, para pedir al instante a tu sucursal más cercana y aprovechá beneficios exclusivos de Empanadazas con tu <strong>EmpaImán</strong>.
-            </p>
-
-            <button class="btn-nudge-primary" id="btnNudgeAction" onclick="triggerInstallAction()">
-                🧲 ¡Pegar EmpaImán en mi Pantalla!
-            </button>
-            <button class="btn-nudge-dismiss" onclick="dismissNudge()">
-                Ahora no, después lo descargo
-            </button>
-
-            <!-- GUÍA INTERACTIVA IPHONE -->
-            <div class="ios-visual-guide" id="iosGuideBox">
-                <div class="ios-guide-step">
-                    1. Tocá <strong>Compartir</strong> acá abajo 👇<br>
-                    2. Elegí <strong>"Agregar a pantalla de inicio" (+)</strong>
-                </div>
-                <div class="ios-bouncing-arrow">⬇️</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCRIPT PWA NATIVO, COLA DE DISPARO Y ANIMACIÓN LUPA -->
+    <!-- MOTOR DE INSTALACIÓN PWA Y DETECCIÓN NATIVA -->
     <script>
-        let deferredPrompt = null;
-        let userWantsInstall = false;
-        const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-        const isInApp = /Instagram|TikTok|FBAN|FBAV/.test(navigator.userAgent);
+        let deferredPrompt;
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        const isInstalled = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
 
         // Registro de Service Worker
         if ('serviceWorker' in navigator) {
@@ -768,253 +891,51 @@
             });
         }
 
-        // CAPTURA DIRECTA DEL DISPARADOR NATIVO ANDROID CON COLA AUTOMÁTICA
+        // Si ya está abierta desde el acceso rápido o instalada, ocultar completamente la tarjeta de instalación
+        if (isStandalone || isInstalled) {
+            const pwaBox = document.getElementById('pwaInstallBox');
+            if (pwaBox) pwaBox.style.display = 'none';
+        }
+
         window.addEventListener('beforeinstallprompt', (e) => {
+            if (isStandalone || isInstalled) return;
             e.preventDefault();
             deferredPrompt = e;
-            // Si el usuario ya había tocado el botón antes de que estuviera listo, se dispara al instante
-            if (userWantsInstall) {
-                userWantsInstall = false;
-                deferredPrompt.prompt().then(({ outcome }) => {
-                    if (outcome === 'accepted') {
+            const pwaBox = document.getElementById('pwaInstallBox');
+            if (pwaBox) pwaBox.style.display = 'flex';
+        });
+
+        window.addEventListener('appinstalled', () => {
+            localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+            const pwaBox = document.getElementById('pwaInstallBox');
+            if (pwaBox) pwaBox.style.display = 'none';
+        });
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
                         localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
-                        showCelebrationToast("🎉 ¡EmpaImán pegado con éxito!");
-                        dismissNudge();
+                        const pwaBox = document.getElementById('pwaInstallBox');
+                        if (pwaBox) pwaBox.style.display = 'none';
                     }
                     deferredPrompt = null;
                 });
-            }
-        });
-
-        // SI SE COMPLETA LA INSTALACIÓN
-        window.addEventListener('appinstalled', () => {
-            localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
-            deferredPrompt = null;
-            dismissNudge();
-        });
-
-        window.addEventListener('DOMContentLoaded', () => {
-            // SI SE ABRE DESDE EL ACCESO RÁPIDO, VA DIRECTO AL DISEÑO DE SUCURSALES (APP)
-            if (isStandalone) {
-                window.location.replace('./app.html');
-                return;
-            }
-
-            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-            requestAnimationFrame(() => document.body.classList.remove('preload'));
-
-            if (isIOS) {
-                const btnAction = document.getElementById('btnNudgeAction');
-                if (btnAction) btnAction.innerText = "🧲 Pegar EmpaImán en mi iPhone";
-            }
-
-            // REVISIÓN CON SNOOZE INTELIGENTE (REAPARECE A LOS 7 DÍAS SI NO LO INSTALÓ)
-            setTimeout(() => {
-                const snoozeUntil = parseInt(localStorage.getItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
-                const isSnoozed = Date.now() < snoozeUntil;
-                const isInstalled = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
-
-                if (!isSnoozed && !isStandalone && !isInstalled) {
-                    document.getElementById('smartNudgeModal').classList.add('active');
-                }
-            }, 5000);
-
-            // Iniciar animación Lupa
-            if (document.fonts && document.fonts.ready) {
-                document.fonts.ready.then(() => initDetectiveAnimation());
             } else {
-                setTimeout(initDetectiveAnimation, 200);
-            }
-        });
-
-        // BOTÓN "AHORA NO" (SNOOZE INTELIGENTE DE 7 DÍAS)
-        function dismissNudge() {
-            document.getElementById('smartNudgeModal').classList.remove('active');
-            const snoozeTime = Date.now() + (7 * 24 * 60 * 60 * 1000); // 7 días exactos
-            localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
-        }
-
-        function showCelebrationToast(msg) {
-            const toast = document.getElementById('toastMsg');
-            if (msg) toast.innerText = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3500);
-        }
-
-        // MOTOR DE INSTALACIÓN OPTIMIZADO
-        async function triggerInstallAction() {
-            if (isStandalone) {
-                showCelebrationToast("🥟 ¡Tu EmpaImán ya está en tu pantalla!");
-                dismissNudge();
-                return;
-            }
-
-            // Detección de Instagram/TikTok en iPhone
-            if (isIOS && isInApp) {
-                showCelebrationToast("⚠️ Tocá los 3 puntitos (...) y elegí 'Abrir en Safari'");
-                const guide = document.getElementById('iosGuideBox');
-                guide.style.display = 'block';
-                return;
-            }
-
-            if (isIOS) {
-                const guide = document.getElementById('iosGuideBox');
-                guide.style.display = guide.style.display === 'block' ? 'none' : 'block';
-                return;
-            }
-
-            // Android dentro de Instagram o TikTok -> Salto forzado a Chrome nativo
-            if (isInApp) {
-                const currentUrl = window.location.href.replace(/^https?:\/\//, '');
-                window.location.href = `intent://${currentUrl}#Intent;scheme=https;package=com.android.chrome;end`;
-                dismissNudge();
-                return;
-            }
-
-            // Android normal en Chrome con disparo garantizado
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
-                    showCelebrationToast("🎉 ¡EmpaImán pegado con éxito!");
-                    dismissNudge();
+                const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent);
+                if (isIos) {
+                    const prompt = document.getElementById('iosPrompt');
+                    prompt.style.display = prompt.style.display === 'block' ? 'none' : 'block';
+                } else {
+                    alert("Para pegar tu EmpaImán: tocá los 3 puntos de tu navegador y seleccioná 'Instalar aplicación' o 'Agregar a la pantalla principal'.");
                 }
-                deferredPrompt = null;
-            } else {
-                // Si todavía no terminó de cargar Chrome, se deja en cola para abrirlo automáticamente
-                userWantsInstall = true;
-                showCelebrationToast("🧲 Preparando tu EmpaImán...");
             }
         }
 
-        // ANIMACIÓN LUPA CINZEL
-        function initDetectiveAnimation() {
-            const container = document.getElementById('detectiveContainer');
-            const lens = document.getElementById('magnifierLens');
-            const num100 = document.getElementById('num100');
-            const textStart = document.getElementById('textToScan');
-            const textEnd = document.getElementById('textToScanEnd');
-
-            if (!container || !lens || !num100 || !textStart || !textEnd) return;
-
-            function wrapText(element) {
-                const text = element.textContent;
-                element.innerHTML = '';
-                const chars = [];
-                for (let i = 0; i < text.length; i++) {
-                    const char = text[i];
-                    const span = document.createElement('span');
-                    if (char === ' ') {
-                        span.className = 'char char-space';
-                        span.innerHTML = '&nbsp;';
-                    } else {
-                        span.className = 'char';
-                        span.textContent = char;
-                    }
-                    element.appendChild(span);
-                    chars.push(span);
-                }
-                return chars;
-            }
-
-            const charsStart = wrapText(textStart);
-            const chars100 = wrapText(num100);
-            const charsEnd = wrapText(textEnd);
-            const allChars = [...charsStart, ...chars100, ...charsEnd];
-
-            const lensW = 22, lensH = 22;
-            const opticalOffsetX = lensW * (10 / 24);
-            const opticalOffsetY = lensH * (10 / 24);
-            let isAnimationFinished = false;
-
-            lens.style.left = '0px'; lens.style.top = '0px'; lens.style.transform = 'none';
-            const zeroLensRect = lens.getBoundingClientRect();
-            const initContainerRect = container.getBoundingClientRect();
-            const originOffsetX = zeroLensRect.left - initContainerRect.left;
-            const originOffsetY = zeroLensRect.top - initContainerRect.top;
-
-            function setLensOpticalPosition(screenX, screenY, scale = 1, rotation = 0) {
-                const cRect = container.getBoundingClientRect();
-                const targetLeft = (screenX - cRect.left) - originOffsetX - opticalOffsetX;
-                const targetTop = (screenY - cRect.top) - originOffsetY - opticalOffsetY;
-                lens.style.left = `${targetLeft}px`;
-                lens.style.top = `${targetTop}px`;
-                lens.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
-            }
-
-            const charData = allChars.map(char => {
-                const r = char.getBoundingClientRect();
-                return { el: char, centerScreenX: r.left + r.width / 2, revealed: false };
-            });
-
-            const startScreenX = charData[0].centerScreenX - 25;
-            const endScreenX = charData[charData.length - 1].centerScreenX + 22;
-            const scanDuration = 3800;
-
-            const r100 = num100.getBoundingClientRect();
-            const center100X = r100.left + r100.width / 2;
-            const textCenterY = charData[0].el.getBoundingClientRect().top + charData[0].el.getBoundingClientRect().height / 2;
-
-            lens.style.opacity = '0';
-            setLensOpticalPosition(startScreenX, textCenterY, 1, 0);
-
-            setTimeout(() => {
-                lens.style.opacity = '1';
-                let scanStartTime = null;
-
-                function scanStep(now) {
-                    if (!scanStartTime) scanStartTime = now;
-                    const elapsed = now - scanStartTime;
-                    const progress = Math.min(elapsed / scanDuration, 1);
-                    const currentScreenX = startScreenX + (endScreenX - startScreenX) * progress;
-
-                    if (progress > 0.88) {
-                        const restT = (progress - 0.88) / 0.12;
-                        setLensOpticalPosition(currentScreenX, textCenterY, 1.05, 8 * restT);
-                    } else {
-                        setLensOpticalPosition(currentScreenX, textCenterY, 1, 0);
-                    }
-
-                    if (currentScreenX >= center100X) {
-                        num100.classList.add('zoomed');
-                    }
-
-                    for (let i = 0; i < charData.length; i++) {
-                        const item = charData[i];
-                        if (!item.revealed && currentScreenX >= item.centerScreenX) {
-                            item.revealed = true;
-                            item.el.classList.add('revealed');
-                        }
-                    }
-
-                    if (progress < 1) {
-                        requestAnimationFrame(scanStep);
-                    } else {
-                        charData.forEach(item => { item.revealed = true; item.el.classList.add('revealed'); });
-                        num100.classList.add('zoomed');
-                        isAnimationFinished = true;
-                        lens.classList.add('docked');
-                        dockBesideLocales();
-                    }
-                }
-                requestAnimationFrame(scanStep);
-            }, 350);
-
-            function dockBesideLocales() {
-                const lastChar = charData[charData.length - 1].el.getBoundingClientRect();
-                setLensOpticalPosition(lastChar.right + 12, lastChar.top + lastChar.height / 2, 1.05, 8);
-            }
-
-            window.addEventListener('resize', () => {
-                if (isAnimationFinished) dockBesideLocales();
-            });
-
-            container.addEventListener('click', () => {
-                container.classList.remove('bounce-click');
-                void container.offsetWidth;
-                container.classList.add('bounce-click');
-            });
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.navigator.standalone) {
+            const btn = document.getElementById('installBtn');
+            if (btn) btn.innerText = "Ver Cómo";
         }
     </script>
 </body>

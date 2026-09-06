@@ -1,7 +1,9 @@
-const CACHE_NAME = 'empanadazas-v7';
+const CACHE_NAME = 'empanadazas-v8';
 
-// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA (SIN REDIRECCIONES DE RAÍZ)
+// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA (INCLUYE PORTADA Y APP)
 const ASSETS_TO_CACHE = [
+  '/empanadazaswidget/',
+  '/empanadazaswidget/index.html',
   '/empanadazaswidget/app.html',
   '/empanadazaswidget/manifest.json',
   '/empanadazaswidget/empanadazas-icon.png'
@@ -19,7 +21,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// 2. ACTIVACIÓN
+// 2. ACTIVACIÓN (LIMPIEZA DE VERSIONES PREVIAS)
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     Promise.all([
@@ -37,12 +39,12 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// 3. FETCH: Compatible con Atajos y parámetros (?branch=...)
+// 3. FETCH: Compatible con Atajos, Modo Offline y Parámetros (?branch=...)
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   if (!event.request.url.startsWith('http')) return;
 
-  // A. MODO NAVEGACIÓN (Cuando abren la app o usan atajos)
+  // A. MODO NAVEGACIÓN (Cuando abren la app, la web o usan atajos)
   if (event.request.mode === 'navigate') {
     event.respondWith(
       caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
@@ -63,7 +65,7 @@ self.addEventListener('fetch', (event) => {
           return cachedResponse;
         }
 
-        // Rescate de emergencia usando Promesas puras (Sin async/await interno)
+        // Rescate de emergencia offline
         return networkFetch.then((response) => {
           if (response) return response;
 

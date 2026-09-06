@@ -11,10 +11,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Empanadazas">
+    <meta name="format-detection" content="telephone=no">
     
-    <!-- FAVICON -->
-    <link rel="icon" href="./empanadazas-icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="./empanadazas-icon.png">
+    <!-- FAVICON (RUTAS ABSOLUTAS CON RESPALDO) -->
+    <link rel="icon" href="/empanadazaswidget/empanadazas-icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/empanadazaswidget/empanadazas-icon.png">
 
     <!-- TIPOGRAFÍAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800;900&family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=block" rel="stylesheet">
 
     <!-- MANIFEST PWA OFICIAL -->
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="/empanadazaswidget/manifest.json">
 
     <style>
         /* FUENTE NEÓN MEXCELLENT */
@@ -711,15 +712,16 @@
                 </a>
             </div>
         </header>
-<!-- SECCIÓN EMBAJADOR PACHU CON SLOGAN INTEGRADO -->
+
+        <!-- SECCIÓN EMBAJADOR PACHU CON SLOGAN INTEGRADO -->
         <div class="celebrity-stage">
             <div class="celebrity-badge-slogan">
                 <span>🥟 ¡Hace como Pachu y enchastrate rico!</span>
             </div>
-           <picture class="celebrity-picture">
-    <source srcset="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" type="image/webp">
-    <img src="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" alt="Pachu Peña con Empanadazas Miti-Miti" class="celebrity-img" width="300" height="400" fetchpriority="high" decoding="async">
-</picture>
+            <picture class="celebrity-picture">
+                <source srcset="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" type="image/webp">
+                <img src="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" alt="Pachu Peña con Empanadazas Miti-Miti" class="celebrity-img" width="300" height="400" fetchpriority="high" decoding="async">
+            </picture>
         </div>
 
         <!-- BOTÓN HERO 1: DELIVERY OFICIAL -->
@@ -864,7 +866,7 @@
             <div class="icon-box" style="padding: 6px;">
                 <svg viewBox="0 0 219.19 219.19" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#ECA244" d="M109.6,219.19c45.02,0,85.42-27.64,101.89-69.24.71-1.78-.62-3.72-2.54-3.72h-29.69c-.98,0-1.88.54-2.37,1.4-13.73,24.27-39.35,39.28-67.29,39.28s-53.56-15-67.29-39.28c-.49-.86-1.38-1.4-2.37-1.4H10.25c-1.92,0-3.24,1.94-2.54,3.72,16.46,41.59,56.86,69.24,101.89,69.24"/>
-                    <path fill="#FEFAE4" d="M218.48,108.13s0-.02-.01-.04l-.05-.15c-.06-.18-.1-.32-.15-.45-.58-1.6-1.42-3.06-2.49-4.34-1.34-1.6-2.47-3.38-3.36-5.28-.09-.19-.17-.38-.25-.58l-.14-.32c-.07-.16-.15-.35-.23-.53-.05-.13-.11-.28-.16-.44l-.12-.32c-.08-.21-.16-.44-.24-.67-1.63-5.01-1.66-10.31-.08-15.32,0,0,0-.02,0-.03h0s0-.04.01-.06c.03-.13.07-.27.11-.4l.06-.21c.07-.23.13-.43.17-.63.04-.16.06-.33.09-.5l.14-.82c.04-.3.06-.65.08-1l.02-.29c.02-.32.02-.7,0-1.13,0-.05,0-.16,0-.25-.07-1.56-.42-3.18-1.03-4.74-.01-.04-.03-.08-.04-.11l-.04-.09c-.32-.77-.7-1.51-1.12-2.2-.24-.38-.47-.72-.72-1.05-.28-.37-.52-.66-.75-.92-.07-.06-.14-.14-.21-.21-.23-.25-.46-.5-.71-.73l-.56-.48c-.18-.15-.28-.25-.39-.33-.23-.18-.47-.34-.71-.5-.18-.12-.29-.2-.4-.28l-.07-.05c-.22-.13-.6-.35-.98-.55-5.04-2.63-9.02-7.02-11.22-12.35-1-2.42-1.6-4.98-1.81-7.6-.03-.42-.08-.83-.15-1.25l-.08-.39c-.06-.29-.11-.56-.17-.83-.02-.09-.05-.18-.07-.26l-.06-.21c-.06-.23-.13-.46-.21-.7-.05-.16-.11-.32-.18-.49-.08-.2-.17-.42-.26-.64-.07-.17-.14-.32-.21-.46-.1-.21-.21-.43-.33-.64l-.07-.13c-.07-.12-.11-.21-.16-.29-.13-.22-.27-.44-.41-.65l-.25-.38c-.22-.31-.45-.62-.68-.9-.53-.64-1.12-1.25-1.75-1.8-.26-.22-.55-.45-.86-.68-.05-.03-.11-.07-.18-.12l-.15-.1c-.25-.17-.47-.32-.7-.46l-.37-.21c-.22-.12-.43-.24-.66-.35-.13-.06-.26-.12-.39-.18l-1.14-.46c-.22-.08-.46-.15-.71-.23l-.45-.13c-.24-.06-.52-.12-.81-.18l-.43-.09c-.32-.05-.72-.1-1.11-.14-7.29-.59-13.84-4.47-17.96-10.64l-.14-.22c-.16-.24-.43-.67-.69-1.11-.16-.28-.31-.58-.47-.87-.05-.07-.1-.15-.14-.25-.32-.65-.66-1.23-.99-1.75l-.29-.42c-.11-.16-.23-.32-.34-.47-.08-.1-.16-.2-.25-.3l-.39-.47h0s-.04-.04-.06-.07c-.23-.26-.47-.5-.71-.73-.06-.06-.16-.16-.26-.26-.18-.16-.46-.4-.74-.63l-.19-.16c-.2-.15-.5-.37-.84-.6,0,0,0,0,0,0,0,0-.17-.11-.22-.15-.15-.1-.47-.29-.83-.48l-.19-.11c-.22-.12-.55-.27-.87-.41l-.45-.19c-.14-.06-.28-.11-.43-.17-3.79-1.35-7.31-.65-8.89-.19-.17.06-.34.11-.51.16-.24.08-.38.14-.38.14v-.02c-2.16.64-4.38.98-6.65.98-5.78,0-11.35-2.1-15.7-5.9-2.53-2.22-5.74-3.46-9.03-3.49-3.24.03-6.43,1.27-8.97,3.48-4.35,3.8-9.92,5.9-15.7,5.9-2.72,0-5.39-.46-7.93-1.38-.54-.19-1.16-.32-1.85-.38-.15-.01-.28-.02-.4-.04-.36-.04-.64-.07-.92-.09h-.16s-.5,0-.5,0h-.54c-.28,0-.56.04-.84.07l-.51.05c-.2.03-.54.1-.87.17l-.3.06c-.24.05-.58.15-.92.26l-.23.07c-.24.08-.58.2-.91.34l-.46.19c-.27.12-.59.27-.88.43-.04.03-.09.05-.14.08-.34.19-.66.38-.93.55-.05.04-.1.07-.15.1-.3.2-.6.42-.87.63l-.03.03c-.35.29-.63.52-.93.8-.05.05-.1.11-.15.16-.23.23-.47.47-.7.72h0c-.04.05-.07.1-.08.1l-.25.31s-.06.07-.07.08c-.16.19-.29.34-.4.49-.05.07-.09.13-.13.19l-.42.63c-.11.16-.14.21-.18.26-.18.3-.37.63-.57,1.04l-.15.27c-.15.31-.4.78-.67,1.24-.26.44-.52.87-.77,1.23l-.03.05c-4.16,6.23-10.71,10.11-18.01,10.7-.38.03-.78.08-1.21.16l-.29.06c-.31.06-.6.12-.87.19l-.4.12c-.26.08-.5.15-.73.24-.12.05-.27.1-.41.16l-.78.33c-.05.03-.18.09-.31.15-.22.11-.44.23-.65.35l-.43.24c-.19.11-.41.26-.63.42l-.22.15h0s-.05.04-.08.06c-.34.25-.64.48-.92.73-.63.54-1.22,1.15-1.75,1.79-.24.29-.46.59-.7.94l-.2.31c-.16.24-.3.46-.43.69l-.22.41c-.12.22-.23.44-.34.66-.06.14-.13.29-.2.44-.1.23-.19.45-.27.67-.05.15-.11.31-.17.47-.08.23-.15.47-.21.71l-.14.51c-.06.23-.11.5-.16.77l-.09.47c-.06.36-.11.77-.14,1.2-.2,2.62-.81,5.18-1.81,7.6-2.2,5.33-6.18,9.72-11.22,12.35-.36.19-.72.4-1.06.61,0,0,0,0,0,0-.09.07-.2.15-.32.23-.31.21-.55.37-.78.55-.11.09-.21.18-.31.27l-.7.6c-.19.18-.42.42-.64.67-.07.07-.14.15-.26.27-.18.21-.41.49-.66.82-.02.03-.08.1-.12.15-.19.26-.41.59-.64.94-.44.7-.81,1.44-1.13,2.2l-.07.18c-.62,1.58-.97,3.22-1.04,4.88v.03c-.01.53-.01.91,0,1.33v.11c.04.43.06.78.11,1.13l.12.67s.02.1.02.11c.03.19.05.34.09.5.04.17.09.34.14.51l.1.34c.03.11.07.25.1.38l.03.13c1.57,4.95,1.55,10.26-.09,15.27-.08.24-.17.48-.25.71l-.1.29c-.05.15-.11.31-.18.47-.07.18-.15.36-.23.54l-.14.33c-.06.15-.14.34-.23.52-.9,1.91-2.03,3.69-3.36,5.29-1.07,1.28-1.91,2.75-2.5,4.35-.04.11-.07.21-.11.32l-.09.27c-.48,1.51-.72,3.04-.72,4.55,0,2.45.62,4.89,1.79,7.06.39.71.87,1.41,1.4,2.06l.17.2c1.68,1.91,4.92,4.51,10.61,5.83l.11.03c2.51.57,5.29.86,8.27.86h174.48c2.98,0,5.75-.28,8.23-.85l.16-.04c5.68-1.32,8.9-3.9,10.6-5.83,0,0,0,0,0-.01l.19-.22c.51-.63.98-1.32,1.39-2.06,1.16-2.15,1.78-4.59,1.78-7.03,0-1.5-.24-3.02-.71-4.52M184.66,95.02c-.72.93-1.8,1.47-2.98,1.47H37.51c-1.17,0-2.26-.53-2.97-1.46-.72-.93-.96-2.11-.66-3.24,9.16-35.02,40.3-59.52,75.72-59.59,35.43.07,66.58,24.58,75.73,59.59.3,1.13.06,2.31-.66,3.24"/>
+                    <path fill="#FEFAE4" d="M218.48,108.13s0-.02-.01-.04l-.05-.15c-.06-.18-.1-.32-.15-.45-.58-1.6-1.42-3.06-2.49-4.34-1.34-1.6-2.47-3.38-3.36-5.28-.09-.19-.17-.38-.25-.58l-.14-.32c-.07-.16-.15-.35-.23-.53-.05-.13-.11-.28-.16-.44l-.12-.32c-.08-.21-.16-.44-.24-.67-1.63-5.01-1.66-10.31-.08-15.32,0,0,0-.02,0-.03h0s0-.04.01-.06c.03-.13.07-.27.11-.4l.06-.21c.07-.23.13-.43.17-.63.04-.16.06-.33.09-.5l.14-.82c.04-.3.06-.65.08-1l.02-.29c.02-.32.02-.7,0-1.13,0-.05,0-.16,0-.25-.07-1.56-.42-3.18-1.03-4.74-.01-.04-.03-.08-.04-.11l-.04-.09c-.32-.77-.7-1.51-1.12-2.2-.24-.38-.47-.72-.72-1.05-.28-.37-.52-.66-.75-.92-.07-.06-.14-.14-.21-.21-.23-.25-.46-.5-.71-.73l-.56-.48c-.18-.15-.28-.25-.39-.33-.23-.18-.47-.34-.71-.5-.18-.12-.29-.2-.4-.28l-.07-.05c-.22-.13-.6-.35-.98-.55-5.04-2.63-9.02-7.02-11.22-12.35-1-2.42-1.6-4.98-1.81-7.6-.03-.42-.08-.83-.15-1.25l-.08-.39c-.06-.29-.11-.56-.17-.83-.02-.09-.05-.18-.07-.26l-.06-.21c-.06-.23-.13-.46-.21-.7-.05-.16-.11-.32-.18-.49-.08-.2-.17-.42-.26-.64-.07-.17-.14-.32-.21-.46-.1-.21-.21-.43-.33-.64l-.07-.13c-.07-.12-.11-.21-.16-.29-.13-.22-.27-.44-.41-.65l-.25-.38c-.22-.31-.45-.62-.68-.9-.53-.64-1.12-1.25-1.75-1.8-.26-.22-.55-.45-.86-.68-.05-.03-.11-.07-.18-.12l-.15-.1c-.25-.17-.47-.32-.7-.46l-.37-.21c-.22-.12-.43-.24-.66-.35-.13-.06-.26-.12-.39-.18l-1.14-.46c-.22-.08-.46-.15-.71-.23l-.45-.13c-.24-.06-.52-.12-.81-.18l-.43-.09c-.32-.05-.72-.1-1.11-.14-7.29-.59-13.84-4.47-17.96-10.64l-.14-.22c-.16-.24-.43-.67-.69-1.11-.16-.28-.31-.58-.47-.87-.05-.07-.1-.15-.14-.25-.32-.65-.66-1.23-.99-1.75l-.29-.42c-.11-.16-.23-.32-.34-.47-.08-.1-.16-.2-.25-.3l-.39-.47h0s-.04-.04-.06-.07c-.23-.26-.47-.5-.71-.73-.06-.06-.16-.16-.26-.26-.18-.16-.46-.4-.74-.63l-.19-.16c-.2-.15-.5-.37-.84-.6,0,0,0,0,0,0,0,0-.1-.07-.13-.09-.09-.06-.28-.17-.49-.29l-.11-.07c-.13-.07-.32-.16-.52-.25l-.27-.11c-.08-.03-.17-.07-.26-.1-2.25-.8-4.34-.39-5.29-.11-.1.04-.2.06-.3.1-.14.05-.23.08-.23.08h0c-1.28.37-2.6.57-3.95.57-3.43,0-6.75-1.25-9.33-3.51-1.51-1.32-3.41-2.05-5.36-2.07-1.93.02-3.82.75-5.33,2.07-2.58,2.26-5.9,3.51-9.33,3.51-1.62,0-3.2-.28-4.72-.82-.32-.11-.69-.19-1.1-.23-.09,0-.16-.01-.24-.02-.21-.02-.38-.04-.55-.05h-.1s-.3,0-.3,0h-.32c-.17,0-.33.02-.5.04l-.31.03c-.12.02-.32.06-.52.1l-.18.03c-.14.03-.35.09-.55.15l-.14.04c-.14.05-.34.12-.54.2l-.27.11c-.16.07-.35.16-.53.25-.03.02-.05.03-.08.05-.2.11-.39.22-.55.33-.03.02-.06.04-.09.06-.18.12-.36.25-.52.38l-.02.02c-.21.17-.37.31-.55.48-.03.03-.06.06-.09.09-.14.14-.28.28-.42.43-.02.03-.04.06-.04.06l-.15.18s-.04.04-.04.05c-.1.11-.17.2-.24.29-.03.04-.05.08-.08.11l-.25.37c-.06.09-.09.12-.11.15-.11.18-.22.38-.34.62l-.09.16c-.09.18-.24.46-.4.74-.15.26-.31.52-.45.73l-.02.03c-2.47,3.7-6.37,6.01-10.7,6.36-.23.02-.46.05-.72.09l-.17.04c-.19.04-.36.07-.52.11l-.24.07c-.15.04-.3.09-.44.14-.07.03-.16.06-.25.09l-.46.2s-.11.05-.18.09c-.13.07-.26.14-.39.21l-.25.14c-.11.07-.24.16-.37.25l-.13.09h0s-.03.02-.05.03c-.2.15-.38.29-.55.43-.37.32-.72.68-1.04,1.07-.14.17-.28.35-.42.56l-.12.18c-.09.14-.18.28-.26.41l-.13.24c-.07.13-.14.26-.2.39-.04.08-.08.17-.12.26-.06.13-.11.27-.16.4-.03.09-.07.18-.1.28-.05.14-.09.28-.13.42l-.08.3c-.03.14-.06.3-.1.46l-.06.28c-.03.21-.06.46-.08.71-.12,1.56-.48,3.08-1.07,4.51-1.31,3.17-3.67,5.78-6.67,7.34-.21.11-.43.24-.63.36,0,0,0,0,0,0-.05.04-.12.09-.19.13-.18.12-.33.22-.46.33-.07.05-.13.1-.19.16l-.41.35c-.11.11-.25.25-.38.4-.04.04-.08.09-.16.16-.11.12-.24.29-.39.48-.01.02-.05.06-.07.09-.11.15-.24.35-.38.56-.26.42-.48.85-.67,1.31l-.04.11c-.37.94-.58,1.92-.62,2.9v.02c0,.31,0,.54,0,.79v.06c.02.26.04.46.06.67l.07.4s.01.06.01.07c.02.11.03.2.05.3.02.1.05.2.08.3l.06.2c.02.07.04.15.06.23l.02.08c.93,2.94.92,6.09-.05,9.07-.05.15-.1.28-.15.42l-.06.17c-.03.09-.06.18-.1.28-.04.11-.09.21-.14.32l-.08.2c-.04.09-.09.2-.14.31-.53,1.14-1.21,2.19-2,3.14-.64.76-1.14,1.63-1.48,2.58-.02.06-.04.13-.06.19l-.05.16c-.28.9-.43,1.8-.43,2.7,0,1.45.37,2.9,1.07,4.2.23.42.51.84.83,1.23l.1.12c1,1.14,2.92,2.68,6.3,3.46l.07.02c1.49.34,3.14.51,4.92.51h103.7c1.77,0,3.42-.17,4.89-.5l.1-.02c3.38-.78,5.29-2.32,6.3-3.46h0s0,0,0,0l.11-.13c.31-.37.59-.79.83-1.23.69-1.28,1.06-2.73,1.06-4.18,0-.89-.14-1.8-.42-2.68M109.75,56.47c-.43.55-1.07.87-1.77.87H22.29c-.7,0-1.34-.32-1.77-.87-.43-.55-.57-1.26-.39-1.93,5.44-20.81,23.95-35.37,45-35.42,21.06.04,39.57,14.61,45.01,35.42.18.67.03,1.37-.39,1.93"/>
                 </svg>
             </div>
             <div class="btn-info">
@@ -918,7 +920,19 @@
     <script>
         let deferredPrompt;
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone || document.referrer.includes('android-app://');
-        const isInstalled = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
+
+        // MÓDULO DE ALMACENAMIENTO SEGURO CONTRA FALLOS DE WEBVIEW
+        function getSafeItem(key) {
+            try { return localStorage.getItem(key); } catch (e) { return null; }
+        }
+        function setSafeItem(key, val) {
+            try { localStorage.setItem(key, val); } catch (e) {}
+        }
+        function removeSafeItem(key) {
+            try { localStorage.removeItem(key); } catch (e) {}
+        }
+
+        const isInstalled = getSafeItem('EMPANADAZAS_INSTALLED') === 'true';
 
         // FEEDBACK HÁPTICO NATIVO (12ms DE RESPUESTA INMEDIATA)
         function triggerHaptic() {
@@ -954,24 +968,28 @@
 
         // MODO TEST: Si entras con ?test=1 limpia el bloqueo para probarlo siempre
         if (window.location.search.includes('test=1') || window.location.search.includes('test=pwa')) {
-            localStorage.removeItem('EMPANADAZAS_NUDGE_SNOOZE');
-            localStorage.removeItem('EMPANADAZAS_INSTALLED');
+            removeSafeItem('EMPANADAZAS_NUDGE_SNOOZE');
+            removeSafeItem('EMPANADAZAS_INSTALLED');
         }
 
-        // Registro de Service Worker
+        // REGISTRO DE SERVICE WORKER BLINDADO PARA GITHUB PAGES Y DESARROLLO
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch(() => {});
+                navigator.serviceWorker.register('/empanadazaswidget/sw.js', { scope: '/empanadazaswidget/' })
+                    .catch(() => {
+                        // Fallback relativo para entornos locales de prueba
+                        navigator.serviceWorker.register('./sw.js').catch(() => {});
+                    });
             });
         }
 
-    // DETECCIÓN INTELIGENTE: Si ya está instalada en el celular, NO MOSTRAR EL BOTÓN
+        // DETECCIÓN INTELIGENTE: Si ya está instalada en el celular, NO MOSTRAR EL BOTÓN
         function checkAlreadyInstalled() {
             const pwaBox = document.getElementById('pwaInstallBox');
             if (!pwaBox) return;
 
             const isTesting = window.location.search.includes('test=1') || window.location.search.includes('test=pwa');
-            const snoozeUntil = parseInt(localStorage.getItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
+            const snoozeUntil = parseInt(getSafeItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
             const isSnoozed = Date.now() < snoozeUntil;
 
             // 1. Si ya se abrió desde la app o guardó instalación previa (y no es test)
@@ -990,7 +1008,7 @@
             if ('getInstalledRelatedApps' in navigator) {
                 navigator.getInstalledRelatedApps().then((apps) => {
                     if (apps && apps.length > 0 && !isTesting) {
-                        localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                        setSafeItem('EMPANADAZAS_INSTALLED', 'true');
                         pwaBox.style.display = 'none';
                     }
                 }).catch(() => {});
@@ -1006,7 +1024,7 @@
             deferredPrompt = e;
             
             const isTesting = window.location.search.includes('test=1') || window.location.search.includes('test=pwa');
-            const snoozeUntil = parseInt(localStorage.getItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
+            const snoozeUntil = parseInt(getSafeItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
             const isSnoozed = Date.now() < snoozeUntil;
 
             // Solo mostrar si no la tiene instalada y no está en período de descanso
@@ -1018,7 +1036,7 @@
 
         // SI SE COMPLETA LA INSTALACIÓN (Se oculta al instante)
         window.addEventListener('appinstalled', () => {
-            localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+            setSafeItem('EMPANADAZAS_INSTALLED', 'true');
             const pwaBox = document.getElementById('pwaInstallBox');
             if (pwaBox) pwaBox.style.display = 'none';
             deferredPrompt = null;
@@ -1030,12 +1048,12 @@
                 deferredPrompt.userChoice.then((choiceResult) => {
                     const pwaBox = document.getElementById('pwaInstallBox');
                     if (choiceResult.outcome === 'accepted') {
-                        localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                        setSafeItem('EMPANADAZAS_INSTALLED', 'true');
                         if (pwaBox) pwaBox.style.display = 'none';
                     } else {
                         // Si dijo que no, 5 días de silencio para no molestarlo
                         const snoozeTime = Date.now() + (5 * 24 * 60 * 60 * 1000);
-                        localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
+                        setSafeItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
                         if (pwaBox) pwaBox.style.display = 'none';
                     }
                     deferredPrompt = null;

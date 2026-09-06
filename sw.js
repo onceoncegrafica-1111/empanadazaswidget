@@ -1,6 +1,6 @@
-const CACHE_NAME = 'empanadazas-v9';
+const CACHE_NAME = 'empanadazas-v10';
 
-// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA (INCLUYE PORTADA, APP Y PUENTE WHATSAPP)
+// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA
 const ASSETS_TO_CACHE = [
   '/empanadazaswidget/',
   '/empanadazaswidget/index.html',
@@ -10,7 +10,7 @@ const ASSETS_TO_CACHE = [
   '/empanadazaswidget/empanadazas-icon.png'
 ];
 
-// 1. INSTALACIÓN
+// 1. INSTALACIÓN INMEDIATA
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
@@ -22,7 +22,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// 2. ACTIVACIÓN (LIMPIEZA DE VERSIONES PREVIAS)
+// 2. ACTIVACIÓN Y LIMPIEZA TOTAL DE VERSIONES VIEJAS
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     Promise.all([
@@ -40,65 +40,39 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// 3. FETCH: Compatible con Atajos, Modo Offline y Parámetros (?branch=...)
+// 3. ESTRATEGIA INTELIGENTE: NETWORK-FIRST PARA PANTALLAS + CACHE-FIRST PARA IMÁGENES
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   if (!event.request.url.startsWith('http')) return;
 
-  // A. MODO NAVEGACIÓN (Cuando abren la app, la web o usan atajos)
+  // A. NAVEGACIÓN (app.html, index.html, wpp.html): SIEMPRE BUSCA LO ÚLTIMO EN INTERNET
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
-        
-        const networkFetch = fetch(event.request)
-          .then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              const responseClone = networkResponse.clone();
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(event.request, responseClone).catch(() => {});
-              });
-            }
-            return networkResponse;
-          })
-          .catch(() => null);
-
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-
-        // Rescate de emergencia offline
-        return networkFetch.then((response) => {
-          if (response) return response;
-
-          return caches.match('/empanadazaswidget/app.html', { ignoreSearch: true })
-            .then((fallback) => {
-              if (fallback) return fallback;
-
-              return new Response('Contenido temporalmente no disponible', {
-                status: 200,
-                headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-              });
-            });
-        });
-      })
-    );
-    return;
-  }
-
-  // B. RESTO DE RECURSOS (Imágenes, iconos, etc.)
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        fetch(event.request).then((networkResponse) => {
+      fetch(event.request)
+        .then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
             const responseClone = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseClone).catch(() => {});
             });
           }
-        }).catch(() => {});
-        return cachedResponse;
-      }
+          return networkResponse;
+        })
+        .catch(() => {
+          // Si el usuario no tiene internet, recurre al caché para no fallar
+          return caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
+            if (cachedResponse) return cachedResponse;
+            return caches.match('/empanadazaswidget/app.html', { ignoreSearch: true });
+          });
+        })
+    );
+    return;
+  }
+
+  // B. RECURSOS GRÁFICOS (Imágenes, iconos, fuentes): CACHE ULTRA RÁPIDO
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) return cachedResponse;
 
       return fetch(event.request).then((networkResponse) => {
         if (networkResponse && networkResponse.status === 200) {

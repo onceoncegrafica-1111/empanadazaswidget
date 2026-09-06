@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Abriendo WhatsApp... | Empanadazas®</title>
     
-    <!-- METAS DE INTEGRACIÓN PWA -->
     <meta name="theme-color" content="#0E0F0D">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
             background-color: #0E0F0D;
             color: #FEFAE4;
@@ -48,7 +43,6 @@
             font-size: 0.95rem;
             color: #D3CEB8;
             font-weight: 600;
-            letter-spacing: -0.01em;
         }
         .btn-manual-wsp {
             display: none;
@@ -63,48 +57,69 @@
             text-transform: uppercase;
             box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 
-    <!-- MOTOR DE REDIRECCIÓN EN MILISEGUNDOS -->
+    <!-- MOTOR DE SALTO DIRECTO A LA APP NATIVA -->
     <script>
         (function() {
-            var wspLinks = {
-                'palermo': 'https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho',
-                'lomitas': 'https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas',
-                'caballito': 'https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito',
-                'ramos': 'https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa'
+            // CARITA OFICIAL: 😋 (%F0%9F%98%8B)
+            var branchData = {
+                'palermo': {
+                    phone: '5491151435364',
+                    text: '%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho'
+                },
+                'lomitas': {
+                    phone: '5491150510287',
+                    text: '%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas'
+                },
+                'caballito': {
+                    phone: '5491125428760',
+                    text: '%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito'
+                },
+                'ramos': {
+                    phone: '5491130091870',
+                    text: '%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa'
+                }
             };
 
             var params = new URLSearchParams(window.location.search);
-            var branch = params.get('branch');
-            var destination = wspLinks[branch];
+            var branchKey = params.get('branch');
+            var data = branchData[branchKey];
 
-            if (destination) {
-                // Salto nativo instantáneo sin registrar historial intermedio
-                window.location.replace(destination);
+            if (data) {
+                // 1. Enlace nativo directo al celular (salta la web y abre la app)
+                var nativeAppUrl = "whatsapp://send?phone=" + data.phone + "&text=" + data.text;
+                // 2. Enlace de respaldo web por si falla el protocolo nativo
+                var webFallbackUrl = "https://wa.me/" + data.phone + "?text=" + data.text;
+
+                // Disparo prioritario a la app de WhatsApp
+                window.location.href = nativeAppUrl;
+
+                // Si en 1.5 segundos no abrió la app, recurre a la web
+                setTimeout(function() {
+                    window.location.href = webFallbackUrl;
+                }, 1500);
+
+                // Botón manual de respaldo
+                window.addEventListener('DOMContentLoaded', function() {
+                    var btn = document.getElementById('manualBtn');
+                    if (btn) {
+                        btn.href = nativeAppUrl;
+                        btn.style.display = 'inline-block';
+                    }
+                });
             } else {
-                // Respaldo de seguridad si entraron sin parámetro
+                // Si no hay parámetro, regresa al menú de la app
                 window.location.replace('/empanadazaswidget/app.html');
             }
-
-            // En caso de que el navegador móvil requiera un toque del usuario
-            window.addEventListener('DOMContentLoaded', function() {
-                var btn = document.getElementById('manualBtn');
-                if (btn && destination) {
-                    btn.href = destination;
-                    btn.style.display = 'inline-block';
-                }
-            });
         })();
     </script>
 </head>
 <body>
     <div class="redirect-box">
         <div class="spinner"></div>
-        <p class="redirect-text">Conectando con WhatsApp...</p>
+        <p class="redirect-text">Abriendo WhatsApp...</p>
         <a id="manualBtn" href="#" class="btn-manual-wsp">Abrir WhatsApp</a>
     </div>
 </body>

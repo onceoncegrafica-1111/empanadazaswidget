@@ -27,25 +27,25 @@
       "name": "Palermo Soho",
       "short_name": "Palermo",
       "description": "Pedir a sucursal Palermo Soho",
-      "url": "/empanadazaswidget/app.html?branch=palermo"
+      "url": "/empanadazaswidget/wpp.html?branch=palermo"
     },
     {
       "name": "Las Lomitas",
       "short_name": "Lomitas",
       "description": "Pedir a sucursal Las Lomitas",
-      "url": "/empanadazaswidget/app.html?branch=lomitas"
+      "url": "/empanadazaswidget/wpp.html?branch=lomitas"
     },
     {
       "name": "Caballito",
       "short_name": "Caballito",
       "description": "Pedir a sucursal Caballito",
-      "url": "/empanadazaswidget/app.html?branch=caballito"
+      "url": "/empanadazaswidget/wpp.html?branch=caballito"
     },
     {
       "name": "Ramos Mejía",
       "short_name": "Ramos",
       "description": "Pedir a sucursal Ramos Mejía",
-      "url": "/empanadazaswidget/app.html?branch=ramos"
+      "url": "/empanadazaswidget/wpp.html?branch=ramos"
     }
   ]
 }

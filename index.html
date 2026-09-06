@@ -6,22 +6,22 @@
     <title>Empanadazas® | Hub Oficial & Pedidos</title>
     <meta name="description" content="Creadores de las primeras Miti-Miti del mundo. Pedí online con descuento, conocé nuestro menú y sucursales.">
     
-    <!-- CONEXIÓN PWA NATIVA -->
-    <link rel="manifest" href="./manifest.json">
+    <!-- CONEXIÓN PWA NATIVA (RUTAS CANÓNICAS ABSOLUTAS) -->
+    <link rel="manifest" href="/empanadazaswidget/manifest.json">
+    <link rel="icon" href="/empanadazaswidget/empanadazas-icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/empanadazaswidget/empanadazas-icon.png">
+    <link rel="apple-touch-startup-image" href="/empanadazaswidget/empanadazas-icon.png">
     <meta name="theme-color" content="#131412">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Empanadazas">
+    <meta name="format-detection" content="telephone=no">
 
     <!-- TIPOGRAFÍAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Outfit:wght@800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Cinzel:wght@600;700;800;900&display=block" rel="stylesheet">
-
-   <!-- FAVICON OFICIAL -->
-    <link rel="icon" href="./empanadazas-icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="./empanadazas-icon.png">
 
     <style>
         /* FUENTE NEÓN MEXCELLENT */
@@ -781,7 +781,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT PWA NATIVO, COLA DE DISPARO Y ANIMACIÓN LUPA -->
+    <!-- SCRIPT PWA NATIVO, COLA DE DISPARO Y ANIMACIÓN LUPA GARANTIZADA -->
     <script>
         let deferredPrompt = null;
         let userWantsInstall = false;
@@ -823,14 +823,19 @@
 
         // MODO TEST: Si ingresas con ?test=1 o ?test=pwa en la URL, limpia el bloqueo para probarlo siempre
         if (window.location.search.includes('test=1') || window.location.search.includes('test=pwa')) {
-            localStorage.removeItem('EMPANADAZAS_NUDGE_SNOOZE');
-            localStorage.removeItem('EMPANADAZAS_INSTALLED');
+            try {
+                localStorage.removeItem('EMPANADAZAS_NUDGE_SNOOZE');
+                localStorage.removeItem('EMPANADAZAS_INSTALLED');
+            } catch(e) {}
         }
 
-        // Registro de Service Worker
+        // REGISTRO DE SERVICE WORKER BLINDADO PARA GITHUB PAGES Y DESARROLLO
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch(() => {});
+                navigator.serviceWorker.register('/empanadazaswidget/sw.js', { scope: '/empanadazaswidget/' })
+                    .catch(() => {
+                        navigator.serviceWorker.register('./sw.js').catch(() => {});
+                    });
             });
         }
 
@@ -843,10 +848,11 @@
                 userWantsInstall = false;
                 deferredPrompt.prompt().then(({ outcome }) => {
                     if (outcome === 'accepted') {
-                        // Silencio temporal de 30 días para no bloquear para siempre si luego la desinstala
-    localStorage.setItem('EMPANADAZAS_INSTALLED', 'true'); // <--- AGREGÁ ESTA LÍNEA
-                        const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
-                        localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
+                        try {
+                            localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                            const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
+                            localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
+                        } catch(e) {}
                         showCelebrationToast("🎉 ¡EmpaImán pegado con éxito!");
                         dismissNudge();
                     }
@@ -857,9 +863,11 @@
 
         // SI SE COMPLETA LA INSTALACIÓN
         window.addEventListener('appinstalled', () => {
-    localStorage.setItem('EMPANADAZAS_INSTALLED', 'true'); // <--- AGREGÁ ESTA LÍNEA
-            const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
-            localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
+            try {
+                localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
+                localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
+            } catch(e) {}
             deferredPrompt = null;
             dismissNudge();
         });
@@ -867,7 +875,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             // SI SE ABRE DESDE EL ACCESO RÁPIDO, VA DIRECTO AL DISEÑO DE SUCURSALES (APP)
             if (isStandalone) {
-                window.location.replace('./app.html');
+                window.location.replace('/empanadazaswidget/app.html');
                 return;
             }
 
@@ -879,52 +887,58 @@
                 if (btnAction) btnAction.innerText = "🧲 Pegar EmpaImán en mi iPhone";
             }
 
-          // CONTADOR DE VISITAS Y TIEMPOS (5s, 7s, 15s - REGLA DE LOS 3 RECHAZOS Y SI YA INSTALÓ)
-if (!isStandalone) {
-    let rechazos = parseInt(localStorage.getItem('EMPANADAZAS_RECHAZOS') || '0', 10);
-    let yaInstalo = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
+            // CONTADOR DE VISITAS Y TIEMPOS (5s, 7s, 15s - REGLA DE LOS 3 RECHAZOS Y SI YA INSTALÓ)
+            if (!isStandalone) {
+                try {
+                    let rechazos = parseInt(localStorage.getItem('EMPANADAZAS_RECHAZOS') || '0', 10);
+                    let yaInstalo = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
 
-    // Solo se activa si NO la instaló y si rechazó MENOS de 3 veces
-    if (!yaInstalo && rechazos < 3) {
-        // 1. Aumentamos el contador de visitas
-        let visitas = parseInt(localStorage.getItem('EMPANADAZAS_VISITAS') || '0', 10);
-        visitas += 1;
-        localStorage.setItem('EMPANADAZAS_VISITAS', visitas.toString());
+                    // Solo se activa si NO la instaló y si rechazó MENOS de 3 veces
+                    if (!yaInstalo && rechazos < 3) {
+                        let visitas = parseInt(localStorage.getItem('EMPANADAZAS_VISITAS') || '0', 10);
+                        visitas += 1;
+                        localStorage.setItem('EMPANADAZAS_VISITAS', visitas.toString());
 
-        // 2. Calculamos los segundos exactos
-        let demora = 15000; // A partir de la 3ra vez: 15 segundos
-        if (visitas === 1) {
-            demora = 5000;  // 1ra vez: 5 segundos
-        } else if (visitas === 2) {
-            demora = 7000;  // 2da vez: 7 segundos
-        }
+                        let demora = 15000; // A partir de la 3ra vez: 15 segundos
+                        if (visitas === 1) {
+                            demora = 5000;  // 1ra vez: 5 segundos
+                        } else if (visitas === 2) {
+                            demora = 7000;  // 2da vez: 7 segundos
+                        }
 
-        // 3. Disparo del popup
-        setTimeout(() => {
-            const modal = document.getElementById('smartNudgeModal');
-            if (modal) modal.classList.add('active');
-        }, demora);
-    }
-}
-
-            // Iniciar animación Lupa
-            if (document.fonts && document.fonts.ready) {
-                document.fonts.ready.then(() => initDetectiveAnimation());
-            } else {
-                setTimeout(initDetectiveAnimation, 200);
+                        setTimeout(() => {
+                            const modal = document.getElementById('smartNudgeModal');
+                            if (modal) modal.classList.add('active');
+                        }, demora);
+                    }
+                } catch(e) {}
             }
+
+            // INICIAR ANIMACIÓN LUPA: DISPARADOR INFALIBLE GARANTIZADO
+            let detectiveStarted = false;
+            function runDetectiveSafe() {
+                if (detectiveStarted) return;
+                detectiveStarted = true;
+                initDetectiveAnimation();
+            }
+
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(runDetectiveSafe).catch(runDetectiveSafe);
+            }
+            setTimeout(runDetectiveSafe, 350);
         });
 
         // BOTÓN "AHORA NO" (SNOOZE INTELIGENTE DE 7 DÍAS)
-  function dismissNudge() {
-    const modal = document.getElementById('smartNudgeModal');
-    if (modal) modal.classList.remove('active');
+        function dismissNudge() {
+            const modal = document.getElementById('smartNudgeModal');
+            if (modal) modal.classList.remove('active');
 
-    // Sumamos 1 rechazo en la memoria del teléfono
-    let rechazos = parseInt(localStorage.getItem('EMPANADAZAS_RECHAZOS') || '0', 10);
-    rechazos += 1;
-    localStorage.setItem('EMPANADAZAS_RECHAZOS', rechazos.toString());
-}
+            try {
+                let rechazos = parseInt(localStorage.getItem('EMPANADAZAS_RECHAZOS') || '0', 10);
+                rechazos += 1;
+                localStorage.setItem('EMPANADAZAS_RECHAZOS', rechazos.toString());
+            } catch(e) {}
+        }
 
         function showCelebrationToast(msg) {
             const toast = document.getElementById('toastMsg');
@@ -968,23 +982,24 @@ if (!isStandalone) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 if (outcome === 'accepted') {
-    localStorage.setItem('EMPANADAZAS_INSTALLED', 'true'); // <--- AGREGÁ ESTA LÍNEA
-                    const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
-                    localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
+                    try {
+                        localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                        const snoozeTime = Date.now() + (30 * 24 * 60 * 60 * 1000);
+                        localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
+                    } catch(e) {}
                     showCelebrationToast("🎉 ¡EmpaImán pegado con éxito!");
                     dismissNudge();
                 } else {
-                    dismissNudge(); // 7 días de descanso si cancela
+                    dismissNudge();
                 }
                 deferredPrompt = null;
             } else {
-                // Si todavía no terminó de cargar Chrome, se deja en cola para abrirlo automáticamente
                 userWantsInstall = true;
                 showCelebrationToast("🧲 Preparando tu EmpaImán...");
             }
         }
 
-        // ANIMACIÓN LUPA CINZEL
+        // ANIMACIÓN LUPA CINZEL (CÁLCULO EXACTO Y MOVIMIENTO FLUIDO)
         function initDetectiveAnimation() {
             const container = document.getElementById('detectiveContainer');
             const lens = document.getElementById('magnifierLens');
@@ -1018,6 +1033,8 @@ if (!isStandalone) {
             const chars100 = wrapText(num100);
             const charsEnd = wrapText(textEnd);
             const allChars = [...charsStart, ...chars100, ...charsEnd];
+
+            if (allChars.length === 0) return;
 
             const lensW = 22, lensH = 22;
             const opticalOffsetX = lensW * (10 / 24);

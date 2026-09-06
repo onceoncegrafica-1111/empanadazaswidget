@@ -877,26 +877,31 @@
                 if (btnAction) btnAction.innerText = "🧲 Pegar EmpaImán en mi iPhone";
             }
 
-           // CONTADOR DE VISITAS Y TIEMPOS INTELIGENTES (5s, 7s, 10s SIEMPRE)
+          // CONTADOR DE VISITAS Y TIEMPOS (5s, 7s, 15s - REGLA DE LOS 3 RECHAZOS)
 if (!isStandalone) {
-    // 1. Aumentamos el contador de visitas
-    let visitas = parseInt(localStorage.getItem('EMPANADAZAS_VISITAS') || '0', 10);
-    visitas += 1;
-    localStorage.setItem('EMPANADAZAS_VISITAS', visitas.toString());
+    let rechazos = parseInt(localStorage.getItem('EMPANADAZAS_RECHAZOS') || '0', 10);
 
-    // 2. Calculamos los segundos exactos (TIEMPOS REALES)
-    let demora = 10000; // A partir de la 3ra vez: 10 segundos
-    if (visitas === 1) {
-        demora = 5000;  // 1ra vez: exactamente 5 segundos
-    } else if (visitas === 2) {
-        demora = 7000;  // 2da vez: exactamente 7 segundos
+    // Solo se activa si el cliente rechazó MENOS de 3 veces
+    if (rechazos < 3) {
+        // 1. Aumentamos el contador de visitas
+        let visitas = parseInt(localStorage.getItem('EMPANADAZAS_VISITAS') || '0', 10);
+        visitas += 1;
+        localStorage.setItem('EMPANADAZAS_VISITAS', visitas.toString());
+
+        // 2. Calculamos los segundos exactos
+        let demora = 15000; // A partir de la 3ra vez: 15 segundos
+        if (visitas === 1) {
+            demora = 5000;  // 1ra vez: 5 segundos
+        } else if (visitas === 2) {
+            demora = 7000;  // 2da vez: 7 segundos
+        }
+
+        // 3. Disparo del popup
+        setTimeout(() => {
+            const modal = document.getElementById('smartNudgeModal');
+            if (modal) modal.classList.add('active');
+        }, demora);
     }
-
-    // 3. Disparo garantizado del popup
-    setTimeout(() => {
-        const modal = document.getElementById('smartNudgeModal');
-        if (modal) modal.classList.add('active');
-    }, demora);
 }
 
             // Iniciar animación Lupa
@@ -908,10 +913,14 @@ if (!isStandalone) {
         });
 
         // BOTÓN "AHORA NO" (SNOOZE INTELIGENTE DE 7 DÍAS)
-     function dismissNudge() {
-    // Solo lo oculta de la pantalla sin bloquear los próximos ingresos
+  function dismissNudge() {
     const modal = document.getElementById('smartNudgeModal');
     if (modal) modal.classList.remove('active');
+
+    // Sumamos 1 rechazo en la memoria del teléfono
+    let rechazos = parseInt(localStorage.getItem('EMPANADAZAS_RECHAZOS') || '0', 10);
+    rechazos += 1;
+    localStorage.setItem('EMPANADAZAS_RECHAZOS', rechazos.toString());
 }
 
         function showCelebrationToast(msg) {

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'empanadazas-v2';
+const CACHE_NAME = 'empanadazas-v3';
 
 // ARCHIVOS CRÍTICOS QUE SE GUARDAN EN EL TELÉFONO DE INMEDIATO
 const ASSETS_TO_CACHE = [

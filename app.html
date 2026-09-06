@@ -986,22 +986,22 @@
             });
         }
 
-      // RECEPTOR DE ATAJOS: SALTO DIRECTO E INSTANTÁNEO A WHATSAPP
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const branch = urlParams.get('branch');
+        // SALTO DIRECTO E INMEDIATO A WHATSAPP (SIN ESPERAR EVENTOS)
+        (function handleDirectBranch() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var branch = urlParams.get('branch');
             if (branch) {
-                const wspLinks = {
+                var wspLinks = {
                     'palermo': 'https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho',
                     'lomitas': 'https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas',
                     'caballito': 'https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito',
                     'ramos': 'https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa'
                 };
                 if (wspLinks[branch]) {
-                    window.location.href = wspLinks[branch];
+                    window.location.replace(wspLinks[branch]);
                 }
             }
-        });
+        })();
 
         // DETECCIÓN INTELIGENTE: Si ya está instalada en el celular, NO MOSTRAR EL BOTÓN
         function checkAlreadyInstalled() {

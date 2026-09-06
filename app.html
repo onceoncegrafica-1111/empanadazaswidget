@@ -69,6 +69,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
             background-color: var(--bg-base);
@@ -232,16 +236,39 @@
         }
         .social-btn svg { width: 17px; height: 17px; }
 
-        /* SECCIÓN FOTO DEL FAMOSO / EMBAJADOR (PACHU) */
-        .celebrity-showcase {
+        /* SECCIÓN EMBAJADOR PACHU CON SLOGAN INTEGRADO */
+        .celebrity-stage {
             display: flex;
-            justify-content: center;
-            align-items: flex-end;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
             width: 100%;
-            margin: 2px 0 -12px;
+            margin: 8px 0 -12px;
             position: relative;
             z-index: 1;
             pointer-events: none;
+        }
+
+        .celebrity-badge-slogan {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+            font-weight: 900;
+            color: #12130F;
+            background: linear-gradient(135deg, #F7C268 0%, #E5A952 100%);
+            padding: 6px 14px;
+            border-radius: 999px;
+            box-shadow: 0 4px 16px rgba(247, 194, 104, 0.4);
+            margin-bottom: -10px;
+            z-index: 2;
+            text-align: center;
+            letter-spacing: -0.01em;
+            transform: translateZ(0);
+            text-transform: uppercase;
+        }
+
+        .celebrity-picture {
+            display: block;
+            line-height: 0;
         }
 
         .celebrity-img {
@@ -254,9 +281,10 @@
             -webkit-mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
             user-select: none;
             -webkit-user-select: none;
+            transform: translateZ(0);
         }
 
-        /* TARJETAS BOTONES */
+        /* TARJETAS BOTONES CON ACELERACIÓN GPU */
         .btn-card {
             display: flex;
             align-items: center;
@@ -273,17 +301,18 @@
             box-shadow: var(--shadow-card);
             transition: all 0.28s var(--spring-curve);
             position: relative;
+            transform: translateZ(0);
         }
 
         .btn-card:hover {
             background: var(--bg-card-hover);
             border-color: var(--border-card-hover);
             box-shadow: 0 10px 30px -2px rgba(0, 0, 0, 0.75), 0 0 18px var(--neon-bronze-glow);
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
         }
 
         .btn-card:active {
-            transform: scale(0.98);
+            transform: scale(0.98) translateZ(0);
         }
 
         .btn-hero {
@@ -415,6 +444,7 @@
             transition: all 0.25s var(--spring-curve);
             position: relative;
             overflow: hidden;
+            transform: translateZ(0);
         }
 
         .branch-wsp-card::before {
@@ -433,7 +463,7 @@
             border-color: #22C55E;
             background: rgba(26, 31, 23, 0.97);
             box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.7), 0 0 16px rgba(34, 197, 94, 0.28);
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
         }
 
         .branch-wsp-card:hover::before {
@@ -442,7 +472,7 @@
         }
 
         .branch-wsp-card:active {
-            transform: scale(0.98);
+            transform: scale(0.98) translateZ(0);
         }
 
         .branch-details {
@@ -562,19 +592,20 @@
             border: 1.5px dashed var(--bronze-bright);
             border-radius: 18px;
             padding: 12px 16px;
-            display: flex;
+            display: none; /* Se activa por script solo si NO está instalada */
             align-items: center;
             justify-content: space-between;
             gap: 10px;
             cursor: pointer;
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
             margin-top: 6px;
+            transform: translateZ(0);
         }
         .pwa-install-card:hover {
             background: rgba(247, 194, 104, 0.25);
             box-shadow: 0 0 16px var(--neon-bronze-glow);
         }
-        .pwa-install-card:active { transform: scale(0.97); }
+        .pwa-install-card:active { transform: scale(0.97) translateZ(0); }
 
         .pwa-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
         .pwa-title { font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 900; color: var(--bronze-bright); }
@@ -669,25 +700,30 @@
             </div>
 
             <div class="social-bar">
-                <a href="https://www.instagram.com/empanadazas" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
+                <a href="https://www.instagram.com/empanadazas" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram" data-track="social_instagram">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5" ry="5.5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                 </a>
-                <a href="https://www.tiktok.com/@empanadazas" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok">
+                <a href="https://www.tiktok.com/@empanadazas" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok" data-track="social_tiktok">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.77 1.81-.02 3.38-1.47 3.54-3.27.09-1.42.04-2.84.05-4.26V.02z"/></svg>
                 </a>
-                <a href="https://www.youtube.com/channel/UChMr1rkVKusHStufaZamCQA" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">
+                <a href="https://www.youtube.com/channel/UChMr1rkVKusHStufaZamCQA" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube" data-track="social_youtube">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </a>
             </div>
         </header>
-
-        <!-- FOTO EMBAJADOR / CELEBRIDAD (PACHU PEÑA PRESENTANDO LOS BOTONES) -->
-        <div class="celebrity-showcase">
-            <img src="./famoso.png" alt="Pachu Peña con Empanadazas Miti-Miti" class="celebrity-img">
+<!-- SECCIÓN EMBAJADOR PACHU CON SLOGAN INTEGRADO -->
+        <div class="celebrity-stage">
+            <div class="celebrity-badge-slogan">
+                <span>🥟 ¡Hace como Pachu y enchastrate rico!</span>
+            </div>
+           <picture class="celebrity-picture">
+    <source srcset="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" type="image/webp">
+    <img src="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" alt="Pachu Peña con Empanadazas Miti-Miti" class="celebrity-img" width="300" height="400" fetchpriority="high" decoding="async">
+</picture>
         </div>
 
         <!-- BOTÓN HERO 1: DELIVERY OFICIAL -->
-        <a href="https://pedidos.masdelivery.com/empanadazas" target="_blank" rel="noopener noreferrer" class="btn-card btn-hero">
+        <a href="https://pedidos.masdelivery.com/empanadazas" target="_blank" rel="noopener noreferrer" class="btn-card btn-hero" data-track="delivery_masdelivery">
             <div class="icon-box hero-gold">
                 <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="20" r="1.8" fill="#231F20"/><circle cx="19" cy="20" r="1.8" fill="#231F20"/><path d="M2 3h3.5l2.4 11.2a1.8 1.8 0 0 0 1.8 1.4h9.6a1.8 1.8 0 0 0 1.8-1.4l1.6-7.2H6.2" stroke="#231F20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 7c0-2.2 1.8-4 4-4s4 1.8 4 4H11z" fill="#FEFAE4"/></svg>
             </div>
@@ -704,7 +740,7 @@
         </a>
 
         <!-- BOTÓN HERO 2: TUCÁN PROMO WEB -->
-        <a href="https://pedir.tucan.la/menu/Empanadazas?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer" class="btn-card">
+        <a href="https://pedir.tucan.la/menu/Empanadazas?utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer" class="btn-card" data-track="delivery_tucan_promo">
             <div class="icon-box" style="padding: 6px; background: rgba(237, 31, 44, 0.1);">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.72 283.86">
                     <path fill="#ed1f2c" d="M214.35,0c.81.45,1.74.28,2.6.5,4.32,1.1,7.75,3.46,10.25,7.12.54.8.86.79,1.62.28,7.81-5.21,17.61-3.52,22.97,3.99,3.05,4.27,3.25,9.01,2.03,13.94-.26,1.06-1.18,2.23-.69,3.14.47.88,1.72,1.35,2.65,1.96,4.64,3.04,7.49,7.19,7.9,12.81.28,3.89-.8,7.42-3.25,10.46-2.91,3.6-6.42,6.25-11.26,6.65-3.87.33-7.44-.53-10.69-2.64-.72-.46-1.08-.38-1.69.19-3.2,2.94-6.05,6.25-9.38,9.03-2.58,2.16-3.38,2.04-5.68-.43-6.82-7.3-14.7-13.28-23.23-18.42-1.26-.76-2.6-1.38-3.93-2-2.36-1.09-2.83-2.5-1.49-4.77,2.37-3.97,5.21-7.63,7.71-11.51,1.4-2.18,1.42-2.16-.06-4.21-3.94-5.45-4.68-11.28-1.63-17.32,2.63-5.21,7.17-7.82,12.87-8.54.25-.03.58.15.71-.24h1.68Z"/>
@@ -735,7 +771,7 @@
 
         <div class="branches-grid">
             <!-- PALERMO SOHO -->
-            <a href="https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_palermo_soho">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Palermo Soho</span>
@@ -757,7 +793,7 @@
             </a>
 
             <!-- LAS LOMITAS -->
-            <a href="https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_las_lomitas">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Las Lomitas</span>
@@ -779,7 +815,7 @@
             </a>
 
             <!-- CABALLITO -->
-            <a href="https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_caballito">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Caballito</span>
@@ -800,7 +836,7 @@
             </a>
 
             <!-- RAMOS MEJÍA -->
-            <a href="https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa" class="branch-wsp-card" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_ramos_mejia">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Ramos Mejía</span>
@@ -824,9 +860,9 @@
         <!-- ACCESOS RÁPIDOS A MENÚ Y COMBOS -->
         <span class="section-label">🥟 Sabores & Promociones</span>
 
-        <a href="https://empanadazas.com/catalogo.html" target="_blank" rel="noopener noreferrer" class="btn-card">
+        <a href="https://empanadazas.com/catalogo.html" target="_blank" rel="noopener noreferrer" class="btn-card" data-track="menu_catalogo">
             <div class="icon-box" style="padding: 6px;">
-            <svg viewBox="0 0 219.19 219.19" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 219.19 219.19" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#ECA244" d="M109.6,219.19c45.02,0,85.42-27.64,101.89-69.24.71-1.78-.62-3.72-2.54-3.72h-29.69c-.98,0-1.88.54-2.37,1.4-13.73,24.27-39.35,39.28-67.29,39.28s-53.56-15-67.29-39.28c-.49-.86-1.38-1.4-2.37-1.4H10.25c-1.92,0-3.24,1.94-2.54,3.72,16.46,41.59,56.86,69.24,101.89,69.24"/>
                     <path fill="#FEFAE4" d="M218.48,108.13s0-.02-.01-.04l-.05-.15c-.06-.18-.1-.32-.15-.45-.58-1.6-1.42-3.06-2.49-4.34-1.34-1.6-2.47-3.38-3.36-5.28-.09-.19-.17-.38-.25-.58l-.14-.32c-.07-.16-.15-.35-.23-.53-.05-.13-.11-.28-.16-.44l-.12-.32c-.08-.21-.16-.44-.24-.67-1.63-5.01-1.66-10.31-.08-15.32,0,0,0-.02,0-.03h0s0-.04.01-.06c.03-.13.07-.27.11-.4l.06-.21c.07-.23.13-.43.17-.63.04-.16.06-.33.09-.5l.14-.82c.04-.3.06-.65.08-1l.02-.29c.02-.32.02-.7,0-1.13,0-.05,0-.16,0-.25-.07-1.56-.42-3.18-1.03-4.74-.01-.04-.03-.08-.04-.11l-.04-.09c-.32-.77-.7-1.51-1.12-2.2-.24-.38-.47-.72-.72-1.05-.28-.37-.52-.66-.75-.92-.07-.06-.14-.14-.21-.21-.23-.25-.46-.5-.71-.73l-.56-.48c-.18-.15-.28-.25-.39-.33-.23-.18-.47-.34-.71-.5-.18-.12-.29-.2-.4-.28l-.07-.05c-.22-.13-.6-.35-.98-.55-5.04-2.63-9.02-7.02-11.22-12.35-1-2.42-1.6-4.98-1.81-7.6-.03-.42-.08-.83-.15-1.25l-.08-.39c-.06-.29-.11-.56-.17-.83-.02-.09-.05-.18-.07-.26l-.06-.21c-.06-.23-.13-.46-.21-.7-.05-.16-.11-.32-.18-.49-.08-.2-.17-.42-.26-.64-.07-.17-.14-.32-.21-.46-.1-.21-.21-.43-.33-.64l-.07-.13c-.07-.12-.11-.21-.16-.29-.13-.22-.27-.44-.41-.65l-.25-.38c-.22-.31-.45-.62-.68-.9-.53-.64-1.12-1.25-1.75-1.8-.26-.22-.55-.45-.86-.68-.05-.03-.11-.07-.18-.12l-.15-.1c-.25-.17-.47-.32-.7-.46l-.37-.21c-.22-.12-.43-.24-.66-.35-.13-.06-.26-.12-.39-.18l-1.14-.46c-.22-.08-.46-.15-.71-.23l-.45-.13c-.24-.06-.52-.12-.81-.18l-.43-.09c-.32-.05-.72-.1-1.11-.14-7.29-.59-13.84-4.47-17.96-10.64l-.14-.22c-.16-.24-.43-.67-.69-1.11-.16-.28-.31-.58-.47-.87-.05-.07-.1-.15-.14-.25-.32-.65-.66-1.23-.99-1.75l-.29-.42c-.11-.16-.23-.32-.34-.47-.08-.1-.16-.2-.25-.3l-.39-.47h0s-.04-.04-.06-.07c-.23-.26-.47-.5-.71-.73-.06-.06-.16-.16-.26-.26-.18-.16-.46-.4-.74-.63l-.19-.16c-.2-.15-.5-.37-.84-.6,0,0,0,0,0,0,0,0-.17-.11-.22-.15-.15-.1-.47-.29-.83-.48l-.19-.11c-.22-.12-.55-.27-.87-.41l-.45-.19c-.14-.06-.28-.11-.43-.17-3.79-1.35-7.31-.65-8.89-.19-.17.06-.34.11-.51.16-.24.08-.38.14-.38.14v-.02c-2.16.64-4.38.98-6.65.98-5.78,0-11.35-2.1-15.7-5.9-2.53-2.22-5.74-3.46-9.03-3.49-3.24.03-6.43,1.27-8.97,3.48-4.35,3.8-9.92,5.9-15.7,5.9-2.72,0-5.39-.46-7.93-1.38-.54-.19-1.16-.32-1.85-.38-.15-.01-.28-.02-.4-.04-.36-.04-.64-.07-.92-.09h-.16s-.5,0-.5,0h-.54c-.28,0-.56.04-.84.07l-.51.05c-.2.03-.54.1-.87.17l-.3.06c-.24.05-.58.15-.92.26l-.23.07c-.24.08-.58.2-.91.34l-.46.19c-.27.12-.59.27-.88.43-.04.03-.09.05-.14.08-.34.19-.66.38-.93.55-.05.04-.1.07-.15.1-.3.2-.6.42-.87.63l-.03.03c-.35.29-.63.52-.93.8-.05.05-.1.11-.15.16-.23.23-.47.47-.7.72h0c-.04.05-.07.1-.08.1l-.25.31s-.06.07-.07.08c-.16.19-.29.34-.4.49-.05.07-.09.13-.13.19l-.42.63c-.11.16-.14.21-.18.26-.18.3-.37.63-.57,1.04l-.15.27c-.15.31-.4.78-.67,1.24-.26.44-.52.87-.77,1.23l-.03.05c-4.16,6.23-10.71,10.11-18.01,10.7-.38.03-.78.08-1.21.16l-.29.06c-.31.06-.6.12-.87.19l-.4.12c-.26.08-.5.15-.73.24-.12.05-.27.1-.41.16l-.78.33c-.05.03-.18.09-.31.15-.22.11-.44.23-.65.35l-.43.24c-.19.11-.41.26-.63.42l-.22.15h0s-.05.04-.08.06c-.34.25-.64.48-.92.73-.63.54-1.22,1.15-1.75,1.79-.24.29-.46.59-.7.94l-.2.31c-.16.24-.3.46-.43.69l-.22.41c-.12.22-.23.44-.34.66-.06.14-.13.29-.2.44-.1.23-.19.45-.27.67-.05.15-.11.31-.17.47-.08.23-.15.47-.21.71l-.14.51c-.06.23-.11.5-.16.77l-.09.47c-.06.36-.11.77-.14,1.2-.2,2.62-.81,5.18-1.81,7.6-2.2,5.33-6.18,9.72-11.22,12.35-.36.19-.72.4-1.06.61,0,0,0,0,0,0-.09.07-.2.15-.32.23-.31.21-.55.37-.78.55-.11.09-.21.18-.31.27l-.7.6c-.19.18-.42.42-.64.67-.07.07-.14.15-.26.27-.18.21-.41.49-.66.82-.02.03-.08.1-.12.15-.19.26-.41.59-.64.94-.44.7-.81,1.44-1.13,2.2l-.07.18c-.62,1.58-.97,3.22-1.04,4.88v.03c-.01.53-.01.91,0,1.33v.11c.04.43.06.78.11,1.13l.12.67s.02.1.02.11c.03.19.05.34.09.5.04.17.09.34.14.51l.1.34c.03.11.07.25.1.38l.03.13c1.57,4.95,1.55,10.26-.09,15.27-.08.24-.17.48-.25.71l-.1.29c-.05.15-.11.31-.18.47-.07.18-.15.36-.23.54l-.14.33c-.06.15-.14.34-.23.52-.9,1.91-2.03,3.69-3.36,5.29-1.07,1.28-1.91,2.75-2.5,4.35-.04.11-.07.21-.11.32l-.09.27c-.48,1.51-.72,3.04-.72,4.55,0,2.45.62,4.89,1.79,7.06.39.71.87,1.41,1.4,2.06l.17.2c1.68,1.91,4.92,4.51,10.61,5.83l.11.03c2.51.57,5.29.86,8.27.86h174.48c2.98,0,5.75-.28,8.23-.85l.16-.04c5.68-1.32,8.9-3.9,10.6-5.83,0,0,0,0,0-.01l.19-.22c.51-.63.98-1.32,1.39-2.06,1.16-2.15,1.78-4.59,1.78-7.03,0-1.5-.24-3.02-.71-4.52M184.66,95.02c-.72.93-1.8,1.47-2.98,1.47H37.51c-1.17,0-2.26-.53-2.97-1.46-.72-.93-.96-2.11-.66-3.24,9.16-35.02,40.3-59.52,75.72-59.59,35.43.07,66.58,24.58,75.73,59.59.3,1.13.06,2.31-.66,3.24"/>
                 </svg>
@@ -840,7 +876,7 @@
             </div>
         </a>
 
-        <a href="https://empanadazas.com/empacombos.html" target="_blank" rel="noopener noreferrer" class="btn-card">
+        <a href="https://empanadazas.com/empacombos.html" target="_blank" rel="noopener noreferrer" class="btn-card" data-track="empacombos">
             <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16l-1.5 14H5.5L4 7z" fill="rgba(247, 194, 104, 0.15)" stroke="#F7C268" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7V4.5a3 3 0 0 1 6 0V7" stroke="#FEFAE4" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="14" r="2.5" fill="#F7C268"/></svg>
             </div>
@@ -854,7 +890,7 @@
         </a>
 
         <!-- INSTALADOR PWA INTELIGENTE CON TEXTOS EMPAIMÁN (SE OCULTA AUTOMÁTICAMENTE SI YA ESTÁ INSTALADA) -->
-        <div class="pwa-install-card" id="pwaInstallBox" onclick="installPWA()">
+        <div class="pwa-install-card" id="pwaInstallBox" onclick="installPWA()" data-track="empaiman_install">
             <div class="pwa-text">
                 <span class="pwa-title">🧲 Pegá tu EmpaImán en tu celular</span>
                 <span class="pwa-sub">Pedí al instante a tu sucursal más cercana con beneficios exclusivos</span>
@@ -878,11 +914,49 @@
 
     </main>
 
-    <!-- MOTOR DE INSTALACIÓN PWA Y DETECCIÓN NATIVA -->
+    <!-- MOTOR DE INSTALACIÓN PWA, HÁPTICO, DETECCIÓN NATIVA Y ANALÍTICA -->
     <script>
         let deferredPrompt;
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone || document.referrer.includes('android-app://');
         const isInstalled = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
+
+        // FEEDBACK HÁPTICO NATIVO (12ms DE RESPUESTA INMEDIATA)
+        function triggerHaptic() {
+            if ('vibrate' in navigator) {
+                try { navigator.vibrate(12); } catch (e) {}
+            }
+        }
+        document.addEventListener('pointerdown', (e) => {
+            if (e.target.closest('.btn-card, .branch-wsp-card, .social-btn, .pwa-install-card')) {
+                triggerHaptic();
+            }
+        }, { passive: true });
+
+        // DISPACHADOR DE ANALÍTICA SILENCIOSO PARA GERENCIA (GA4 / META PIXEL / GTM)
+        function trackHubEvent(eventName, eventParams = {}) {
+            if (typeof gtag === 'function') {
+                gtag('event', eventName, eventParams);
+            }
+            if (typeof fbq === 'function') {
+                fbq('trackCustom', eventName, eventParams);
+            }
+            if (window.dataLayer && Array.isArray(window.dataLayer)) {
+                window.dataLayer.push({ event: eventName, ...eventParams });
+            }
+        }
+        document.addEventListener('click', (e) => {
+            const trackEl = e.target.closest('[data-track]');
+            if (trackEl) {
+                const trackId = trackEl.getAttribute('data-track');
+                trackHubEvent('hub_button_click', { button_name: trackId });
+            }
+        }, { passive: true });
+
+        // MODO TEST: Si entras con ?test=1 limpia el bloqueo para probarlo siempre
+        if (window.location.search.includes('test=1') || window.location.search.includes('test=pwa')) {
+            localStorage.removeItem('EMPANADAZAS_NUDGE_SNOOZE');
+            localStorage.removeItem('EMPANADAZAS_INSTALLED');
+        }
 
         // Registro de Service Worker
         if ('serviceWorker' in navigator) {
@@ -891,33 +965,67 @@
             });
         }
 
-        // Si ya está abierta desde el acceso rápido o instalada, ocultar completamente la tarjeta de instalación
-        if (isStandalone || isInstalled) {
+        // DETECCIÓN INTELIGENTE: Si ya está instalada en el celular, NO MOSTRAR EL BOTÓN
+        function checkAlreadyInstalled() {
             const pwaBox = document.getElementById('pwaInstallBox');
-            if (pwaBox) pwaBox.style.display = 'none';
+            if (!pwaBox) return;
+
+            // 1. Si ya se abrió desde la app o guardó instalación previa
+            if (isStandalone || (isInstalled && !window.location.search.includes('test=1'))) {
+                pwaBox.style.display = 'none';
+                return;
+            }
+
+            // 2. Consulta nativa W3C a Android (si la PWA ya está presente en el sistema)
+            if ('getInstalledRelatedApps' in navigator) {
+                navigator.getInstalledRelatedApps().then((apps) => {
+                    if (apps && apps.length > 0 && !window.location.search.includes('test=1')) {
+                        localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
+                        pwaBox.style.display = 'none';
+                    }
+                }).catch(() => {});
+            }
         }
 
+        window.addEventListener('DOMContentLoaded', checkAlreadyInstalled);
+
+        // DISPARADOR NATIVO ANDROID / CHROME
         window.addEventListener('beforeinstallprompt', (e) => {
-            if (isStandalone || isInstalled) return;
+            if (isStandalone) return;
             e.preventDefault();
             deferredPrompt = e;
-            const pwaBox = document.getElementById('pwaInstallBox');
-            if (pwaBox) pwaBox.style.display = 'flex';
+            
+            const isTesting = window.location.search.includes('test=1') || window.location.search.includes('test=pwa');
+            const snoozeUntil = parseInt(localStorage.getItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
+            const isSnoozed = Date.now() < snoozeUntil;
+
+            // Solo mostrar si no la tiene instalada y no está en período de descanso
+            if ((isTesting || (!isSnoozed && !isInstalled))) {
+                const pwaBox = document.getElementById('pwaInstallBox');
+                if (pwaBox) pwaBox.style.display = 'flex';
+            }
         });
 
+        // SI SE COMPLETA LA INSTALACIÓN (Se oculta al instante)
         window.addEventListener('appinstalled', () => {
             localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
             const pwaBox = document.getElementById('pwaInstallBox');
             if (pwaBox) pwaBox.style.display = 'none';
+            deferredPrompt = null;
         });
 
         function installPWA() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
+                    const pwaBox = document.getElementById('pwaInstallBox');
                     if (choiceResult.outcome === 'accepted') {
                         localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
-                        const pwaBox = document.getElementById('pwaInstallBox');
+                        if (pwaBox) pwaBox.style.display = 'none';
+                    } else {
+                        // Si dijo que no, 5 días de silencio para no molestarlo
+                        const snoozeTime = Date.now() + (5 * 24 * 60 * 60 * 1000);
+                        localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
                         if (pwaBox) pwaBox.style.display = 'none';
                     }
                     deferredPrompt = null;
@@ -926,7 +1034,7 @@
                 const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent);
                 if (isIos) {
                     const prompt = document.getElementById('iosPrompt');
-                    prompt.style.display = prompt.style.display === 'block' ? 'none' : 'block';
+                    if (prompt) prompt.style.display = prompt.style.display === 'block' ? 'none' : 'block';
                 } else {
                     alert("Para pegar tu EmpaImán: tocá los 3 puntos de tu navegador y seleccioná 'Instalar aplicación' o 'Agregar a la pantalla principal'.");
                 }

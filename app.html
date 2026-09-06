@@ -716,10 +716,10 @@
             <div class="celebrity-badge-slogan">
                 <span>🥟 ¡Hace como Pachu y enchastrate rico!</span>
             </div>
-            <picture class="celebrity-picture">
-                <source srcset="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" type="image/webp">
-                <img src="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" alt="Pachu Peña con Empanadazas Miti-Miti" class="celebrity-img" width="300" height="400" fetchpriority="high" decoding="async">
-            </picture>
+           <picture class="celebrity-picture">
+    <source srcset="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" type="image/webp">
+    <img src="https://raw.githubusercontent.com/onceoncegrafica-1111/empanadazaswidget/main/famoso.webp" alt="Pachu Peña con Empanadazas Miti-Miti" class="celebrity-img" width="300" height="400" fetchpriority="high" decoding="async">
+</picture>
         </div>
 
         <!-- BOTÓN HERO 1: DELIVERY OFICIAL -->
@@ -771,7 +771,7 @@
 
         <div class="branches-grid">
             <!-- PALERMO SOHO -->
-            <a href="https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_palermo_soho">
+            <a href="https://wa.me/5491151435364?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Palermo%20Soho" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_palermo_soho">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Palermo Soho</span>
@@ -793,7 +793,7 @@
             </a>
 
             <!-- LAS LOMITAS -->
-            <a href="https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_las_lomitas">
+            <a href="https://wa.me/5491150510287?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Las%20Lomitas" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_las_lomitas">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Las Lomitas</span>
@@ -815,7 +815,7 @@
             </a>
 
             <!-- CABALLITO -->
-            <a href="https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_caballito">
+            <a href="https://wa.me/5491125428760?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_caballito">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Caballito</span>
@@ -836,7 +836,7 @@
             </a>
 
             <!-- RAMOS MEJÍA -->
-            <a href="https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%A5%9F%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_ramos_mejia">
+            <a href="https://wa.me/5491130091870?text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Ramos%20Mej%C3%ADa" class="branch-wsp-card" target="_blank" rel="noopener noreferrer" data-track="whatsapp_ramos_mejia">
                 <div class="branch-details">
                     <div class="branch-header-line">
                         <span class="branch-name-text">Ramos Mejía</span>
@@ -916,9 +916,7 @@
 
     <!-- MOTOR DE INSTALACIÓN PWA, HÁPTICO, DETECCIÓN NATIVA Y ANALÍTICA -->
     <script>
-        let deferredPrompt = null;
-        const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-        const isInApp = /Instagram|TikTok|FBAN|FBAV/.test(navigator.userAgent);
+        let deferredPrompt;
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone || document.referrer.includes('android-app://');
         const isInstalled = localStorage.getItem('EMPANADAZAS_INSTALLED') === 'true';
 
@@ -967,7 +965,7 @@
             });
         }
 
-        // DETECCIÓN INTELIGENTE: Oculta si ya está instalada, y la muestra en iPhone
+    // DETECCIÓN INTELIGENTE: Si ya está instalada en el celular, NO MOSTRAR EL BOTÓN
         function checkAlreadyInstalled() {
             const pwaBox = document.getElementById('pwaInstallBox');
             if (!pwaBox) return;
@@ -982,14 +980,13 @@
                 return;
             }
 
-            // 2. ACTIVACIÓN PARA IPHONE (Safari no usa beforeinstallprompt):
-            if (isIOS && (isTesting || (!isSnoozed && !isInstalled))) {
+            // 2. RESCATE PARA IPHONE (Safari no usa beforeinstallprompt):
+            const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent);
+            if (isIos && (isTesting || (!isSnoozed && !isInstalled))) {
                 pwaBox.style.display = 'flex';
-                const btn = document.getElementById('installBtn');
-                if (btn) btn.innerText = "Ver Cómo";
             }
 
-            // 3. Consulta nativa W3C a Android (si la PWA ya está instalada en el sistema)
+            // 3. Consulta nativa W3C a Android (si la PWA ya está presente en el sistema)
             if ('getInstalledRelatedApps' in navigator) {
                 navigator.getInstalledRelatedApps().then((apps) => {
                     if (apps && apps.length > 0 && !isTesting) {
@@ -1012,8 +1009,8 @@
             const snoozeUntil = parseInt(localStorage.getItem('EMPANADAZAS_NUDGE_SNOOZE') || '0', 10);
             const isSnoozed = Date.now() < snoozeUntil;
 
-            // Solo mostrar si no la tiene instalada y no está descansando
-            if (isTesting || (!isSnoozed && !isInstalled)) {
+            // Solo mostrar si no la tiene instalada y no está en período de descanso
+            if ((isTesting || (!isSnoozed && !isInstalled))) {
                 const pwaBox = document.getElementById('pwaInstallBox');
                 if (pwaBox) pwaBox.style.display = 'flex';
             }
@@ -1028,14 +1025,6 @@
         });
 
         function installPWA() {
-            // Escape de navegadores de Instagram / TikTok en Android
-            if (isInApp && !isIOS) {
-                const currentUrl = window.location.href.replace(/^https?:\/\//, '');
-                window.location.href = `intent://${currentUrl}#Intent;scheme=https;package=com.android.chrome;end`;
-                return;
-            }
-
-            // Flujo normal Android en Chrome
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
@@ -1044,7 +1033,7 @@
                         localStorage.setItem('EMPANADAZAS_INSTALLED', 'true');
                         if (pwaBox) pwaBox.style.display = 'none';
                     } else {
-                        // Si canceló, 5 días de silencio para no agobiarlo
+                        // Si dijo que no, 5 días de silencio para no molestarlo
                         const snoozeTime = Date.now() + (5 * 24 * 60 * 60 * 1000);
                         localStorage.setItem('EMPANADAZAS_NUDGE_SNOOZE', snoozeTime.toString());
                         if (pwaBox) pwaBox.style.display = 'none';
@@ -1052,14 +1041,19 @@
                     deferredPrompt = null;
                 });
             } else {
-                // Flujo iPhone / Navegadores sin disparador directo
-                if (isIOS) {
+                const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent);
+                if (isIos) {
                     const prompt = document.getElementById('iosPrompt');
                     if (prompt) prompt.style.display = prompt.style.display === 'block' ? 'none' : 'block';
                 } else {
                     alert("Para pegar tu EmpaImán: tocá los 3 puntos de tu navegador y seleccioná 'Instalar aplicación' o 'Agregar a la pantalla principal'.");
                 }
             }
+        }
+
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.navigator.standalone) {
+            const btn = document.getElementById('installBtn');
+            if (btn) btn.innerText = "Ver Cómo";
         }
     </script>
 </body>

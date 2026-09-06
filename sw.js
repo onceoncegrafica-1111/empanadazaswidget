@@ -1,10 +1,11 @@
-const CACHE_NAME = 'empanadazas-v8';
+const CACHE_NAME = 'empanadazas-v9';
 
-// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA (INCLUYE PORTADA Y APP)
+// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA (INCLUYE PORTADA, APP Y PUENTE WHATSAPP)
 const ASSETS_TO_CACHE = [
   '/empanadazaswidget/',
   '/empanadazaswidget/index.html',
   '/empanadazaswidget/app.html',
+  '/empanadazaswidget/wpp.html',
   '/empanadazaswidget/manifest.json',
   '/empanadazaswidget/empanadazas-icon.png'
 ];

@@ -1,14 +1,13 @@
-const CACHE_NAME = 'empanadazas-v5';
+const CACHE_NAME = 'empanadazas-v7';
 
-// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA (ALINEADOS AL MANIFEST)
+// ARCHIVOS CRÍTICOS EN RUTA ABSOLUTA (SIN REDIRECCIONES DE RAÍZ)
 const ASSETS_TO_CACHE = [
-  '/empanadazaswidget/',
   '/empanadazaswidget/app.html',
   '/empanadazaswidget/manifest.json',
   '/empanadazaswidget/empanadazas-icon.png'
 ];
 
-// 1. INSTALACIÓN: Guarda los archivos en el almacenamiento físico del celular
+// 1. INSTALACIÓN
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
@@ -20,7 +19,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// 2. ACTIVACIÓN: Borra versiones viejas y toma el control inmediato
+// 2. ACTIVACIÓN
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     Promise.all([
@@ -38,19 +37,16 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// 3. FETCH: Arranque instantáneo (Cache-First) compatible con Atajos y parámetros (?branch=...)
+// 3. FETCH: Compatible con Atajos y parámetros (?branch=...)
 self.addEventListener('fetch', (event) => {
-  // Solo procesar peticiones GET y esquemas HTTP/HTTPS válidos
   if (event.request.method !== 'GET') return;
   if (!event.request.url.startsWith('http')) return;
 
-  // A. MODO NAVEGACIÓN (Cuando el usuario abre la app o toca un atajo de sucursal)
+  // A. MODO NAVEGACIÓN (Cuando abren la app o usan atajos)
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      // ignoreSearch: true es la clave para que ?branch=palermo abra app.html sin trabarse
       caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
         
-        // Petición a la red en segundo plano para refrescar caché silenciosamente
         const networkFetch = fetch(event.request)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
@@ -63,30 +59,30 @@ self.addEventListener('fetch', (event) => {
           })
           .catch(() => null);
 
-        // Si ya está guardada en el teléfono, arranca en 0ms
         if (cachedResponse) {
           return cachedResponse;
         }
 
-        // Si no estaba en caché, espera a la red con rescate de emergencia absoluto
-        return networkFetch.then(async (response) => {
+        // Rescate de emergencia usando Promesas puras (Sin async/await interno)
+        return networkFetch.then((response) => {
           if (response) return response;
 
-          const fallback = (await caches.match('/empanadazaswidget/app.html', { ignoreSearch: true })) || 
-                           (await caches.match('/empanadazaswidget/'));
-          if (fallback) return fallback;
+          return caches.match('/empanadazaswidget/app.html', { ignoreSearch: true })
+            .then((fallback) => {
+              if (fallback) return fallback;
 
-          return new Response('Contenido temporalmente no disponible', {
-            status: 200,
-            headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-          });
+              return new Response('Contenido temporalmente no disponible', {
+                status: 200,
+                headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+              });
+            });
         });
       })
     );
     return;
   }
 
-  // B. RESTO DE RECURSOS (Imágenes, iconos, tipografías)
+  // B. RESTO DE RECURSOS (Imágenes, iconos, etc.)
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {

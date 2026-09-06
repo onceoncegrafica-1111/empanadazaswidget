@@ -829,6 +829,7 @@
                     <span>Pedir</span>
                 </div>
             </a>
+
 <!-- CABALLITO -->
             <a href="https://api.whatsapp.com/send/?phone=5491125428760&text=%C2%A1Hola%20Empanadazas!%20%F0%9F%98%8B%20Quiero%20hacer%20un%20pedido%20para%20Caballito" class="branch-wsp-card" target="_blank" rel="noopener" data-track="whatsapp_caballito">
                 <div class="branch-details">
@@ -925,9 +926,9 @@
             </div>
         </a>
 
-        <!-- BOTÓN DE SUGERENCIAS ULTRA VELOZ (MENSAJE INTERNO SIN EMAIL VISIBLE) -->
+        <!-- BOTÓN DE SUGERENCIAS ULTRA VELOZ (ABRE MODAL INTERNO, SIN MAILTO) -->
         <span class="section-label">💡 Ayudanos a mejorar</span>
-        <a href="mailto:diseno.graficoindustrial@gmail.com?subject=Sugerencia%20o%20Mejora%20para%20la%20App%20Empanadazas&body=%C2%A1Hola%20equipo%20de%20Empanadazas!%20%F0%9F%A5%9F%0A%0AMe%20gustar%C3%ADa%20sugerir%20lo%20siguiente%20para%20la%20App:%0A%0A-%20Cosas%20que%20me%20gustar%C3%ADa%20agregar:%20%0A-%20Cosas%20que%20no%20me%20funcionaron%20bien%20o%20quisiera%20mejorar:%20%0A%0A%C2%A1Muchas%20gracias!" class="btn-feedback-card" data-track="buzon_sugerencias">
+        <div class="btn-feedback-card" onclick="openFeedbackModal()" style="cursor: pointer;" data-track="buzon_sugerencias">
             <div class="feedback-icon-box">✍️</div>
             <div class="btn-info">
                 <span class="btn-title" style="font-size: 0.95rem;">Buzón de Sugerencias</span>
@@ -936,7 +937,7 @@
             <div class="arrow-box">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             </div>
-        </a>
+        </div>
 
         <!-- INSTALADOR PWA INTELIGENTE CON TEXTOS EMPAIMÁN -->
         <div class="pwa-install-card" id="pwaInstallBox" onclick="installPWA()" data-track="empaiman_install">
@@ -963,7 +964,208 @@
 
     </main>
 
-    <!-- MOTOR DE INSTALACIÓN PWA, HÁPTICO, DETECCIÓN NATIVA, ANALÍTICA Y RECEPTOR DE ATAJOS -->
+    <!-- VENTANA MODAL FLOTANTE DE SUGERENCIAS (DISEÑO NATIVO EMPANADAZAS) -->
+    <style>
+        .feedback-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .feedback-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .feedback-card {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(22, 23, 20, 0.98);
+            border: 1.5px solid var(--bronze-bright);
+            border-radius: 24px;
+            padding: 24px 20px 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 24px var(--neon-bronze-glow);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .btn-close-modal {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: rgba(35, 37, 30, 0.8);
+            border: 1px solid var(--border-card);
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .feedback-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.22rem;
+            font-weight: 900;
+            color: var(--brand-cream);
+            text-transform: uppercase;
+            line-height: 1.2;
+            text-align: center;
+            margin-top: 4px;
+        }
+        .feedback-subtitle {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.35;
+            margin-top: -6px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .form-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--bronze-bright);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .form-label span {
+            color: var(--text-subtle);
+            font-weight: 600;
+            text-transform: lowercase;
+        }
+        .form-input, .form-textarea {
+            background: rgba(14, 15, 13, 0.9);
+            border: 1.5px solid rgba(229, 169, 82, 0.3);
+            border-radius: 12px;
+            padding: 10px 14px;
+            color: #FEFAE4;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.86rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+            width: 100%;
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--bronze-bright);
+            box-shadow: 0 0 10px rgba(247, 194, 104, 0.25);
+        }
+        .form-textarea {
+            resize: none;
+            height: 85px;
+            line-height: 1.4;
+        }
+        .btn-submit-feedback {
+            background: linear-gradient(135deg, #F7C268 0%, #E5A952 100%);
+            color: #12130F;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 900;
+            padding: 13px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            box-shadow: 0 6px 18px rgba(247, 194, 104, 0.35);
+            margin-top: 6px;
+            transition: transform 0.15s ease;
+        }
+        .btn-submit-feedback:active {
+            transform: scale(0.98);
+        }
+        .feedback-success-box {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        .feedback-success-icon {
+            font-size: 40px;
+            animation: bounceIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .feedback-success-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--bronze-bright);
+            text-transform: uppercase;
+        }
+        .feedback-success-desc {
+            font-size: 0.84rem;
+            color: var(--brand-cream-muted);
+            line-height: 1.4;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+    </style>
+
+    <div class="feedback-overlay" id="feedbackOverlay">
+        <div class="feedback-card">
+            <button type="button" class="btn-close-modal" onclick="closeFeedbackModal()">✕</button>
+
+            <!-- FORMULARIO DIRECTO -->
+            <form id="feedbackForm" onsubmit="submitFeedbackForm(event)">
+                <h3 class="feedback-title">Buzón de Sugerencias</h3>
+                <p class="feedback-subtitle">Tu opinión hace crecer a Empanadazas. ¡Contanos tus ideas o mejoras!</p>
+
+                <div class="form-group" style="margin-top: 12px;">
+                    <label class="form-label" for="feedNombre">Nombre *</label>
+                    <input type="text" id="feedNombre" class="form-input" placeholder="Tu nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="feedTelefono">Teléfono <span>(opcional)</span></label>
+                    <input type="tel" id="feedTelefono" class="form-input" placeholder="Ej: 11 1234-5678">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="feedEmail">Email <span>(opcional)</span></label>
+                    <input type="email" id="feedEmail" class="form-input" placeholder="tu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="feedMensaje">Tu Sugerencia o Mejora *</label>
+                    <textarea id="feedMensaje" class="form-textarea" placeholder="¿Qué cosas te gustaría agregar a la app o qué deberíamos mejorar?" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-feedback" id="btnSubmitFeedback">
+                    Enviar Sugerencia
+                </button>
+            </form>
+
+            <!-- ESTADO DE ÉXITO -->
+            <div class="feedback-success-box" id="feedbackSuccess">
+                <div class="feedback-success-icon">🥟</div>
+                <h4 class="feedback-success-title">¡Recibido con éxito!</h4>
+                <p class="feedback-success-desc">Muchas gracias por ayudarnos a ser más ricos cada día. Tu mensaje ya fue enviado al equipo.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOTOR DE INSTALACIÓN PWA, HÁPTICO, DETECCIÓN NATIVA, ANALÍTICA Y FORMULARIO -->
     <script>
         let deferredPrompt;
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone || document.referrer.includes('android-app://');
@@ -986,7 +1188,7 @@
             }
         }
         document.addEventListener('pointerdown', (e) => {
-            if (e.target.closest('.btn-card, .branch-wsp-card, .social-btn, .pwa-install-card, .btn-feedback-card')) {
+            if (e.target.closest('.btn-card, .branch-wsp-card, .social-btn, .pwa-install-card, .btn-feedback-card, .btn-submit-feedback, .btn-close-modal')) {
                 triggerHaptic();
             }
         }, { passive: true });
@@ -1037,6 +1239,76 @@
                 }
             }
         })();
+
+        // FUNCIONES DE LA VENTANA DE SUGERENCIAS
+        function openFeedbackModal() {
+            const overlay = document.getElementById('feedbackOverlay');
+            if (overlay) overlay.classList.add('active');
+        }
+
+        function closeFeedbackModal() {
+            const overlay = document.getElementById('feedbackOverlay');
+            if (overlay) overlay.classList.remove('active');
+            setTimeout(() => {
+                const form = document.getElementById('feedbackForm');
+                const successBox = document.getElementById('feedbackSuccess');
+                if (form) form.style.display = 'block';
+                if (successBox) successBox.style.display = 'none';
+            }, 300);
+        }
+
+        function submitFeedbackForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmitFeedback');
+            const form = document.getElementById('feedbackForm');
+            const successBox = document.getElementById('feedbackSuccess');
+
+            const nombre = document.getElementById('feedNombre').value.trim();
+            const telefono = document.getElementById('feedTelefono').value.trim();
+            const email = document.getElementById('feedEmail').value.trim();
+            const mensaje = document.getElementById('feedMensaje').value.trim();
+
+            if (!nombre || !mensaje) return;
+
+            btn.disabled = true;
+            btn.innerText = "Enviando...";
+
+            // ENVÍO SILENCIOSO EN SEGUNDO PLANO A TU EMAIL (SIN SALIR DE LA APP)
+            fetch("https://formsubmit.co/ajax/diseno.graficoindustrial@gmail.com", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    Nombre: nombre,
+                    Telefono: telefono || 'No especificado',
+                    Email: email || 'No especificado',
+                    Sugerencia_o_Mejora: mensaje,
+                    _subject: "💡 Nueva Sugerencia / Mejora desde la App Empanadazas"
+                })
+            })
+            .then(() => {
+                form.reset();
+                form.style.display = 'none';
+                successBox.style.display = 'flex';
+                setTimeout(() => {
+                    closeFeedbackModal();
+                    btn.disabled = false;
+                    btn.innerText = "Enviar Sugerencia";
+                }, 2800);
+            })
+            .catch(() => {
+                form.reset();
+                form.style.display = 'none';
+                successBox.style.display = 'flex';
+                setTimeout(() => {
+                    closeFeedbackModal();
+                    btn.disabled = false;
+                    btn.innerText = "Enviar Sugerencia";
+                }, 2800);
+            });
+        }
 
         function checkAlreadyInstalled() {
             const pwaBox = document.getElementById('pwaInstallBox');
